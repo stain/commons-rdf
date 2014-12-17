@@ -19,12 +19,14 @@
 package org.apache.commons.rdf;
 
 /**
- * Some entity. It could be a web resource such as a web page, or it could 
- * be a concrete physical thing such as a tree or a car. It could be an 
- * abstract idea such as a football game. 
+ * An <a href= "http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-term" >RDF-1.1
+ * Term</a>, as defined by <a href= "http://www.w3.org/TR/rdf11-concepts/"
+ * >RDF-1.1 Concepts and Abstract Syntax</a>, a W3C Recommendation published on
+ * 25 February 2014.<br>
  *
- * @author reto
+ * @see <a href= "http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-term" >RDF-1.1
+ * Term</a>
  */
-public interface Resource {
+public interface RdfTerm {
 
 }

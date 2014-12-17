@@ -18,7 +18,7 @@
  */
 package org.apache.commons.rdf;
 
-import org.apache.commons.rdf.Resource;
+import org.apache.commons.rdf.RdfTerm;
 
 /**
  * Represents a literal value that can be a node in an RDF Graph. 
@@ -29,7 +29,7 @@ import org.apache.commons.rdf.Resource;
  *
  * @author reto
  */
-public interface Literal extends Resource {
+public interface Literal extends RdfTerm {
     
     /**
      * 

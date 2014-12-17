@@ -25,6 +25,6 @@ package org.apache.commons.rdf;
  *
  * @author reto
  */
-public interface NonLiteral extends Resource {
+public interface BlankNodeOrIri extends RdfTerm {
 
 }

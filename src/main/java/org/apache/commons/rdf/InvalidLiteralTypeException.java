@@ -32,7 +32,7 @@ public class InvalidLiteralTypeException extends RuntimeException {
      * @param javaType the <code>Class</code> to convert to
      * @param literalType the literalType which can't be converted
      */
-    public InvalidLiteralTypeException(Class<?> javaType, UriRef literalType) {
+    public InvalidLiteralTypeException(Class<?> javaType, Iri literalType) {
         super("Cannot create a "+javaType+" from a literal of type "+literalType);
     }
 }

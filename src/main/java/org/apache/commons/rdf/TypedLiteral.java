@@ -35,7 +35,7 @@ public interface TypedLiteral extends Literal {
      * 
      * @return UriRef
      */
-    public UriRef getDataType();
+    public Iri getDataType();
     
     /** 
      * Two TypedLiteral nodes are equal iff they have the same lexical form and

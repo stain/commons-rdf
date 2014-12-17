@@ -26,11 +26,11 @@ package org.apache.commons.rdf;
  */
 public interface Triple {
 
-    NonLiteral getSubject();
+    BlankNodeOrIri getSubject();
 
-    UriRef getPredicate();
+    Iri getPredicate();
 
-    Resource getObject();
+    RdfTerm getObject();
 
     /**
      * 

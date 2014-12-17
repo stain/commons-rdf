@@ -31,11 +31,11 @@ import java.io.Serializable;
  * 
  * @author reto
  */
-public class UriRef implements NonLiteral, Serializable {
+public class Iri implements BlankNodeOrIri, Serializable {
 
     private String unicodeString;
 
-    public UriRef(String unicodeString) {
+    public Iri(String unicodeString) {
         this.unicodeString = unicodeString;
     }
 
@@ -56,11 +56,11 @@ public class UriRef implements NonLiteral, Serializable {
     @Override
     public boolean equals(Object obj) {
 
-        if (!(obj instanceof UriRef)) {
+        if (!(obj instanceof Iri)) {
             return false;
         }
 
-        return unicodeString.equals(((UriRef) obj).getUnicodeString());
+        return unicodeString.equals(((Iri) obj).getUnicodeString());
     }
 
     /**

@@ -44,8 +44,8 @@ public interface TripleCollection extends Collection<Triple> {
      * @param object
      * @return <code>Iterator</code>
      */
-    public Iterator<Triple> filter(NonLiteral subject, UriRef predicate, 
-            Resource object);
+    public Iterator<Triple> filter(BlankNodeOrIri subject, Iri predicate, 
+            RdfTerm object);
 
     /**
      * Adds the specified <code>GraphListener</code> to the graph. This listener

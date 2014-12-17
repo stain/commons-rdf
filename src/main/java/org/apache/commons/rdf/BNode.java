@@ -25,6 +25,6 @@ package org.apache.commons.rdf;
  *
  * @author reto
  */
-public class BNode implements NonLiteral {
+public class BNode implements BlankNodeOrIri {
 
 }
