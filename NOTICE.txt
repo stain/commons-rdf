@@ -1,4 +1,4 @@
-Apache Commons Net
+Apache Commons RDF
 Copyright 2001-2014 The Apache Software Foundation
 
 This product includes software developed at

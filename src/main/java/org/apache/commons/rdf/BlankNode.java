@@ -19,12 +19,23 @@
 package org.apache.commons.rdf;
 
 /**
- * A Blank Node, extends a NonLiteral. represents a resource, 
+ * A Blank Node represents a resource, 
  * but does not indicate a URI for the resource. Blank nodes act like 
  * existentially qualified variables in first order logic. 
  *
- * @author reto
+ * An <a href= "http://www.w3.org/TR/rdf11-concepts/#dfn-blank-node" >RDF-1.1
+ * Blank Node</a>, as defined by <a href=
+ * "http://www.w3.org/TR/rdf11-concepts/#section-blank-nodes" >RDF-1.1 Concepts
+ * and Abstract Syntax</a>, a W3C Recommendation published on 25 February 2014.<br>
+ *
+ * Note that: Blank nodes are disjoint from IRIs and literals. Otherwise,
+ * the set of possible blank nodes is arbitrary. RDF makes no reference to any
+ * internal structure of blank nodes.
+ *
+ *
+ * @see <a href= "http://www.w3.org/TR/rdf11-concepts/#dfn-blank-node">RDF-1.1
+ * Blank Node</a>
  */
-public class BNode implements BlankNodeOrIri {
+public class BlankNode implements BlankNodeOrIri {
 
 }
