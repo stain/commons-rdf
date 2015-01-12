@@ -19,7 +19,7 @@
 package org.apache.commons.rdf.event;
 
 import org.apache.commons.rdf.Triple;
-import org.apache.commons.rdf.TripleCollection;
+import org.apache.commons.rdf.Graph;
 
 /**
  * This class represent a addition event that occured on a
@@ -30,7 +30,7 @@ import org.apache.commons.rdf.TripleCollection;
 public class AddEvent extends GraphEvent {
 
 
-    public AddEvent(TripleCollection graph,  Triple triple) {
+    public AddEvent(Graph graph,  Triple triple) {
         super(graph, triple);
     }
 

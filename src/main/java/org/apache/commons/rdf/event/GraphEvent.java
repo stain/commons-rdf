@@ -19,7 +19,7 @@
 package org.apache.commons.rdf.event;
 
 import org.apache.commons.rdf.Triple;
-import org.apache.commons.rdf.TripleCollection;
+import org.apache.commons.rdf.Graph;
 
 /**
  * This class represent a modification event that occured on a
@@ -32,10 +32,10 @@ import org.apache.commons.rdf.TripleCollection;
  */
 public class GraphEvent {
 
-    private TripleCollection graph;
+    private Graph graph;
     private Triple triple;
 
-    protected GraphEvent(TripleCollection graph, Triple triple) {
+    protected GraphEvent(Graph graph, Triple triple) {
         this.graph = graph;
         this.triple = triple;
     }
@@ -44,7 +44,7 @@ public class GraphEvent {
      * Returns the <code>TripleCollection</code> that was modified in the event.
      * @return the graph
      */
-    public TripleCollection getGraph() {
+    public Graph getGraph() {
         return graph;
     }
 

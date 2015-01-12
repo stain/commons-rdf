@@ -19,7 +19,7 @@
 package org.apache.commons.rdf.event;
 
 import org.apache.commons.rdf.Triple;
-import org.apache.commons.rdf.TripleCollection;
+import org.apache.commons.rdf.Graph;
 
 /**
  * This class represent a removal event that occured on a
@@ -30,7 +30,7 @@ import org.apache.commons.rdf.TripleCollection;
 public class RemoveEvent extends GraphEvent {
 
 
-    public RemoveEvent(TripleCollection graph,  Triple triple) {
+    public RemoveEvent(Graph graph,  Triple triple) {
         super(graph, triple);
     }
 
