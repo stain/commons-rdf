@@ -18,8 +18,9 @@
  */
 package org.apache.commons.rdf.event;
 
-import org.apache.commons.rdf.Triple;
 import org.apache.commons.rdf.Graph;
+
+import com.github.commonsrdf.api.Triple;
 
 /**
  * This class represent a removal event that occured on a

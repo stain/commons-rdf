@@ -21,8 +21,13 @@ package org.apache.commons.rdf;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.concurrent.locks.ReadWriteLock;
+
 import org.apache.commons.rdf.event.FilterTriple;
 import org.apache.commons.rdf.event.GraphListener;
+
+import com.github.commonsrdf.api.BlankNodeOrIRI;
+import com.github.commonsrdf.api.RDFTerm;
+import com.github.commonsrdf.api.Triple;
 
 
 /**
@@ -31,6 +36,9 @@ import org.apache.commons.rdf.event.GraphListener;
  * specification for <code>hashCode()</code> and <code>equals</code>.
  * It is possible to add <code>GraphListener</code> to listen for modifications
  * in the triples.
+ * <p>
+ * Does not currently extend com.github.commonsrdf.api.Graph as that is not
+ * compatible with Collection<Triple> - see https://github.com/commons-rdf/commons-rdf/issues/46
  *
  * @author reto
  */
@@ -45,8 +53,8 @@ public interface Graph extends Collection<Triple> {
      * @param object
      * @return <code>Iterator</code>
      */
-    public Iterator<Triple> filter(BlankNodeOrIri subject, Iri predicate, 
-            RdfTerm object);
+    public Iterator<Triple> filter(BlankNodeOrIRI subject, Iri predicate, 
+            RDFTerm object);
 
     /**
      * Adds the specified <code>GraphListener</code> to the graph. This listener

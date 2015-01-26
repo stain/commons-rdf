@@ -20,6 +20,8 @@ package org.apache.commons.rdf;
 
 import java.io.Serializable;
 
+import com.github.commonsrdf.api.IRI;
+
 /**
  * Represents an RDF URI Reference
  * 
@@ -31,7 +33,7 @@ import java.io.Serializable;
  * 
  * @author reto
  */
-public class Iri implements BlankNodeOrIri, Serializable {
+public class Iri implements IRI, Serializable {
 
     private String unicodeString;
 
@@ -74,10 +76,20 @@ public class Iri implements BlankNodeOrIri, Serializable {
 
     @Override
     public String toString() {
+    	return ntriplesString();
+    }
+
+	@Override
+	public String ntriplesString() {
         StringBuilder buffer = new StringBuilder();
         buffer.append('<');
         buffer.append(unicodeString);
         buffer.append('>');
         return buffer.toString();
-    }
+	}
+
+	@Override
+	public String getIRIString() {
+		return unicodeString;
+	}
 }

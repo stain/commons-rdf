@@ -242,6 +242,7 @@
     <modules>
       <module>commons-rdf-api</module>
       <module>commons-rdf-simple</module>
+      <module>commons-sandbox-rdf</module>
     </modules>
 
 </project>

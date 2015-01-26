@@ -18,10 +18,11 @@
  */
 package org.apache.commons.rdf.event;
 
-import org.apache.commons.rdf.BlankNodeOrIri;
-import org.apache.commons.rdf.RdfTerm;
-import org.apache.commons.rdf.Triple;
 import org.apache.commons.rdf.Iri;
+
+import com.github.commonsrdf.api.BlankNodeOrIRI;
+import com.github.commonsrdf.api.RDFTerm;
+import com.github.commonsrdf.api.Triple;
 
 /**
  * The <code>FilterTriple</code> class provides a match()-method that tests
@@ -31,9 +32,9 @@ import org.apache.commons.rdf.Iri;
  */
 public class FilterTriple {
 
-    private BlankNodeOrIri subject;
+    private BlankNodeOrIRI subject;
     private Iri predicate;
-    private RdfTerm object;
+    private RDFTerm object;
     
     /**
      * Creates a new <code>FilterTriple</code>. The specified subject,
@@ -44,7 +45,7 @@ public class FilterTriple {
      * @param predicate  the predicate.
      * @param object  the object.
      */
-    public FilterTriple (BlankNodeOrIri subject, Iri predicate, RdfTerm object) {
+    public FilterTriple (BlankNodeOrIRI subject, Iri predicate, RDFTerm object) {
         this.subject = subject;
         this.predicate = predicate;
         this.object = object;
