@@ -164,8 +164,8 @@ implements <a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.htm
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../org/apache/commons/rdf/api/BlankNode.html" title="interface in org.apache.commons.rdf.api">BlankNode</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/simple/SimpleRDFTermFactory.html#createBlankNode-java.lang.String-">createBlankNode</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;identifier)</code>
-<div class="block">Create a blank node based on the given identifier.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/simple/SimpleRDFTermFactory.html#createBlankNode-java.lang.String-">createBlankNode</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
+<div class="block">Create a blank node based on the given name.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -257,19 +257,13 @@ implements <a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.htm
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.html#createBlankNode--">RDFTermFactory</a></code></span></div>
 <div class="block">Create a new blank node.
  <p>
- All pairs of <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html" title="interface in org.apache.commons.rdf.api"><code>BlankNode</code></a>s created with this method MUST NOT be
- equal.
- <p>
- If supported, the <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html#internalIdentifier--"><code>BlankNode.internalIdentifier()</code></a> of the returned
- blank node MUST be a universally unique value across both this and any
- other <a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.html" title="interface in org.apache.commons.rdf.api"><code>RDFTermFactory</code></a> objects running in the JVM when compared
- with both past and future calls both to this method, and calls to
- <a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.html#createBlankNode-java.lang.String-"><code>RDFTermFactory.createBlankNode(String)</code></a> with any inputs.</div>
+ The returned blank node MUST NOT be equal to any existing
+ <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html" title="interface in org.apache.commons.rdf.api"><code>BlankNode</code></a> instances according to <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html#equals-java.lang.Object-"><code>BlankNode.equals(Object)</code></a>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.html#createBlankNode--">createBlankNode</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.html" title="interface in org.apache.commons.rdf.api">RDFTermFactory</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>A new <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html" title="interface in org.apache.commons.rdf.api"><code>BlankNode</code></a></dd>
+<dd>A new, unique <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html" title="interface in org.apache.commons.rdf.api"><code>BlankNode</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -279,38 +273,30 @@ implements <a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.htm
 <ul class="blockList">
 <li class="blockList">
 <h4>createBlankNode</h4>
-<pre>public&nbsp;<a href="../../../../../org/apache/commons/rdf/api/BlankNode.html" title="interface in org.apache.commons.rdf.api">BlankNode</a>&nbsp;createBlankNode(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;identifier)</pre>
+<pre>public&nbsp;<a href="../../../../../org/apache/commons/rdf/api/BlankNode.html" title="interface in org.apache.commons.rdf.api">BlankNode</a>&nbsp;createBlankNode(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.html#createBlankNode-java.lang.String-">RDFTermFactory</a></code></span></div>
-<div class="block">Create a blank node based on the given identifier.
+<div class="block">Create a blank node based on the given name.
  <p>
- For a single instance of RDFTermFactory, all BlankNodes created using
- this method with the same <code>identifier</code> parameter MUST be
- equivalent according to <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html#equals-java.lang.Object-"><code>BlankNode.equals(Object)</code></a>, The returned
- BlankNode MUST NOT be equal to any other BlankNode objects from
- <a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.html#createBlankNode-java.lang.String-"><code>RDFTermFactory.createBlankNode(String)</code></a> with a different <code>identifier</code>
- parameter.
+ For a particular instance of <code>RDFTermFactory</code>, all
+ <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html" title="interface in org.apache.commons.rdf.api"><code>BlankNode</code></a>s created using this method with the same
+ <code>name</code> parameter MUST be equivalent according to
+ <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html#equals-java.lang.Object-"><code>BlankNode.equals(Object)</code></a>,
  <p>
- BlankNodes created on a different RDFTermFactory instance using this
- method SHOULD NOT be equivalent.
+ The returned BlankNode MUST NOT be equal to any other
+ <code>BlankNode</code> instances returned from this instance.
  <p>
- A BlankNode object created through the
- <a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.html#createBlankNode-java.lang.String-"><code>RDFTermFactory.createBlankNode(String)</code></a> method MUST produce the
- same <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html#internalIdentifier--"><code>BlankNode.internalIdentifier()</code></a> as any previous or future
- calls to this method <b>on that factory instance</b> with the same
- <code>identifier</code> parameter.
- <p>
- The returned blank node SHOULD contain a <a href="http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util"><code>UUID</code></a> string as part of
- its <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html#internalIdentifier--"><code>BlankNode.internalIdentifier()</code></a>, which MUST be universally
- unique across factory instances and JVM runs (e.g. created using
- <a href="http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html?is-external=true#randomUUID--" title="class or interface in java.util"><code>UUID.randomUUID()</code></a> per factory instance).</div>
+ The returned BlankNode SHOULD NOT be equivalent to any BlankNodes created
+ on a <em>different</em> <code>RDFTermFactory</code> instance, e.g.
+ different instances of <code>RDFTermFactory</code> should produce
+ different blank nodes for the same <code>name</code>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.html#createBlankNode-java.lang.String-">createBlankNode</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.html" title="interface in org.apache.commons.rdf.api">RDFTermFactory</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>identifier</code> - A non-empty, non-null, String that is unique to this blank
+<dd><code>name</code> - A non-empty, non-null, String that is unique to this blank
             node in the context of this <a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.html" title="interface in org.apache.commons.rdf.api"><code>RDFTermFactory</code></a>.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>A BlankNode for the given identifier</dd>
+<dd>A BlankNode for the given name</dd>
 </dl>
 </li>
 </ul>
@@ -329,7 +315,7 @@ implements <a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.htm
 
  <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html" title="interface in org.apache.commons.rdf.api"><code>BlankNode</code></a> objects added to the <a href="../../../../../org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api"><code>Graph</code></a> returned from this
  method SHOULD be mapped using the <a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.html#createBlankNode-java.lang.String-"><code>RDFTermFactory.createBlankNode(String)</code></a> of
- this factory, called using the <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html#internalIdentifier--"><code>BlankNode.internalIdentifier()</code></a> as
+ this factory, called using the <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html#uniqueReference--"><code>BlankNode.uniqueReference()</code></a> as
  the parameter, before they are inserted into the Graph.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>

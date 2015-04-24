@@ -135,7 +135,7 @@ extends <a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" 
  by the syntax. </blockquote>
 
  A BlankNode SHOULD contain a <a href="http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util"><code>UUID</code></a> string as part of its
- universally unique <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html#internalIdentifier--"><code>internalIdentifier()</code></a>.</div>
+ universally unique <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html#uniqueReference--"><code>uniqueReference()</code></a>.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.html#createBlankNode--"><code>RDFTermFactory.createBlankNode()</code></a>, 
@@ -175,10 +175,8 @@ extends <a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" 
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/BlankNode.html#internalIdentifier--">internalIdentifier</a></span>()</code>
-<div class="block">Return a <a href=
- "http://www.w3.org/TR/rdf11-concepts/#dfn-blank-node-identifier" >unique
- label</a> for the blank node.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/BlankNode.html#uniqueReference--">uniqueReference</a></span>()</code>
+<div class="block">Return a reference for uniquely identifying the blank node.</div>
 </td>
 </tr>
 </table>
@@ -203,30 +201,35 @@ extends <a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" 
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="internalIdentifier--">
+<a name="uniqueReference--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>internalIdentifier</h4>
-<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;internalIdentifier()</pre>
-<div class="block">Return a <a href=
- "http://www.w3.org/TR/rdf11-concepts/#dfn-blank-node-identifier" >unique
- label</a> for the blank node.
+<h4>uniqueReference</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;uniqueReference()</pre>
+<div class="block">Return a reference for uniquely identifying the blank node.
  <p>
- The internal identifier string MUST be universally unique, and
- SHOULD contain a UUID string. The UUID, if present, MUST be
- universally unique across JVM runs and <a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.html" title="interface in org.apache.commons.rdf.api"><code>RDFTermFactory</code></a> instances.
+ The reference string MUST be universally unique, e.g. blank nodes created
+ separately in different JVMs or from different <a href="../../../../../org/apache/commons/rdf/api/RDFTermFactory.html" title="interface in org.apache.commons.rdf.api"><code>RDFTermFactory</code></a>
+ instances MUST NOT have the same reference string.
  <p>
- IMPORTANT: This is not a serialization/syntax label, and there are no
- guarantees that it is a valid identifier in any concrete syntax. For an
- N-Triples compatible identifier use <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html#ntriplesString--"><code>RDFTerm.ntriplesString()</code></a>. For all
- other syntaxes, the result of this method must be sanitized to produce a
- valid concrete identifier if one is needed.</div>
+ The <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html#uniqueReference--"><code>uniqueReference()</code></a> of two <code>BlankNode</code> instances
+ MUST be equal if and only if the two blank nodes are equal according to
+ <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html#equals-java.lang.Object-"><code>equals(Object)</code></a>.
+ <p>
+ This method does not specify any specific structure of the reference
+ string, except that the reference SHOULD be (or contain) a <a href="http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util"><code>UUID</code></a>
+ string.
+ <p>
+ <strong>IMPORTANT:</strong> This is not a <a
+ href="http://www.w3.org/TR/rdf11-concepts/#dfn-blank-node-identifier">
+ blank node identifier</a> nor a serialization/syntax label, and there are
+ no guarantees that it is a valid identifier in any concrete RDF syntax.
+ For an N-Triples compatible identifier, use <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html#ntriplesString--"><code>RDFTerm.ntriplesString()</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>An internal, system identifier for the <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html" title="interface in org.apache.commons.rdf.api"><code>BlankNode</code></a> that is
- used primarily to check whether two BlankNode's are equivalent.</dd>
+<dd>A universally unique reference to identify this <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html" title="interface in org.apache.commons.rdf.api"><code>BlankNode</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -239,7 +242,7 @@ extends <a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" 
 <pre>boolean&nbsp;equals(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;other)</pre>
 <div class="block">Check it this BlankNode is equal to another BlankNode. Two BlankNodes
  MUST be equal if, and only if, they have the same
- <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html#internalIdentifier--"><code>internalIdentifier()</code></a>.
+ <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html#uniqueReference--"><code>uniqueReference()</code></a>.
 
  Implementations MUST also override <a href="../../../../../org/apache/commons/rdf/api/BlankNode.html#hashCode--"><code>hashCode()</code></a> so that two equal
  Literals produce the same hash code.</div>
