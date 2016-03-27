@@ -31,7 +31,20 @@ import java.util.Optional;
  * @see <a href="https://www.w3.org/TR/rdf11-primer/#section-graph-syntax">RDF 1.1 Primer</a>
  *
  */
-public enum RDFSyntax {
+public interface RDFSyntax {
+	
+	/** 
+	 * The <a href="https://tools.ietf.org/html/rfc2046">IANA media type</a> for the RDF syntax.
+	 * <p> 
+	 * The media type can be used as part of 
+	 * <code>Content-Type</code> 
+	 * and <code>Accept</code> for <em>content negotiation</em> in the 
+	 * <a href="https://tools.ietf.org/html/rfc7231#section-3.1.1.1">HTTP protocol</a>. 
+	 */
+	public String getMediaType();
+	
+	
+	public enum Standard implements RDFSyntax {
 	
 	/**
 	 * JSON-LD 1.0
@@ -91,15 +104,8 @@ public enum RDFSyntax {
 	 */
 	TRIG("RDF 1.1 TriG", "application/trig");
 
-	/** 
-	 * The <a href="https://tools.ietf.org/html/rfc2046">IANA media type</a> for the RDF syntax.
-	 * <p> 
-	 * The media type can be used as part of 
-	 * <code>Content-Type</code> 
-	 * and <code>Accept</code> for <em>content negotiation</em> in the 
-	 * <a href="https://tools.ietf.org/html/rfc7231#section-3.1.1.1">HTTP protocol</a>. 
-	 */
-	public final String mediaType;
+
+	private final String mediaType;
 		
 	private final String name;
 	
@@ -113,7 +119,8 @@ public enum RDFSyntax {
 		return name;
 	}
 	
-	private RDFSyntax(String name, String mediaType) {
+	
+	private Standard(String name, String mediaType) {
 		this.name = name;
 		this.mediaType = mediaType;
 	}
@@ -137,16 +144,26 @@ public enum RDFSyntax {
 	 *         {@link Optional#empty()} indicating that 
 	 *         no matching syntax was found.
 	 */
-	public static Optional<RDFSyntax> byMediaType(String mediaType) {
+	public static Optional<Standard> byMediaType(String mediaType) {
 		mediaType = mediaType.toLowerCase(Locale.ENGLISH);
 		mediaType = mediaType.split("\\s*[;,]")[0];
 		
-		for (RDFSyntax syntax : RDFSyntax.values()) {
+		for (Standard syntax : Standard.values()) {
 			if (mediaType.equals(syntax.mediaType)) { 
 				return Optional.of(syntax);
 			}
 		}
 		return Optional.empty();
+	}
+
+	@Override
+	public String getMediaType() {
+		return mediaType;
+	}
+	
+	
+	
+	
 	}
 
 }
