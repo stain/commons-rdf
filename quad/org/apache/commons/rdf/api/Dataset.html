@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":18,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":18,"i11":18,"i12":6,"i13":6,"i14":6,"i15":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":18,"i4":6,"i5":6,"i6":6,"i7":6,"i8":18,"i9":18,"i10":6,"i11":6,"i12":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -140,41 +140,24 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#add-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">add</a></span>(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
-   <a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
-   <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)</code>
-<div class="block">Add a triple to the default graph of this dataset, possibly mapping any
- of the components to those supported by this dataset.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#add-org.apache.commons.rdf.api.Quad-">add</a></span>(<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&nbsp;quad)</code>
 <div class="block">Add a quad to the dataset, possibly mapping any of the components of the
  Quad to those supported by this dataset.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#clear--">clear</a></span>()</code>
 <div class="block">Clear the dataset, removing all quads.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>default void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#close--">close</a></span>()</code>
 <div class="block">Close the dataset, relinquishing any underlying resources.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#contains-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">contains</a></span>(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
-        <a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
-        <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)</code>
-<div class="block">Check if the default graph in the dataset contains a triple pattern.</div>
-</td>
-</tr>
-<tr id="i6" class="altColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#contains-java.util.Optional-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">contains</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&gt;&nbsp;graphName,
         <a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
@@ -183,19 +166,19 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <div class="block">Check if dataset contains a pattern of quads.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#contains-org.apache.commons.rdf.api.Quad-">contains</a></span>(<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&nbsp;quad)</code>
 <div class="block">Check if dataset contains quad.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream">Stream</a>&lt;? extends <a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#getQuads--">getQuads</a></span>()</code>
 <div class="block">Get all quads contained by the dataset.<br></div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream">Stream</a>&lt;? extends <a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#getQuads-java.util.Optional-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">getQuads</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&gt;&nbsp;graphName,
         <a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
@@ -204,13 +187,13 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <div class="block">Get all quads contained by the dataset matched with the pattern.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#iterate--">iterate</a></span>()</code>
 <div class="block">Get an Iterable for iterating over all quads in the dataset.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#iterate-java.util.Optional-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">iterate</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&gt;&nbsp;graphName,
        <a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
@@ -220,15 +203,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
  the pattern.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#remove-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">remove</a></span>(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
-      <a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
-      <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)</code>
-<div class="block">Remove a concrete pattern of quads from the default graph of the dataset.</div>
-</td>
-</tr>
-<tr id="i13" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#remove-java.util.Optional-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">remove</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&gt;&nbsp;graphName,
       <a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
@@ -237,26 +212,19 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <div class="block">Remove a concrete pattern of quads from the default graph of the dataset.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#remove-org.apache.commons.rdf.api.Quad-">remove</a></span>(<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&nbsp;quad)</code>
 <div class="block">Remove a concrete quad from the dataset.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#size--">size</a></span>()</code>
 <div class="block">Number of quads contained by the dataset.</div>
 </td>
 </tr>
 </table>
-<ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.org.apache.commons.rdf.api.GraphOrDataset">
-<!--   -->
-</a>
-<h3>Methods inherited from interface&nbsp;org.apache.commons.rdf.api.<a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a></h3>
-<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#getTriples--">getTriples</a>, <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#getTriples-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">getTriples</a>, <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#iterate-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">iterate</a></code></li>
-</ul>
 </li>
 </ul>
 </li>
@@ -285,31 +253,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#add-T-">add</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>quad</code> - The quad to add</dd>
-</dl>
-</li>
-</ul>
-<a name="add-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>add</h4>
-<pre>void&nbsp;add(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
-         <a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
-         <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)</pre>
-<div class="block">Add a triple to the default graph of this dataset, possibly mapping any
- of the components to those supported by this dataset.
- <p>
- This method is equivalent to
- <a href="../../../../../org/apache/commons/rdf/api/Dataset.html#add-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-"><code>add(BlankNodeOrIRI, BlankNodeOrIRI, IRI, RDFTerm)</code></a> with
- <code>graphName</code> set as <code>null</code>.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#add-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">add</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>subject</code> - The quad subject</dd>
-<dd><code>predicate</code> - The quad predicate</dd>
-<dd><code>object</code> - The quad object</dd>
 </dl>
 </li>
 </ul>
@@ -350,33 +293,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <dd><code>quad</code> - The quad to check.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>True if the dataset contains the given Quad.</dd>
-</dl>
-</li>
-</ul>
-<a name="contains-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>contains</h4>
-<pre>boolean&nbsp;contains(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
-                 <a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
-                 <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)</pre>
-<div class="block">Check if the default graph in the dataset contains a triple pattern.
- <p>
- This method is equivalent to
- <a href="../../../../../org/apache/commons/rdf/api/Dataset.html#contains-java.util.Optional-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-"><code>contains(Optional, BlankNodeOrIRI, IRI, RDFTerm)</code></a> with a
- <code>graphName</code> set to <code>null</code></div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#contains-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">contains</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>subject</code> - The quad subject (<code>null</code> is a wildcard)</dd>
-<dd><code>predicate</code> - The quad predicate (<code>null</code> is a wildcard)</dd>
-<dd><code>object</code> - The quad object (<code>null</code> is a wildcard)</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>True if the default graph in the dataset contains any quads that
-         match the given pattern.</dd>
 </dl>
 </li>
 </ul>
@@ -446,26 +362,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#remove-T-">remove</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>quad</code> - quad to remove</dd>
-</dl>
-</li>
-</ul>
-<a name="remove-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>remove</h4>
-<pre>void&nbsp;remove(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
-            <a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
-            <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)</pre>
-<div class="block">Remove a concrete pattern of quads from the default graph of the dataset.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#remove-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">remove</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>subject</code> - The quad subject (<code>null</code> is a wildcard)</dd>
-<dd><code>predicate</code> - The quad predicate (<code>null</code> is a wildcard)</dd>
-<dd><code>object</code> - The quad object (<code>null</code> is a wildcard)</dd>
 </dl>
 </li>
 </ul>

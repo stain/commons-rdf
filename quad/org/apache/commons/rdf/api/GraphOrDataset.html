@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":18,"i4":6,"i5":6,"i6":6,"i7":6,"i8":18,"i9":18,"i10":6,"i11":6,"i12":6};
+var methods = {"i0":6,"i1":6,"i2":18,"i3":6,"i4":6,"i5":6,"i6":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -132,98 +132,42 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#add-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">add</a></span>(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
-   <a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
-   <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)</code>
-<div class="block">Add a triple to the Graph, (or the default graph of a Dataset), 
- possibly mapping any of the components to
- those supported by this graph/dataset.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#add-T-">add</a></span>(<a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="type parameter in GraphOrDataset">T</a>&nbsp;tripleOrQuad)</code>
 <div class="block">Add a triple/quad to the graph, possibly mapping any of the components of the
  TripleOrQuad to those supported by this Graph.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#clear--">clear</a></span>()</code>
 <div class="block">Clear the graph/dataset, removing all triples/quads.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>default void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#close--">close</a></span>()</code>
 <div class="block">Close the graph/dataset, relinquishing any underlying resources.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#contains-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">contains</a></span>(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
-        <a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
-        <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)</code>
-<div class="block">Check if graph/dataset contains a pattern of triples or quads in the
- default graph of a dataset.</div>
-</td>
-</tr>
-<tr id="i5" class="rowColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#contains-T-">contains</a></span>(<a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="type parameter in GraphOrDataset">T</a>&nbsp;tripleOrQuad)</code>
 <div class="block">Check if graph/dataset contains triple/quad.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream">Stream</a>&lt;? extends <a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#getTriples--">getTriples</a></span>()</code>
-<div class="block">Get all triples contained by the graph, or 
- the equivalent of <a href="../../../../../org/apache/commons/rdf/api/Quad.html#asTriple--"><code>Quad.asTriple()</code></a> 
- for all quads of the default graph of a dataset.</div>
-</td>
-</tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream">Stream</a>&lt;? extends <a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#getTriples-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">getTriples</a></span>(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
-          <a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
-          <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)</code>
-<div class="block">Get all triples contained by the graph matched with the pattern, or
- the equivalent of <a href="../../../../../org/apache/commons/rdf/api/Quad.html#asTriple--"><code>Quad.asTriple()</code></a> 
- for all quads of the default graph of a dataset that match the pattern.</div>
-</td>
-</tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="type parameter in GraphOrDataset">T</a>&gt;</code></td>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="type parameter in GraphOrDataset">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#iterate--">iterate</a></span>()</code>
-<div class="block">Get an Iterable for iterating over all triples in the graph.</div>
+<div class="block">Get an Iterable for iterating over all triples/quads in the graph/dataset.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="type parameter in GraphOrDataset">T</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#iterate-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">iterate</a></span>(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
-       <a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
-       <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)</code>
-<div class="block">Get an Iterable for iterating over the triples in the graph 
- or quads in the default graph of a dataset that  
- match the pattern.</div>
-</td>
-</tr>
-<tr id="i10" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#remove-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">remove</a></span>(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
-      <a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
-      <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)</code>
-<div class="block">Remove a concrete pattern of triples from the graph, or
- quads from the default graph of a dataset.</div>
-</td>
-</tr>
-<tr id="i11" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#remove-T-">remove</a></span>(<a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="type parameter in GraphOrDataset">T</a>&nbsp;tripleOrQuad)</code>
 <div class="block">Remove a concrete triple/quad from the graph.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#size--">size</a></span>()</code>
 <div class="block">Number of triples/quads contained by the graph/dataset.</div>
@@ -261,26 +205,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 </dl>
 </li>
 </ul>
-<a name="add-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>add</h4>
-<pre>void&nbsp;add(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
-         <a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
-         <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)</pre>
-<div class="block">Add a triple to the Graph, (or the default graph of a Dataset), 
- possibly mapping any of the components to
- those supported by this graph/dataset.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>subject</code> - The triple subject</dd>
-<dd><code>predicate</code> - The triple predicate</dd>
-<dd><code>object</code> - The triple object</dd>
-</dl>
-</li>
-</ul>
 <a name="contains-org.apache.commons.rdf.api.TripleOrQuad-">
 <!--   -->
 </a><a name="contains-T-">
@@ -296,28 +220,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <dd><code>tripleOrQuad</code> - The triple/quad to check.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>True if this graph/dataset contains the given Triple.</dd>
-</dl>
-</li>
-</ul>
-<a name="contains-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>contains</h4>
-<pre>boolean&nbsp;contains(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
-                 <a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
-                 <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)</pre>
-<div class="block">Check if graph/dataset contains a pattern of triples or quads in the
- default graph of a dataset.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>subject</code> - The triple subject (null is a wildcard)</dd>
-<dd><code>predicate</code> - The triple predicate (null is a wildcard)</dd>
-<dd><code>object</code> - The triple object (null is a wildcard)</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>True if this graph/dataset contains any triples/quads 
-        that match the given pattern.</dd>
 </dl>
 </li>
 </ul>
@@ -363,25 +265,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 </dl>
 </li>
 </ul>
-<a name="remove-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>remove</h4>
-<pre>void&nbsp;remove(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
-            <a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
-            <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)</pre>
-<div class="block">Remove a concrete pattern of triples from the graph, or
- quads from the default graph of a dataset.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>subject</code> - The triple subject (null is a wildcard)</dd>
-<dd><code>predicate</code> - The triple predicate (null is a wildcard)</dd>
-<dd><code>object</code> - The triple object (null is a wildcard)</dd>
-</dl>
-</li>
-</ul>
 <a name="clear--">
 <!--   -->
 </a>
@@ -406,74 +289,16 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 </dl>
 </li>
 </ul>
-<a name="getTriples--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getTriples</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream">Stream</a>&lt;? extends <a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;&nbsp;getTriples()</pre>
-<div class="block">Get all triples contained by the graph, or 
- the equivalent of <a href="../../../../../org/apache/commons/rdf/api/Quad.html#asTriple--"><code>Quad.asTriple()</code></a> 
- for all quads of the default graph of a dataset.
- <p>
- The iteration does not contain any duplicate triples, as determined by
- the <a href="../../../../../org/apache/commons/rdf/api/Triple.html#equals-java.lang.Object-"><code>Triple.equals(Object)</code></a> method for each <a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api"><code>Triple</code></a>.
- <p>
- The behaviour of the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream"><code>Stream</code></a> is not specified if <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#add-T-"><code>add(TripleOrQuad)</code></a>,
- <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#remove-T-"><code>remove(TripleOrQuad)</code></a> or <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#clear--"><code>clear()</code></a> are called on the
- <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api"><code>GraphOrDataset</code></a> before it terminates.
- <p>
- Implementations may throw <a href="http://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html?is-external=true" title="class or interface in java.util"><code>ConcurrentModificationException</code></a> from Stream
- methods if they detect a conflict while the Stream is active.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A <a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream"><code>Stream</code></a> over all of the triples in the graph</dd>
-</dl>
-</li>
-</ul>
-<a name="getTriples-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getTriples</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream">Stream</a>&lt;? extends <a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;&nbsp;getTriples(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
-                                    <a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
-                                    <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)</pre>
-<div class="block">Get all triples contained by the graph matched with the pattern, or
- the equivalent of <a href="../../../../../org/apache/commons/rdf/api/Quad.html#asTriple--"><code>Quad.asTriple()</code></a> 
- for all quads of the default graph of a dataset that match the pattern.
- <p>
- The iteration does not contain any duplicate triples, as determined by
- the <a href="../../../../../org/apache/commons/rdf/api/Triple.html#equals-java.lang.Object-"><code>Triple.equals(Object)</code></a> method for each <a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api"><code>Triple</code></a>.
- <p>
- The behaviour of the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream"><code>Stream</code></a> is not specified if <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#add-T-"><code>add(TripleOrQuad)</code></a>,
- <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#remove-T-"><code>remove(TripleOrQuad)</code></a> or <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#clear--"><code>clear()</code></a> are called on the
- <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api"><code>GraphOrDataset</code></a> before it terminates.
- <p>
- Implementations may throw <a href="http://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html?is-external=true" title="class or interface in java.util"><code>ConcurrentModificationException</code></a> from Stream
- methods if they detect a conflict while the Stream is active.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>subject</code> - The triple subject (null is a wildcard)</dd>
-<dd><code>predicate</code> - The triple predicate (null is a wildcard)</dd>
-<dd><code>object</code> - The triple object (null is a wildcard)</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A <a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream"><code>Stream</code></a> over the matched triples.</dd>
-</dl>
-</li>
-</ul>
 <a name="iterate--">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>iterate</h4>
-<pre>default&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="type parameter in GraphOrDataset">T</a>&gt;&nbsp;iterate()
-                     throws <a href="http://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html?is-external=true" title="class or interface in java.util">ConcurrentModificationException</a>,
-                            <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></pre>
-<div class="block">Get an Iterable for iterating over all triples in the graph.
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="type parameter in GraphOrDataset">T</a>&gt;&nbsp;iterate()
+             throws <a href="http://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html?is-external=true" title="class or interface in java.util">ConcurrentModificationException</a>,
+                    <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></pre>
+<div class="block">Get an Iterable for iterating over all triples/quads in the graph/dataset.
  <p>
  This method is meant to be used with a Java for-each loop, e.g.:
  <pre>
@@ -497,57 +322,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang"><code>Iterable</code></a> that returns <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a> over all of the
          triples in the graph</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - if the <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang"><code>Iterable</code></a> has been reused</dd>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html?is-external=true" title="class or interface in java.util">ConcurrentModificationException</a></code> - if a concurrency conflict occurs while the Iterator is
-             active.</dd>
-</dl>
-</li>
-</ul>
-<a name="iterate-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>iterate</h4>
-<pre>default&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="type parameter in GraphOrDataset">T</a>&gt;&nbsp;iterate(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
-                            <a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
-                            <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)
-                     throws <a href="http://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html?is-external=true" title="class or interface in java.util">ConcurrentModificationException</a>,
-                            <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></pre>
-<div class="block">Get an Iterable for iterating over the triples in the graph 
- or quads in the default graph of a dataset that  
- match the pattern.
- <p>
- This method is meant to be used with a Java for-each loop, e.g.:
- <pre>
-  IRI alice = factory.createIRI("http://example.com/alice");
-  IRI knows = factory.createIRI("http://xmlns.com/foaf/0.1/");
-  for (Triple t : graphOrDataset.iterate(alice, knows, null)) {
-      System.out.println(t.getObject());
-  }
- </pre>
- <p>
- The behaviour of the iterator is not specified if
- <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#add-T-"><code>add(TripleOrQuad)</code></a>, <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#remove-T-"><code>remove(TripleOrQuad)</code></a> or <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#clear--"><code>clear()</code></a>, are
- called on the <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api"><code>GraphOrDataset</code></a> before it terminates. It is undefined if the
- returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a> supports the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true#remove--" title="class or interface in java.util"><code>Iterator.remove()</code></a> method.
- <p>
- Implementations may throw <a href="http://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html?is-external=true" title="class or interface in java.util"><code>ConcurrentModificationException</code></a> from
- Iterator methods if they detect a concurrency conflict while the Iterator
- is active.
- <p>
- The <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true#iterator--" title="class or interface in java.lang"><code>Iterable.iterator()</code></a> must only be called once, that is the
- Iterable must only be iterated over once. A <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang"><code>IllegalStateException</code></a>
- may be thrown on attempt to reuse the Iterable.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>subject</code> - The triple subject (null is a wildcard)</dd>
-<dd><code>predicate</code> - The triple predicate (null is a wildcard)</dd>
-<dd><code>object</code> - The triple object (null is a wildcard)</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang"><code>Iterable</code></a> that returns <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a> over the
-         matching triples in the graph</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - if the <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang"><code>Iterable</code></a> has been reused</dd>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html?is-external=true" title="class or interface in java.util">ConcurrentModificationException</a></code> - if a concurrency conflict occurs while the Iterator is

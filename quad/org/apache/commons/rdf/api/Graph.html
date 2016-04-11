@@ -263,8 +263,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <div class="block">Add a triple to the graph, possibly mapping any of the components to
  those supported by this Graph.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#add-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">add</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>subject</code> - The triple subject</dd>
 <dd><code>predicate</code> - The triple predicate</dd>
@@ -301,8 +299,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
                  <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)</pre>
 <div class="block">Check if graph contains a pattern of triples.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#contains-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">contains</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>subject</code> - The triple subject (null is a wildcard)</dd>
 <dd><code>predicate</code> - The triple predicate (null is a wildcard)</dd>
@@ -368,8 +364,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
             <a href="../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&nbsp;object)</pre>
 <div class="block">Remove a concrete pattern of triples from the graph.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#remove-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">remove</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>subject</code> - The triple subject (null is a wildcard)</dd>
 <dd><code>predicate</code> - The triple predicate (null is a wildcard)</dd>
@@ -429,8 +423,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
  Implementations may throw <a href="http://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html?is-external=true" title="class or interface in java.util"><code>ConcurrentModificationException</code></a> from Stream
  methods if they detect a conflict while the Stream is active.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#getTriples--">getTriples</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A <a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream"><code>Stream</code></a> over all of the triples in the graph</dd>
 </dl>
@@ -457,8 +449,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
  Implementations may throw <a href="http://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html?is-external=true" title="class or interface in java.util"><code>ConcurrentModificationException</code></a> from Stream
  methods if they detect a conflict while the Stream is active.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#getTriples-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">getTriples</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>subject</code> - The triple subject (null is a wildcard)</dd>
 <dd><code>predicate</code> - The triple predicate (null is a wildcard)</dd>
@@ -546,8 +536,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
  Iterable must only be iterated over once. A <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang"><code>IllegalStateException</code></a>
  may be thrown on attempt to reuse the Iterable.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#iterate-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">iterate</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>subject</code> - The triple subject (null is a wildcard)</dd>
 <dd><code>predicate</code> - The triple predicate (null is a wildcard)</dd>

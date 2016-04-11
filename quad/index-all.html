@@ -78,11 +78,6 @@
 <div class="block">Add a quad to the dataset, possibly mapping any of the components of the
  Quad to those supported by this dataset.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Dataset.html#add-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">add(BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api">Dataset</a></dt>
-<dd>
-<div class="block">Add a triple to the default graph of this dataset, possibly mapping any
- of the components to those supported by this dataset.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Dataset.html#add-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">add(BlankNodeOrIRI, BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api">Dataset</a></dt>
 <dd>
 <div class="block">Add a quad to the dataset, possibly mapping any of the components to
@@ -102,12 +97,6 @@
 <dd>
 <div class="block">Add a triple/quad to the graph, possibly mapping any of the components of the
  TripleOrQuad to those supported by this Graph.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/GraphOrDataset.html#add-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">add(BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a></dt>
-<dd>
-<div class="block">Add a triple to the Graph, (or the default graph of a Dataset), 
- possibly mapping any of the components to
- those supported by this graph/dataset.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Quad.html#asTriple--">asTriple()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a></dt>
 <dd>
@@ -178,10 +167,6 @@
 <dd>
 <div class="block">Check if dataset contains quad.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Dataset.html#contains-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">contains(BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api">Dataset</a></dt>
-<dd>
-<div class="block">Check if the default graph in the dataset contains a triple pattern.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Dataset.html#contains-java.util.Optional-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">contains(Optional&lt;BlankNodeOrIRI&gt;, BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api">Dataset</a></dt>
 <dd>
 <div class="block">Check if dataset contains a pattern of quads.</div>
@@ -197,11 +182,6 @@
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/GraphOrDataset.html#contains-T-">contains(T)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a></dt>
 <dd>
 <div class="block">Check if graph/dataset contains triple/quad.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/GraphOrDataset.html#contains-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">contains(BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a></dt>
-<dd>
-<div class="block">Check if graph/dataset contains a pattern of triples or quads in the
- default graph of a dataset.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/RDFTermFactory.html#createBlankNode--">createBlankNode()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/RDFTermFactory.html" title="interface in org.apache.commons.rdf.api">RDFTermFactory</a></dt>
 <dd>
@@ -395,18 +375,6 @@
 <dd>
 <div class="block">Get all triples contained by the graph matched with the pattern.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/GraphOrDataset.html#getTriples--">getTriples()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a></dt>
-<dd>
-<div class="block">Get all triples contained by the graph, or 
- the equivalent of <a href="org/apache/commons/rdf/api/Quad.html#asTriple--"><code>Quad.asTriple()</code></a> 
- for all quads of the default graph of a dataset.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/GraphOrDataset.html#getTriples-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">getTriples(BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a></dt>
-<dd>
-<div class="block">Get all triples contained by the graph matched with the pattern, or
- the equivalent of <a href="org/apache/commons/rdf/api/Quad.html#asTriple--"><code>Quad.asTriple()</code></a> 
- for all quads of the default graph of a dataset that match the pattern.</div>
-</dd>
 <dt><a href="org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api"><span class="typeNameLink">Graph</span></a> - Interface in <a href="org/apache/commons/rdf/api/package-summary.html">org.apache.commons.rdf.api</a></dt>
 <dd>
 <div class="block">An <a href="http://www.w3.org/TR/rdf11-concepts/#section-rdf-graph"> RDF 1.1
@@ -477,13 +445,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/GraphOrDataset.html#iterate--">iterate()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a></dt>
 <dd>
-<div class="block">Get an Iterable for iterating over all triples in the graph.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/GraphOrDataset.html#iterate-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">iterate(BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a></dt>
-<dd>
-<div class="block">Get an Iterable for iterating over the triples in the graph 
- or quads in the default graph of a dataset that  
- match the pattern.</div>
+<div class="block">Get an Iterable for iterating over all triples/quads in the graph/dataset.</div>
 </dd>
 </dl>
 <a name="I:L">
@@ -568,10 +530,6 @@
 <dd>
 <div class="block">Remove a concrete quad from the dataset.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Dataset.html#remove-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">remove(BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api">Dataset</a></dt>
-<dd>
-<div class="block">Remove a concrete pattern of quads from the default graph of the dataset.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Dataset.html#remove-java.util.Optional-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">remove(Optional&lt;BlankNodeOrIRI&gt;, BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api">Dataset</a></dt>
 <dd>
 <div class="block">Remove a concrete pattern of quads from the default graph of the dataset.</div>
@@ -587,11 +545,6 @@
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/GraphOrDataset.html#remove-T-">remove(T)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a></dt>
 <dd>
 <div class="block">Remove a concrete triple/quad from the graph.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/GraphOrDataset.html#remove-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">remove(BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a></dt>
-<dd>
-<div class="block">Remove a concrete pattern of triples from the graph, or
- quads from the default graph of a dataset.</div>
 </dd>
 </dl>
 <a name="I:S">
