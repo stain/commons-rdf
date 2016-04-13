@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":18,"i4":6,"i5":6,"i6":6,"i7":6,"i8":18,"i9":18,"i10":6,"i11":6,"i12":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":18,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":18,"i12":18,"i13":6,"i14":6,"i15":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -100,12 +100,12 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Superinterfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a>, <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</dd>
+<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">Dataset</span>
-extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a>, <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</pre>
+extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></pre>
 <div class="block">An <a href="http://www.w3.org/TR/rdf11-concepts/#section-rdf-dataset"> RDF
  1.1 dataset</a>, a set of RDF quads, as defined by
  <a href="http://www.w3.org/TR/rdf11-concepts/" >RDF-1.1 Concepts and Abstract
@@ -173,12 +173,30 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 </td>
 </tr>
 <tr id="i6" class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api">Graph</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#getGraph--">getGraph</a></span>()</code>
+<div class="block">Get the default graph of this dataset.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api">Graph</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#getGraph-org.apache.commons.rdf.api.BlankNodeOrIRI-">getGraph</a></span>(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;graphName)</code>
+<div class="block">Get a named graph in this dataset.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream">Stream</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#getGraphNames--">getGraphNames</a></span>()</code>
+<div class="block">Get the graph names in this Dataset.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream">Stream</a>&lt;? extends <a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#getQuads--">getQuads</a></span>()</code>
 <div class="block">Get all quads contained by the dataset.<br></div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream">Stream</a>&lt;? extends <a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#getQuads-java.util.Optional-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">getQuads</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&gt;&nbsp;graphName,
         <a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
@@ -187,13 +205,13 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <div class="block">Get all quads contained by the dataset matched with the pattern.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#iterate--">iterate</a></span>()</code>
 <div class="block">Get an Iterable for iterating over all quads in the dataset.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#iterate-java.util.Optional-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">iterate</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&gt;&nbsp;graphName,
        <a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
@@ -203,7 +221,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
  the pattern.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#remove-java.util.Optional-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">remove</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&gt;&nbsp;graphName,
       <a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
@@ -212,13 +230,13 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <div class="block">Remove a concrete pattern of quads from the default graph of the dataset.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#remove-org.apache.commons.rdf.api.Quad-">remove</a></span>(<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&nbsp;quad)</code>
 <div class="block">Remove a concrete quad from the dataset.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#size--">size</a></span>()</code>
 <div class="block">Number of quads contained by the dataset.</div>
@@ -249,8 +267,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <div class="block">Add a quad to the dataset, possibly mapping any of the components of the
  Quad to those supported by this dataset.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#add-T-">add</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>quad</code> - The quad to add</dd>
 </dl>
@@ -287,8 +303,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <pre>boolean&nbsp;contains(<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&nbsp;quad)</pre>
 <div class="block">Check if dataset contains quad.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#contains-T-">contains</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>quad</code> - The quad to check.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -342,10 +356,97 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true#close--" title="class or interface in java.lang">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></code></dd>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#close--">close</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="getGraph--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getGraph</h4>
+<pre><a href="../../../../../org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api">Graph</a>&nbsp;getGraph()</pre>
+<div class="block">Get the default graph of this dataset.
+ <p>
+ The <a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api"><code>Triple</code></a>s of the default graph are equivalent to the
+ <a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api"><code>Quad</code></a>s in this Dataset which has the <a href="../../../../../org/apache/commons/rdf/api/Quad.html#getGraphName--"><code>Quad.getGraphName()</code></a>
+ set to <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true#empty--" title="class or interface in java.util"><code>Optional.empty()</code></a>.
+ <p>
+ It is unspecified if modifications to the returned Graph are reflected in
+ this Dataset.
+ <p>
+ The returned graph MAY be empty.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The default graph of this Dataset</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#getGraph-org.apache.commons.rdf.api.BlankNodeOrIRI-"><code>getGraph(BlankNodeOrIRI)</code></a></dd>
+</dl>
+</li>
+</ul>
+<a name="getGraph-org.apache.commons.rdf.api.BlankNodeOrIRI-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getGraph</h4>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api">Graph</a>&gt;&nbsp;getGraph(<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;graphName)</pre>
+<div class="block">Get a named graph in this dataset.
+ <p>
+ The <a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api"><code>Triple</code></a>s of the named graph are equivalent to the
+ the Quads of this Dataset which has the
+ <a href="../../../../../org/apache/commons/rdf/api/Quad.html#getGraphName--"><code>Quad.getGraphName()</code></a> equal to the provided <code>graphName</code>, or
+ equal to <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true#empty--" title="class or interface in java.util"><code>Optional.empty()</code></a> if the provided <code>graphName</code> is
+ <code>null</code>.
+ <p>
+ It is unspecified if modifications to the returned Graph are reflected in
+ this Dataset.
+ <p>
+ It is unspecified if requesting an unknown or empty graph will return
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true#empty--" title="class or interface in java.util"><code>Optional.empty()</code></a> or create a new empty <a href="../../../../../org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api"><code>Graph</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>graphName</code> - The name of the graph, or <code>null</code> for the default
+            graph.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The named Graph, or <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true#empty--" title="class or interface in java.util"><code>Optional.empty()</code></a> if the dataset do
+         not contain the named graph.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../../org/apache/commons/rdf/api/Dataset.html#getGraph--"><code>getGraph()</code></a>, 
+<a href="../../../../../org/apache/commons/rdf/api/Dataset.html#getGraphNames--"><code>getGraphNames()</code></a></dd>
+</dl>
+</li>
+</ul>
+<a name="getGraphNames--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getGraphNames</h4>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream">Stream</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&gt;&nbsp;getGraphNames()</pre>
+<div class="block">Get the graph names in this Dataset.
+ <p>
+ The returned graph names is equivalent to the set of unique 
+ <a href="../../../../../org/apache/commons/rdf/api/Quad.html#getGraphName--"><code>Quad.getGraphName()</code></a> of all the <a href="../../../../../org/apache/commons/rdf/api/Dataset.html#getQuads--"><code>getQuads()</code></a>
+ of this dataset (excluding the default graph).
+ <p>
+ The returned Stream SHOULD NOT contain duplicate graph names. 
+ <p>
+ The graph names can be used with <a href="../../../../../org/apache/commons/rdf/api/Dataset.html#getGraph-org.apache.commons.rdf.api.BlankNodeOrIRI-"><code>getGraph(BlankNodeOrIRI)</code></a> 
+ to retrieve the <a href="../../../../../org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api"><code>Graph</code></a>, however callers should be aware of 
+ any concurrent modifications to the Dataset may cause such calls
+ to return <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true#empty--" title="class or interface in java.util"><code>Optional.empty()</code></a>.  
+ <p>
+ Note that a Dataset always contains a <strong>default graph</strong>, which is
+ NOT named, and thus is NOT included in the returned Stream.
+ The default graph is accessible via <a href="../../../../../org/apache/commons/rdf/api/Dataset.html#getGraph--"><code>getGraph()</code></a> or 
+ by using <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true#empty--" title="class or interface in java.util"><code>Optional.empty()</code></a> in the
+ Quad access methods).</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A <a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream"><code>Stream</code></a> of the graph names of this Dataset.</dd>
 </dl>
 </li>
 </ul>
@@ -358,8 +459,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <pre>void&nbsp;remove(<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&nbsp;quad)</pre>
 <div class="block">Remove a concrete quad from the dataset.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#remove-T-">remove</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>quad</code> - quad to remove</dd>
 </dl>
@@ -395,10 +494,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <h4>clear</h4>
 <pre>void&nbsp;clear()</pre>
 <div class="block">Clear the dataset, removing all quads.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#clear--">clear</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></dd>
-</dl>
 </li>
 </ul>
 <a name="size--">
@@ -413,8 +508,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
  The count of a set does not include duplicates, consistent with the
  <a href="../../../../../org/apache/commons/rdf/api/Quad.html#equals-java.lang.Object-"><code>Quad.equals(Object)</code></a> equals method for each <a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api"><code>Quad</code></a>.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#size--">size</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The number of quads in the dataset</dd>
 </dl>
@@ -510,8 +603,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
  Iterable must only be iterated over once. A <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang"><code>IllegalStateException</code></a>
  may be thrown on attempt to reuse the Iterable.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#iterate--">iterate</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang"><code>Iterable</code></a> that returns <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a> over all of the
          quads in the dataset</dd>

@@ -93,11 +93,6 @@
 <div class="block">Add a triple to the graph, possibly mapping any of the components to
  those supported by this Graph.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/GraphOrDataset.html#add-T-">add(T)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a></dt>
-<dd>
-<div class="block">Add a triple/quad to the graph, possibly mapping any of the components of the
- TripleOrQuad to those supported by this Graph.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Quad.html#asTriple--">asTriple()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a></dt>
 <dd>
 <div class="block">Convert this Quad to a Triple.</div>
@@ -147,10 +142,6 @@
 <dd>
 <div class="block">Clear the graph, removing all triples.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/GraphOrDataset.html#clear--">clear()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a></dt>
-<dd>
-<div class="block">Clear the graph/dataset, removing all triples/quads.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Dataset.html#close--">close()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api">Dataset</a></dt>
 <dd>
 <div class="block">Close the dataset, relinquishing any underlying resources.</div>
@@ -158,10 +149,6 @@
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Graph.html#close--">close()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api">Graph</a></dt>
 <dd>
 <div class="block">Close the graph, relinquishing any underlying resources.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/GraphOrDataset.html#close--">close()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a></dt>
-<dd>
-<div class="block">Close the graph/dataset, relinquishing any underlying resources.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Dataset.html#contains-org.apache.commons.rdf.api.Quad-">contains(Quad)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api">Dataset</a></dt>
 <dd>
@@ -178,10 +165,6 @@
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Graph.html#contains-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">contains(BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api">Graph</a></dt>
 <dd>
 <div class="block">Check if graph contains a pattern of triples.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/GraphOrDataset.html#contains-T-">contains(T)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a></dt>
-<dd>
-<div class="block">Check if graph/dataset contains triple/quad.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/RDFTermFactory.html#createBlankNode--">createBlankNode()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/RDFTermFactory.html" title="interface in org.apache.commons.rdf.api">RDFTermFactory</a></dt>
 <dd>
@@ -283,9 +266,21 @@
 <div class="block">The IRI identifying the datatype that determines how the lexical form
  maps to a literal value.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Dataset.html#getGraph--">getGraph()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api">Dataset</a></dt>
+<dd>
+<div class="block">Get the default graph of this dataset.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Dataset.html#getGraph-org.apache.commons.rdf.api.BlankNodeOrIRI-">getGraph(BlankNodeOrIRI)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api">Dataset</a></dt>
+<dd>
+<div class="block">Get a named graph in this dataset.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Quad.html#getGraphName--">getGraphName()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a></dt>
 <dd>
 <div class="block">The graph name (graph label) of this quad, if present.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Dataset.html#getGraphNames--">getGraphNames()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api">Dataset</a></dt>
+<dd>
+<div class="block">Get the graph names in this Dataset.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/IRI.html#getIRIString--">getIRIString()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a></dt>
 <dd>
@@ -382,10 +377,6 @@
  href="http://www.w3.org/TR/rdf11-concepts/" >RDF-1.1 Concepts and Abstract
  Syntax</a>, a W3C Recommendation published on 25 February 2014.</div>
 </dd>
-<dt><a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api"><span class="typeNameLink">GraphOrDataset</span></a>&lt;<a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="type parameter in GraphOrDataset">T</a> extends <a href="org/apache/commons/rdf/api/TripleOrQuad.html" title="interface in org.apache.commons.rdf.api">TripleOrQuad</a>&gt; - Interface in <a href="org/apache/commons/rdf/api/package-summary.html">org.apache.commons.rdf.api</a></dt>
-<dd>
-<div class="block">Common interface for <a href="org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api"><code>Graph</code></a> and <a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api"><code>Dataset</code></a></div>
-</dd>
 </dl>
 <a name="I:H">
 <!--   -->
@@ -442,10 +433,6 @@
 <dd>
 <div class="block">Get an Iterable for iterating over the triples in the graph that match
  the pattern.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/GraphOrDataset.html#iterate--">iterate()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a></dt>
-<dd>
-<div class="block">Get an Iterable for iterating over all triples/quads in the graph/dataset.</div>
 </dd>
 </dl>
 <a name="I:L">
@@ -542,10 +529,6 @@
 <dd>
 <div class="block">Remove a concrete pattern of triples from the graph.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/GraphOrDataset.html#remove-T-">remove(T)</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a></dt>
-<dd>
-<div class="block">Remove a concrete triple/quad from the graph.</div>
-</dd>
 </dl>
 <a name="I:S">
 <!--   -->
@@ -559,10 +542,6 @@
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Graph.html#size--">size()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api">Graph</a></dt>
 <dd>
 <div class="block">Number of triples contained by the graph.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/GraphOrDataset.html#size--">size()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a></dt>
-<dd>
-<div class="block">Number of triples/quads contained by the graph/dataset.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/RDFSyntax.html#supportsDataset">supportsDataset</a></span> - Variable in enum org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/RDFSyntax.html" title="enum in org.apache.commons.rdf.api">RDFSyntax</a></dt>
 <dd>

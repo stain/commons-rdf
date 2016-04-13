@@ -156,6 +156,12 @@
 <div class="block">The graph name (graph label) of this quad, if present.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream">Stream</a>&lt;<a href="../../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">Dataset.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/api/Dataset.html#getGraphNames--">getGraphNames</a></span>()</code>
+<div class="block">Get the graph names in this Dataset.</div>
+</td>
+</tr>
 </tbody>
 </table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
@@ -219,6 +225,12 @@
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;<a href="../../../../../../org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api">Graph</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">Dataset.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/api/Dataset.html#getGraph-org.apache.commons.rdf.api.BlankNodeOrIRI-">getGraph</a></span>(<a href="../../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;graphName)</code>
+<div class="block">Get a named graph in this dataset.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream">Stream</a>&lt;? extends <a href="../../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">Dataset.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/api/Dataset.html#getQuads-java.util.Optional-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">getQuads</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;<a href="../../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&gt;&nbsp;graphName,
         <a href="../../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
@@ -227,7 +239,7 @@
 <div class="block">Get all quads contained by the dataset matched with the pattern.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html?is-external=true" title="class or interface in java.util.stream">Stream</a>&lt;? extends <a href="../../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">Graph.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/api/Graph.html#getTriples-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">getTriples</a></span>(<a href="../../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
           <a href="../../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
@@ -235,7 +247,7 @@
 <div class="block">Get all triples contained by the graph matched with the pattern.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">Graph.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/api/Graph.html#iterate-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">iterate</a></span>(<a href="../../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
        <a href="../../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
@@ -244,7 +256,7 @@
  the pattern.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">Dataset.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/api/Dataset.html#iterate-java.util.Optional-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">iterate</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;<a href="../../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&gt;&nbsp;graphName,
        <a href="../../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
@@ -254,7 +266,7 @@
  the pattern.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">Graph.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/api/Graph.html#remove-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">remove</a></span>(<a href="../../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,
       <a href="../../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api">IRI</a>&nbsp;predicate,
@@ -262,7 +274,7 @@
 <div class="block">Remove a concrete pattern of triples from the graph.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">Dataset.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/api/Dataset.html#remove-java.util.Optional-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">remove</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;<a href="../../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&gt;&nbsp;graphName,
       <a href="../../../../../../org/apache/commons/rdf/api/BlankNodeOrIRI.html" title="interface in org.apache.commons.rdf.api">BlankNodeOrIRI</a>&nbsp;subject,

@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?org/apache/commons/rdf/api/Graph.html" target="_top">Frames</a></li>
@@ -100,12 +100,12 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Superinterfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a>, <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</dd>
+<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">Graph</span>
-extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a>, <a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</pre>
+extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></pre>
 <div class="block">An <a href="http://www.w3.org/TR/rdf11-concepts/#section-rdf-graph"> RDF 1.1
  Graph</a>, a set of RDF triples, as defined by <a
  href="http://www.w3.org/TR/rdf11-concepts/" >RDF-1.1 Concepts and Abstract
@@ -244,8 +244,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <div class="block">Add a triple to the graph, possibly mapping any of the components of the
  Triple to those supported by this Graph.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#add-T-">add</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>triple</code> - The triple to add</dd>
 </dl>
@@ -279,8 +277,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <pre>boolean&nbsp;contains(<a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&nbsp;triple)</pre>
 <div class="block">Check if graph contains triple.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#contains-T-">contains</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>triple</code> - The triple to check.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -330,8 +326,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true#close--" title="class or interface in java.lang">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></code></dd>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#close--">close</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</a></code></dd>
 </dl>
@@ -346,8 +340,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <pre>void&nbsp;remove(<a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&nbsp;triple)</pre>
 <div class="block">Remove a concrete triple from the graph.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#remove-T-">remove</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>triple</code> - triple to remove</dd>
 </dl>
@@ -379,10 +371,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <h4>clear</h4>
 <pre>void&nbsp;clear()</pre>
 <div class="block">Clear the graph, removing all triples.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#clear--">clear</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</code></dd>
-</dl>
 </li>
 </ul>
 <a name="size--">
@@ -397,8 +385,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
  The count of a set does not include duplicates, consistent with the
  <a href="../../../../../org/apache/commons/rdf/api/Triple.html#equals-java.lang.Object-"><code>Triple.equals(Object)</code></a> equals method for each <a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api"><code>Triple</code></a>.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#size--">size</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The number of triples in the graph</dd>
 </dl>
@@ -488,8 +474,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
  Iterable must only be iterated over once. A <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang"><code>IllegalStateException</code></a>
  may be thrown on attempt to reuse the Iterable.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html#iterate--">iterate</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api">GraphOrDataset</a>&lt;<a href="../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang"><code>Iterable</code></a> that returns <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util"><code>Iterator</code></a> over all of the
          triples in the graph</dd>
@@ -578,7 +562,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../org/apache/commons/rdf/api/GraphOrDataset.html" title="interface in org.apache.commons.rdf.api"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../org/apache/commons/rdf/api/IRI.html" title="interface in org.apache.commons.rdf.api"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?org/apache/commons/rdf/api/Graph.html" target="_top">Frames</a></li>
