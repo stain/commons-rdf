@@ -50,59 +50,59 @@ import org.openrdf.model.impl.SimpleValueFactory;
 import org.openrdf.repository.Repository;
 
 /**
- * RDF4J implementation of RDFTermFactory
+ * Sesame implementation of RDFTermFactory
  * <p>
- * The {@link #RDF4JTermFactory()} constructor uses a {@link SimpleValueFactory}
- * to create corresponding RDF4J {@link Value} instances. Alternatively, this
+ * The {@link #SesameTermFactory()} constructor uses a {@link SimpleValueFactory}
+ * to create corresponding Sesame {@link Value} instances. Alternatively, this
  * factory can be constructed with a different {@link ValueFactory} using
- * {@link #RDF4JTermFactory(ValueFactory)}.
+ * {@link #SesameTermFactory(ValueFactory)}.
  * <p>
- * {@link #asRDFTerm(Value)} can be used to convert any RDF4J {@link Value} to
+ * {@link #asRDFTerm(Value)} can be used to convert any Sesame {@link Value} to
  * an RDFTerm. Note that adapted {@link BNode}s are considered equal if they are
- * converted with the same {@link RDF4JTermFactory} instance and have the same
+ * converted with the same {@link SesameTermFactory} instance and have the same
  * {@link BNode#getID()}.
  * <p>
  * {@link #createGraph()} creates a new Graph backed by {@link LinkedHashModel}.
  * To use other models, see {@link #asRDFTermGraph(Model)}.
  * <p>
- * To adapt a RDF4J {@link Repository} as a {@link Dataset} or {@link Graph},
+ * To adapt a Sesame {@link Repository} as a {@link Dataset} or {@link Graph},
  * use {@link #asRDFTermDataset(Repository)} or
  * {@link #asRDFTermGraph(Repository)}.
  * <p>
- * {@link #asTriple(Statement)} can be used to convert a RDF4J {@link Statement}
+ * {@link #asTriple(Statement)} can be used to convert a Sesame {@link Statement}
  * to a Commons RDF {@link Triple}, and equivalent {@link #asQuad(Statement)} to
  * convert a {@link Quad}.
  * <p>
- * To convert any {@link Triple} or {@link Quad} to to RDF4J {@link Statement},
+ * To convert any {@link Triple} or {@link Quad} to to Sesame {@link Statement},
  * use {@link #asStatement(TripleLike)}. This recognises previously converted
- * {@link RDF4JTriple}s and {@link RDF4JQuad}s without re-converting their
- * {@link RDF4JTripleLike#asStatement()}.
+ * {@link SesameTriple}s and {@link SesameQuad}s without re-converting their
+ * {@link SesameTripleLike#asStatement()}.
  * <p>
  * Likewise, {@link #asValue(RDFTerm)} can be used to convert any Commons RDF
- * {@link RDFTerm} to a corresponding RDF4J {@link Value}. This recognises
- * previously converted {@link RDF4JTerm}s without re-converting their
- * {@link RDF4JTerm#asValue()}.
+ * {@link RDFTerm} to a corresponding Sesame {@link Value}. This recognises
+ * previously converted {@link SesameTerm}s without re-converting their
+ * {@link SesameTerm#asValue()}.
  * <p>
  * For the purpose of {@link BlankNode} equivalence, this factory contains an
  * internal {@link UUID} salt that is used by adapter methods like
  * {@link #asQuad(Statement)}, {@link #asTriple(Statement)},
  * {@link #asRDFTerm(Value)} as well as {@link #createBlankNode(String)}. As
- * RDF4J {@link BNode} instances from multiple repositories or models may have
+ * Sesame {@link BNode} instances from multiple repositories or models may have
  * the same {@link BNode#getID()}, converting them with the above methods might
  * cause accidental {@link BlankNode} equivalence. Note that the {@link Graph}
  * and {@link Dataset} adapter methods like
  * {@link #asRDFTermDataset(Repository)} and {@link #asRDFTermGraph(Model)}
- * therefore uses a unique {@link RDF4JTermFactory} internally. An alternative
+ * therefore uses a unique {@link SesameTermFactory} internally. An alternative
  * is to use the static methods {@link #asRDFTerm(Value, UUID)},
  * {@link #asQuad(Statement, UUID)} or {@link #asTriple(Statement, UUID)} with
  * a provided {@link UUID} salt.
  * 
  */
-public class RDF4JTermFactory implements RDFTermFactory {
+public class SesameTermFactory implements RDFTermFactory {
 
 	/**
 	 * 
-	 * Adapt a RDF4J {@link Value} as a Commons RDF {@link RDFTerm}.
+	 * Adapt a Sesame {@link Value} as a Commons RDF {@link RDFTerm}.
 	 * <p>
 	 * <p>
 	 * The value will be of the same kind as the term, e.g. a
@@ -113,32 +113,32 @@ public class RDF4JTermFactory implements RDFTermFactory {
 	 * {@link org.openrdf.model.Literal}. is converted to a
 	 * {@link org.apache.commons.rdf.api.Literal}
 	 * 
-	 * @param value The RDF4J {@link Value} to convert.
+	 * @param value The Sesame {@link Value} to convert.
 	 * @param salt
 	 *            A {@link UUID} salt to use for uniquely mapping any
 	 *            {@link BNode}s. The salt should typically be the same for
 	 *            multiple statements in the same {@link Repository} or
 	 *            {@link Model} to ensure {@link BlankNode#equals(Object)} and
 	 *            {@link BlankNode#uniqueReference()} works as intended.
-	 * @return A {@link RDFTerm} that corresponds to the RDF4J value
+	 * @return A {@link RDFTerm} that corresponds to the Sesame value
 	 * @throws IllegalArgumentException if the value is not a BNode, Literal or IRI 
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends Value> RDF4JTerm<T> asRDFTerm(final T value, UUID salt) {
+	public static <T extends Value> SesameTerm<T> asRDFTerm(final T value, UUID salt) {
 		if (value instanceof BNode) {
-			return (RDF4JTerm<T>) new BlankNodeImpl((BNode) value, salt);
+			return (SesameTerm<T>) new BlankNodeImpl((BNode) value, salt);
 		}
 		if (value instanceof org.openrdf.model.Literal) {
-			return (RDF4JTerm<T>) new LiteralImpl((org.openrdf.model.Literal) value);
+			return (SesameTerm<T>) new LiteralImpl((org.openrdf.model.Literal) value);
 		}
 		if (value instanceof org.openrdf.model.IRI) {
-			return (RDF4JTerm<T>) new IRIImpl((org.openrdf.model.IRI) value);
+			return (SesameTerm<T>) new IRIImpl((org.openrdf.model.IRI) value);
 		}
 		throw new IllegalArgumentException("Value is not a BNode, Literal or IRI: " + value.getClass());
 	}
 
 	/**
-	 * Adapt a RDF4J {@link Statement} as a Commons RDF {@link Triple}.
+	 * Adapt a Sesame {@link Statement} as a Commons RDF {@link Triple}.
 	 * 
 	 * @param statement
 	 *            The statement to convert
@@ -148,9 +148,9 @@ public class RDF4JTermFactory implements RDFTermFactory {
 	 *            multiple statements in the same {@link Repository} or
 	 *            {@link Model} to ensure {@link BlankNode#equals(Object)} and
 	 *            {@link BlankNode#uniqueReference()} works as intended.
-	 * @return A {@link Triple} that corresponds to the RDF4J statement
+	 * @return A {@link Triple} that corresponds to the Sesame statement
 	 */
-	public static RDF4JTriple asTriple(final Statement statement, UUID salt) {
+	public static SesameTriple asTriple(final Statement statement, UUID salt) {
 		return new TripleImpl(statement, salt);
 	}
 
@@ -158,40 +158,40 @@ public class RDF4JTermFactory implements RDFTermFactory {
 
 	private final ValueFactory valueFactory;
 
-	public RDF4JTermFactory() {
+	public SesameTermFactory() {
 		this.valueFactory = SimpleValueFactory.getInstance();
 	}
 
-	public RDF4JTermFactory(ValueFactory valueFactory) {
+	public SesameTermFactory(ValueFactory valueFactory) {
 		this.valueFactory = valueFactory;
 	}
 
 	/**
-	 * Adapt a RDF4J {@link Statement} as a Commons RDF {@link Quad}.
+	 * Adapt a Sesame {@link Statement} as a Commons RDF {@link Quad}.
 	 * <p>
 	 * For the purpose of {@link BlankNode} equivalence, this 
 	 * method will use an internal salt UUID that is unique per instance of 
-	 * {@link RDF4JTermFactory}. 
+	 * {@link SesameTermFactory}. 
 	 * <p>
-	 * <strong>NOTE:</strong> If combining RDF4J {@link Statement}s
+	 * <strong>NOTE:</strong> If combining Sesame {@link Statement}s
 	 * multiple repositories or models, then their {@link BNode}s 
 	 * may have the same {@link BNode#getID()}, which with this method 
 	 * would become equivalent according to {@link BlankNode#equals(Object)} and
 	 * {@link BlankNode#uniqueReference()}, 
-	 * unless a separate {@link RDF4JTermFactory}
-	 * instance is used per RDF4J repository/model.  
+	 * unless a separate {@link SesameTermFactory}
+	 * instance is used per Sesame repository/model.  
 	 * 
 	 * @see #asQuad(Statement, UUID)
 	 * @param statement
 	 *            The statement to convert
-	 * @return A {@link RDF4JQuad} that is equivalent to the statement
+	 * @return A {@link SesameQuad} that is equivalent to the statement
 	 */
-	public RDF4JQuad asQuad(final Statement statement) {
+	public SesameQuad asQuad(final Statement statement) {
 		return new QuadImpl(statement, salt);
 	}
 
 	/**
-	 * Adapt a RDF4J {@link Statement} as a Commons RDF {@link Quad}.
+	 * Adapt a Sesame {@link Statement} as a Commons RDF {@link Quad}.
 	 *
 	 * @see #asQuad(Statement)
 	 * @param statement
@@ -202,16 +202,16 @@ public class RDF4JTermFactory implements RDFTermFactory {
 	 *            multiple statements in the same {@link Repository} or
 	 *            {@link Model} to ensure {@link BlankNode#equals(Object)} and
 	 *            {@link BlankNode#uniqueReference()} works as intended.
-	 * @return A {@link RDF4JQuad} that is equivalent to the statement
+	 * @return A {@link SesameQuad} that is equivalent to the statement
 	 */
-	public static RDF4JQuad asQuad(final Statement statement, UUID salt) {
+	public static SesameQuad asQuad(final Statement statement, UUID salt) {
 		return new QuadImpl(statement, salt);
 	}
 
 	
 	/**
 	 * 
-	 * Adapt a RDF4J {@link Value} as a Commons RDF {@link RDFTerm}.
+	 * Adapt a Sesame {@link Value} as a Commons RDF {@link RDFTerm}.
 	 * <p>
 	 * <p>
 	 * The value will be of the same kind as the term, e.g. a
@@ -224,110 +224,110 @@ public class RDF4JTermFactory implements RDFTermFactory {
 	 * <p>
 	 * For the purpose of {@link BlankNode} equivalence, this 
 	 * method will use an internal salt UUID that is unique per instance of 
-	 * {@link RDF4JTermFactory}. 
+	 * {@link SesameTermFactory}. 
 	 * <p>
-	 * <strong>NOTE:</strong> If combining RDF4J values from
+	 * <strong>NOTE:</strong> If combining Sesame values from
 	 * multiple repositories or models, then their {@link BNode}s 
 	 * may have the same {@link BNode#getID()}, which with this method 
 	 * would become equivalent according to {@link BlankNode#equals(Object)} and
 	 * {@link BlankNode#uniqueReference()}, 
-	 * unless a separate {@link RDF4JTermFactory}
-	 * instance is used per RDF4J repository/model.  
+	 * unless a separate {@link SesameTermFactory}
+	 * instance is used per Sesame repository/model.  
 	 * 
-	 * @param value The RDF4J {@link Value} to convert.
-	 * @return A {@link RDFTerm} that corresponds to the RDF4J value
+	 * @param value The Sesame {@link Value} to convert.
+	 * @return A {@link RDFTerm} that corresponds to the Sesame value
 	 * @throws IllegalArgumentException if the value is not a BNode, Literal or IRI 
 	 */
-	public <T extends Value> RDF4JTerm<T> asRDFTerm(T value) {
+	public <T extends Value> SesameTerm<T> asRDFTerm(T value) {
 		return asRDFTerm(value, salt);
 	}
 
 	/**
-	 * Adapt an RDF4J {@link Repository} as a Commons RDF {@link Dataset}.
+	 * Adapt an Sesame {@link Repository} as a Commons RDF {@link Dataset}.
 	 * <p>
 	 * Changes to the dataset are reflected in the repository, and vice versa.
 	 * 
 	 * @param repository
-	 *            RDF4J {@link Repository} to connect to.
-	 * @return A {@link Dataset} backed by the RDF4J repository.
+	 *            Sesame {@link Repository} to connect to.
+	 * @return A {@link Dataset} backed by the Sesame repository.
 	 */
-	public RDF4JDataset asRDFTermDataset(Repository repository) {
+	public SesameDataset asRDFTermDataset(Repository repository) {
 		return new RepositoryDatasetImpl(repository);
 	}
 
 	/**
-	 * Adapt an RDF4J {@link Repository} as a Commons RDF {@link Dataset}.
+	 * Adapt an Sesame {@link Repository} as a Commons RDF {@link Dataset}.
 	 * <p>
 	 * Changes to the dataset are reflected in the repository, and vice versa.
 	 * 
 	 * @param repository
-	 *            RDF4J {@link Repository} to connect to.
+	 *            Sesame {@link Repository} to connect to.
 	 * @param includeInferred
 	 *            If true, any inferred quads are included in the dataset
-	 * @return A {@link Dataset} backed by the RDF4J repository.
+	 * @return A {@link Dataset} backed by the Sesame repository.
 	 */
-	public RDF4JDataset asRDFTermDataset(Repository repository, boolean includeInferred) {
+	public SesameDataset asRDFTermDataset(Repository repository, boolean includeInferred) {
 		return new RepositoryDatasetImpl(repository, includeInferred);
 	}
 	
 	/**
-	 * Adapt an RDF4J {@link Model} as a Commons RDF {@link Graph}.
+	 * Adapt an Sesame {@link Model} as a Commons RDF {@link Graph}.
 	 * <p>
 	 * Changes to the graph are reflected in the model, and vice versa.
 	 * 
 	 * @param model
-	 *            RDF4J {@link Model} to adapt.
+	 *            Sesame {@link Model} to adapt.
 	 * @return Adapted {@link Graph}.
 	 */
-	public RDF4JGraph asRDFTermGraph(Model model) {
+	public SesameGraph asRDFTermGraph(Model model) {
 		return new ModelGraphImpl(model);
 	}
 
 	/**
-	 * Adapt an RDF4J {@link Repository} as a Commons RDF {@link Graph}.
+	 * Adapt an Sesame {@link Repository} as a Commons RDF {@link Graph}.
 	 * <p>
 	 * The graph will include triples in any contexts (e.g. the union graph).
 	 * <p>
 	 * Changes to the graph are reflected in the repository, and vice versa.
 	 * 
 	 * @param repository
-	 *            RDF4J {@link Repository} to connect to.
-	 * @return A {@link Graph} backed by the RDF4J repository.
+	 *            Sesame {@link Repository} to connect to.
+	 * @return A {@link Graph} backed by the Sesame repository.
 	 */
-	public RDF4JGraph asRDFTermGraph(Repository repository) {
+	public SesameGraph asRDFTermGraph(Repository repository) {
 		return new RepositoryGraphImpl(repository, false, true);
 	}
 
 	/**
-	 * Adapt an RDF4J {@link Repository} as a Commons RDF {@link Graph}.
+	 * Adapt an Sesame {@link Repository} as a Commons RDF {@link Graph}.
 	 * <p>
 	 * The graph will include triples in any contexts (e.g. the union graph).
 	 * <p>
 	 * Changes to the graph are reflected in the repository, and vice versa.
 	 * 
 	 * @param repository
-	 *            RDF4J {@link Repository} to connect to.
+	 *            Sesame {@link Repository} to connect to.
 	 * @param includeInferred
 	 *            If true, any inferred triples are included in the graph
 	 * @param unionGraph
 	 *            If true, triples from any context is included in the graph,
 	 *            otherwise only triples in the default context
 	 *            <code>null</code>.
-	 * @return A {@link Graph} backed by the RDF4J repository.
+	 * @return A {@link Graph} backed by the Sesame repository.
 	 */
-	public RDF4JGraph asRDFTermGraph(Repository repository, boolean includeInferred, boolean unionGraph) {
+	public SesameGraph asRDFTermGraph(Repository repository, boolean includeInferred, boolean unionGraph) {
 		return new RepositoryGraphImpl(repository, includeInferred, unionGraph);
 	}
 
 	/**
-	 * Adapt a Commons RDF {@link Triple} or {@link Quad} as a RDF4J
+	 * Adapt a Commons RDF {@link Triple} or {@link Quad} as a Sesame
 	 * {@link Statement}.
 	 * <p>
-	 * If the <code>tripleLike</code> argument is an {@link RDF4JTriple} or
-	 * a {@link RDF4JQuad}, then its {@link RDF4JTripleLike#asStatement()} is
-	 * returned as-is. Note that this means that a {@link RDF4JTriple} would
+	 * If the <code>tripleLike</code> argument is an {@link SesameTriple} or
+	 * a {@link SesameQuad}, then its {@link SesameTripleLike#asStatement()} is
+	 * returned as-is. Note that this means that a {@link SesameTriple} would
 	 * preserve its {@link Statement#getContext()}, and that any 
-	 * {@link BlankNode}s would be deemed equivalent in RDF4J
+	 * {@link BlankNode}s would be deemed equivalent in Sesame
 	 * if they have the same {@link BNode#getID()}.
 	 * 
 	 * @param tripleLike
@@ -335,10 +335,10 @@ public class RDF4JTermFactory implements RDFTermFactory {
 	 * @return A corresponding {@link Statement}
 	 */
 	public Statement asStatement(TripleLike<BlankNodeOrIRI, org.apache.commons.rdf.api.IRI, RDFTerm> tripleLike) {
-		if (tripleLike instanceof RDF4JTripleLike) {
-			// Return original statement - this covers both RDF4JQuad and
-			// RDF4JTriple
-			RDF4JTripleLike sesameTriple = (RDF4JTripleLike) tripleLike;
+		if (tripleLike instanceof SesameTripleLike) {
+			// Return original statement - this covers both SesameQuad and
+			// SesameTriple
+			SesameTripleLike sesameTriple = (SesameTripleLike) tripleLike;
 			return sesameTriple.asStatement();
 		}
 
@@ -356,29 +356,29 @@ public class RDF4JTermFactory implements RDFTermFactory {
 	}
 
 	/**
-	 * Adapt a RDF4J {@link Statement} as a Commons RDF {@link Triple}.
+	 * Adapt a Sesame {@link Statement} as a Commons RDF {@link Triple}.
 	 * <p>
 	 * For the purpose of {@link BlankNode} equivalence, this 
 	 * method will use an internal salt UUID that is unique per instance of 
-	 * {@link RDF4JTermFactory}. 
+	 * {@link SesameTermFactory}. 
 	 * <p>
-	 * <strong>NOTE:</strong> If combining RDF4J statements from
+	 * <strong>NOTE:</strong> If combining Sesame statements from
 	 * multiple repositories or models, then their {@link BNode}s 
 	 * may have the same {@link BNode#getID()}, which with this method 
 	 * would become equivalent according to {@link BlankNode#equals(Object)} and
 	 * {@link BlankNode#uniqueReference()}, 
-	 * unless a separate {@link RDF4JTermFactory}
-	 * instance is used per RDF4J repository/model.
+	 * unless a separate {@link SesameTermFactory}
+	 * instance is used per Sesame repository/model.
 	 * 
 	 * @param statement
-	 * @return A {@link RDF4JTriple} that is equivalent to the statement
+	 * @return A {@link SesameTriple} that is equivalent to the statement
 	 */
-	public RDF4JTriple asTriple(final Statement statement) {
+	public SesameTriple asTriple(final Statement statement) {
 		return new TripleImpl(statement, salt);
 	}
 
 	/**
-	 * Adapt a Commons RDF {@link RDFTerm} as a RDF4J {@link Value}.
+	 * Adapt a Commons RDF {@link RDFTerm} as a Sesame {@link Value}.
 	 * <p>
 	 * The value will be of the same kind as the term, e.g. a
 	 * {@link org.apache.commons.rdf.api.BlankNode} is converted to a
@@ -391,23 +391,23 @@ public class RDF4JTermFactory implements RDFTermFactory {
 	 * If the provided {@link RDFTerm} is <code>null</code>, then the returned
 	 * value is <code>null</code>.
 	 * <p>
-	 * If the provided term is an instance of {@link RDF4JTerm}, then the
-	 * {@link RDF4JTerm#asValue()} is returned without any conversion. Note that
+	 * If the provided term is an instance of {@link SesameTerm}, then the
+	 * {@link SesameTerm#asValue()} is returned without any conversion. Note that
 	 * this could mean that a {@link Value} from a different kind of
 	 * {@link ValueFactory} could be returned.
 	 * 
 	 * @param term
-	 *            RDFTerm to adapt to RDF4J Value
-	 * @return Adapted RDF4J {@link Value}
+	 *            RDFTerm to adapt to Sesame Value
+	 * @return Adapted Sesame {@link Value}
 	 */
 	public Value asValue(RDFTerm term) {
 		if (term == null) {
 			return null;
 		}
-		if (term instanceof RDF4JTerm) {
+		if (term instanceof SesameTerm) {
 			// One of our own - avoid converting again.
 			// (This is crucial to avoid double-escaping in BlankNode)
-			return ((RDF4JTerm<?>) term).asValue();
+			return ((SesameTerm<?>) term).asValue();
 		}
 		if (term instanceof org.apache.commons.rdf.api.IRI) {
 			org.apache.commons.rdf.api.IRI iri = (org.apache.commons.rdf.api.IRI) term;
@@ -428,39 +428,39 @@ public class RDF4JTermFactory implements RDFTermFactory {
 			BlankNode blankNode = (BlankNode) term;
 			// FIXME: The uniqueReference might not be a valid BlankNode
 			// identifier..
-			// does it have to be in RDF4J?
+			// does it have to be in Sesame?
 			return getValueFactory().createBNode(blankNode.uniqueReference());
 		}
 		throw new IllegalArgumentException("RDFTerm was not an IRI, Literal or BlankNode: " + term.getClass());
 	}
 
 	@Override
-	public RDF4JBlankNode createBlankNode() throws UnsupportedOperationException {
+	public SesameBlankNode createBlankNode() throws UnsupportedOperationException {
 		BNode bnode = getValueFactory().createBNode();
-		return (RDF4JBlankNode) asRDFTerm(bnode);
+		return (SesameBlankNode) asRDFTerm(bnode);
 	}
 
 	@Override
-	public RDF4JBlankNode createBlankNode(String name) throws UnsupportedOperationException {
+	public SesameBlankNode createBlankNode(String name) throws UnsupportedOperationException {
 		BNode bnode = getValueFactory().createBNode(name);
-		return (RDF4JBlankNode) asRDFTerm(bnode);
+		return (SesameBlankNode) asRDFTerm(bnode);
 	}
 
 	@Override
-	public RDF4JGraph createGraph() throws UnsupportedOperationException {
+	public SesameGraph createGraph() throws UnsupportedOperationException {
 		return asRDFTermGraph(new LinkedHashModel());
 	}
 
 	@Override
-	public RDF4JIRI createIRI(String iri) throws IllegalArgumentException, UnsupportedOperationException {
-		return (RDF4JIRI) asRDFTerm(getValueFactory().createIRI(iri));
+	public SesameIRI createIRI(String iri) throws IllegalArgumentException, UnsupportedOperationException {
+		return (SesameIRI) asRDFTerm(getValueFactory().createIRI(iri));
 	}
 
 	@Override
-	public RDF4JLiteral createLiteral(String lexicalForm)
+	public SesameLiteral createLiteral(String lexicalForm)
 			throws IllegalArgumentException, UnsupportedOperationException {
 		org.openrdf.model.Literal lit = getValueFactory().createLiteral(lexicalForm);
-		return (RDF4JLiteral) asRDFTerm(lit);
+		return (SesameLiteral) asRDFTerm(lit);
 	}
 
 	@Override
@@ -479,7 +479,7 @@ public class RDF4JTermFactory implements RDFTermFactory {
 	}
 
 	@Override
-	public RDF4JTriple createTriple(BlankNodeOrIRI subject, org.apache.commons.rdf.api.IRI predicate, RDFTerm object)
+	public SesameTriple createTriple(BlankNodeOrIRI subject, org.apache.commons.rdf.api.IRI predicate, RDFTerm object)
 			throws IllegalArgumentException, UnsupportedOperationException {
 		final Statement statement = getValueFactory().createStatement(
 				(org.openrdf.model.Resource) asValue(subject),

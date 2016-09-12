@@ -21,11 +21,11 @@ import org.apache.commons.rdf.api.AbstractRDFTermFactoryTest;
 import org.apache.commons.rdf.api.RDFTermFactory;
 import org.junit.Assume;
 
-public class Rdf4JRDFTermFactoryTest extends AbstractRDFTermFactoryTest {
+public class SesameRDFTermFactoryTest extends AbstractRDFTermFactoryTest {
 
 	@Override
 	public RDFTermFactory createFactory() {
-		return new RDF4JTermFactory();
+		return new SesameTermFactory();
 	}
 	
 	@Override

@@ -23,24 +23,24 @@ import java.util.stream.Stream;
 import org.apache.commons.rdf.api.BlankNodeOrIRI;
 import org.apache.commons.rdf.api.RDFTerm;
 import org.apache.commons.rdf.api.Triple;
-import org.apache.commons.rdf.sesame.RDF4JGraph;
-import org.apache.commons.rdf.sesame.RDF4JTermFactory;
-import org.apache.commons.rdf.sesame.RDF4JTriple;
+import org.apache.commons.rdf.sesame.SesameGraph;
+import org.apache.commons.rdf.sesame.SesameTermFactory;
+import org.apache.commons.rdf.sesame.SesameTriple;
 import org.openrdf.model.Model;
 import org.openrdf.model.Resource;
 import org.openrdf.repository.Repository;
 
-public final class ModelGraphImpl implements RDF4JGraph {
+public final class ModelGraphImpl implements SesameGraph {
 	
 	private Model model;
-	private RDF4JTermFactory sesameTermFactory;
+	private SesameTermFactory sesameTermFactory;
 
 	public ModelGraphImpl(Model model) {
 		this.model = model;	
-		this.sesameTermFactory = new RDF4JTermFactory();
+		this.sesameTermFactory = new SesameTermFactory();
 	}
 
-	public ModelGraphImpl(Model model, RDF4JTermFactory sesameTermFactory) {
+	public ModelGraphImpl(Model model, SesameTermFactory sesameTermFactory) {
 		this.model = model;	
 		this.sesameTermFactory = sesameTermFactory;
 	}
@@ -104,19 +104,19 @@ public final class ModelGraphImpl implements RDF4JGraph {
 		if (size < Integer.MAX_VALUE) {
 			return size;
 		} else {
-			// TODO: Check if this can really happen with RDF4J models
+			// TODO: Check if this can really happen with Sesame models
 			// Collection.size() can't help us, we'll have to count
 			return model.parallelStream().count();
 		}				
 	}
 
 	@Override
-	public Stream<RDF4JTriple> stream() {
+	public Stream<SesameTriple> stream() {
 		return model.parallelStream().map(sesameTermFactory::asTriple);
 	}
 
 	@Override
-	public Stream<RDF4JTriple> stream(BlankNodeOrIRI subject, org.apache.commons.rdf.api.IRI predicate, RDFTerm object) {
+	public Stream<SesameTriple> stream(BlankNodeOrIRI subject, org.apache.commons.rdf.api.IRI predicate, RDFTerm object) {
 		return model.filter(
 				(Resource)sesameTermFactory.asValue(subject), 
 				(org.openrdf.model.IRI)sesameTermFactory.asValue(predicate), 

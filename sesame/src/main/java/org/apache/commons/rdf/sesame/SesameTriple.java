@@ -17,12 +17,12 @@
  */
 package org.apache.commons.rdf.sesame;
 
-import org.apache.commons.rdf.api.Quad;
+import org.apache.commons.rdf.api.Triple;
 
 /**
- * Marker interface for RDF4J implementations of Quad.
+ * Marker interface for Sesame implementations of Triple.
  * 
  */
-public interface RDF4JQuad extends Quad, RDF4JTripleLike {
+public interface SesameTriple extends Triple, SesameTripleLike {
 	
 }

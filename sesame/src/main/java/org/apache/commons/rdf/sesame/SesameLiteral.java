@@ -20,16 +20,16 @@ package org.apache.commons.rdf.sesame;
 import org.openrdf.model.Literal;
 
 /**
- * Marker interface for RDF4J implementations of Literal.
+ * Marker interface for Sesame implementations of Literal.
  * 
  */
-public interface RDF4JLiteral 
-	extends RDF4JTerm<org.openrdf.model.Literal>, org.apache.commons.rdf.api.Literal {
+public interface SesameLiteral 
+	extends SesameTerm<org.openrdf.model.Literal>, org.apache.commons.rdf.api.Literal {
 	
 	/**
-	 * Return the corresponding RDF4J {@link org.openrdf.model.Literal}.
+	 * Return the corresponding Sesame {@link org.openrdf.model.Literal}.
 	 * 
-	 * @return The corresponding RDF4J Literal
+	 * @return The corresponding Sesame Literal
 	 */
 	Literal asValue();
 }

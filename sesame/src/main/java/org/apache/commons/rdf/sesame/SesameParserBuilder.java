@@ -42,7 +42,7 @@ import org.openrdf.rio.Rio;
 import org.openrdf.rio.helpers.AbstractRDFHandler;
 
 /**
- * RDF4J-based parser.
+ * Sesame-based parser.
  * <p>
  * This can handle the RDF syntaxes {@link RDFSyntax#JSONLD},
  * {@link RDFSyntax#NQUADS}, {@link RDFSyntax#NTRIPLES},
@@ -51,7 +51,7 @@ import org.openrdf.rio.helpers.AbstractRDFHandler;
  * <em>sesame-rio-*</em> module on the classpath.
  *
  */
-public class RDF4JParserBuilder extends AbstractRDFParserBuilder<RDF4JParserBuilder> implements RDFParserBuilder {
+public class SesameParserBuilder extends AbstractRDFParserBuilder<SesameParserBuilder> implements RDFParserBuilder {
 
 	private final class AddToQuadConsumer extends AbstractRDFHandler {
 		private final Consumer<Quad> quadTarget;
@@ -70,9 +70,9 @@ public class RDF4JParserBuilder extends AbstractRDFParserBuilder<RDF4JParserBuil
 			quadTarget.accept(sesameTermFactory.asQuad(st));
 			// Performance note:
 			// Graph/Quad.add should pick up again our
-			// RDF4JGraphLike.asStatement()
+			// SesameGraphLike.asStatement()
 			// and avoid double conversion.
-			// Additionally the RDF4JQuad and RDF4JTriple implementations
+			// Additionally the SesameQuad and SesameTriple implementations
 			// are lazily converting subj/obj/pred/graph.s
 		}
 	}
@@ -95,19 +95,19 @@ public class RDF4JParserBuilder extends AbstractRDFParserBuilder<RDF4JParserBuil
 		}
 	}
 
-	private RDF4JTermFactory sesameTermFactory;
+	private SesameTermFactory sesameTermFactory;
 
 	@Override
-	protected RDF4JTermFactory createRDFTermFactory() {
-		return new RDF4JTermFactory();
+	protected SesameTermFactory createRDFTermFactory() {
+		return new SesameTermFactory();
 	}
 
 	@Override
-	protected RDF4JParserBuilder prepareForParsing() throws IOException, IllegalStateException {
-		RDF4JParserBuilder c = prepareForParsing();
-		// Ensure we have an RDF4JTermFactory for conversion.
-		// We'll make a new one if user has provided a non-RDF4J factory
-		c.sesameTermFactory = (RDF4JTermFactory) getRdfTermFactory().filter(RDF4JTermFactory.class::isInstance)
+	protected SesameParserBuilder prepareForParsing() throws IOException, IllegalStateException {
+		SesameParserBuilder c = prepareForParsing();
+		// Ensure we have an SesameTermFactory for conversion.
+		// We'll make a new one if user has provided a non-Sesame factory
+		c.sesameTermFactory = (SesameTermFactory) getRdfTermFactory().filter(SesameTermFactory.class::isInstance)
 				.orElseGet(c::createRDFTermFactory);
 		return c;
 	}
@@ -155,13 +155,13 @@ public class RDF4JParserBuilder extends AbstractRDFParserBuilder<RDF4JParserBuil
 
 	protected RDFHandler makeRDFHandler() {
 
-		// TODO: Can we join the below DF4JDataset and RDF4JGraph cases
-		// using RDF4JGraphLike<TripleLike<BlankNodeOrIRI,IRI,RDFTerm>>
+		// TODO: Can we join the below DF4JDataset and SesameGraph cases
+		// using SesameGraphLike<TripleLike<BlankNodeOrIRI,IRI,RDFTerm>>
 		// or will that need tricky generics types?
 
-		if (getTargetDataset().filter(RDF4JDataset.class::isInstance).isPresent()) {
+		if (getTargetDataset().filter(SesameDataset.class::isInstance).isPresent()) {
 			// One of us, we can add them as Statements directly
-			RDF4JDataset dataset = (RDF4JDataset) getTargetDataset().get();
+			SesameDataset dataset = (SesameDataset) getTargetDataset().get();
 			if (dataset.asRepository().isPresent()) {
 				return new RDFInserter(dataset.asRepository().get().getConnection());
 			}
@@ -170,10 +170,10 @@ public class RDF4JParserBuilder extends AbstractRDFParserBuilder<RDF4JParserBuil
 				return new AddToModel(model);
 			}
 			// Not backed by Repository or Model?
-			// Third-party RDF4JDataset subclass, so we'll fall through to the
+			// Third-party SesameDataset subclass, so we'll fall through to the
 			// getTarget() handling further down
-		} else if (getTargetGraph().filter(RDF4JGraph.class::isInstance).isPresent()) {
-			RDF4JGraph graph = (RDF4JGraph) getTargetGraph().get();
+		} else if (getTargetGraph().filter(SesameGraph.class::isInstance).isPresent()) {
+			SesameGraph graph = (SesameGraph) getTargetGraph().get();
 
 			if (graph.asRepository().isPresent()) {
 				RDFInserter inserter = new RDFInserter(graph.asRepository().get().getConnection());

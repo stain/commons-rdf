@@ -17,22 +17,19 @@
  */
 package org.apache.commons.rdf.sesame;
 
-import org.apache.commons.rdf.api.RDFTerm;
 import org.openrdf.model.BNode;
-import org.openrdf.model.IRI;
-import org.openrdf.model.Literal;
-import org.openrdf.model.Value;
 
 /**
- * Marker interface for RDF4J implementations of RDFTerm.
- *  
+ * Marker interface for Sesame implementations of BlankNode.
+ * 
  */
-public interface RDF4JTerm<T extends Value> extends RDFTerm {
-	
+public interface SesameBlankNode 
+	extends SesameTerm<org.openrdf.model.BNode>, org.apache.commons.rdf.api.BlankNode {
+
 	/**
-	 * Return the RDF4J {@link Value} that this RDFTerm represents.
+	 * Return the corresponding Sesame {@link BNode}.
 	 * 
-	 * @return The wrapped {@link Value} (e.g. a {@link Literal}, {@link IRI} or {@link BNode}.
+	 * @return The corresponding Sesame BNode
 	 */
-	public T asValue();
+	BNode asValue();
 }

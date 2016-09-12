@@ -17,10 +17,10 @@
  */
 package org.apache.commons.rdf.sesame.impl;
 
-import org.apache.commons.rdf.sesame.RDF4JIRI;
+import org.apache.commons.rdf.sesame.SesameIRI;
 
 public final class IRIImpl extends AbstractRDFTerm<org.openrdf.model.IRI> 
-	implements RDF4JIRI {
+	implements SesameIRI {
 
 	public IRIImpl(org.openrdf.model.IRI iri) {
 		super(iri);			

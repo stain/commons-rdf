@@ -33,12 +33,12 @@ import org.openrdf.sail.nativerdf.NativeStore;
 
 public class NativeStoreGraphTest extends AbstractGraphTest {
 
-	public static final class NativeStoreFactory extends RDF4JTermFactory {
+	public static final class NativeStoreFactory extends SesameTermFactory {
 		NativeStoreFactory() {
 			super(new MemValueFactory());
 		}
 		@Override
-		public RDF4JGraph createGraph() {
+		public SesameGraph createGraph() {
 			return asRDFTermGraph(createRepository());
 		}
 	}
@@ -60,7 +60,7 @@ public class NativeStoreGraphTest extends AbstractGraphTest {
 	public RDFTermFactory createFactory() {
 		// FIXME: This valueFactory will be backed by the wrong temporary folder!
 		ValueFactory valueFactory = createRepository().getValueFactory();
-		return new RDF4JTermFactory(valueFactory);
+		return new SesameTermFactory(valueFactory);
 	}
 
 }

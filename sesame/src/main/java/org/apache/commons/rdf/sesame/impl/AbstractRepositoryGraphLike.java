@@ -23,20 +23,20 @@ import org.apache.commons.rdf.api.BlankNodeOrIRI;
 import org.apache.commons.rdf.api.IRI;
 import org.apache.commons.rdf.api.RDFTerm;
 import org.apache.commons.rdf.api.TripleLike;
-import org.apache.commons.rdf.sesame.RDF4JGraphLike;
-import org.apache.commons.rdf.sesame.RDF4JTermFactory;
+import org.apache.commons.rdf.sesame.SesameGraphLike;
+import org.apache.commons.rdf.sesame.SesameTermFactory;
 import org.openrdf.model.Model;
 import org.openrdf.model.Statement;
 import org.openrdf.repository.Repository;
 import org.openrdf.repository.RepositoryConnection;
 
 public abstract class AbstractRepositoryGraphLike<T extends TripleLike<BlankNodeOrIRI, IRI, RDFTerm>>
-		implements RDF4JGraphLike<T> {
+		implements SesameGraphLike<T> {
 
 	protected Repository repository;
 	protected boolean includeInferred;
 	protected boolean shouldWeShutdown = false;
-	protected RDF4JTermFactory sesameTermFactory;
+	protected SesameTermFactory sesameTermFactory;
 
 	public AbstractRepositoryGraphLike(Repository repository) {
 		this(repository, false);
@@ -49,7 +49,7 @@ public abstract class AbstractRepositoryGraphLike<T extends TripleLike<BlankNode
 			repository.initialize();
 			shouldWeShutdown = true;
 		}
-		sesameTermFactory = new RDF4JTermFactory(repository.getValueFactory());
+		sesameTermFactory = new SesameTermFactory(repository.getValueFactory());
 	}
 
 	@Override

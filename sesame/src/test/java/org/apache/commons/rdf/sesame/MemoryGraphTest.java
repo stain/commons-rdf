@@ -27,13 +27,13 @@ import org.openrdf.sail.memory.model.MemValueFactory;
 
 public class MemoryGraphTest extends AbstractGraphTest {
 
-	public static final class MemoryStoreFactory extends RDF4JTermFactory {
+	public static final class MemoryStoreFactory extends SesameTermFactory {
 		MemoryStoreFactory() {
 			super(new MemValueFactory());
 		}
 
 		@Override
-		public RDF4JGraph createGraph() throws UnsupportedOperationException {
+		public SesameGraph createGraph() throws UnsupportedOperationException {
 			Sail sail = new MemoryStore();
 			Repository repository = new SailRepository(sail);
 			return asRDFTermGraph(repository);

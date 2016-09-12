@@ -29,18 +29,18 @@ import org.openrdf.repository.Repository;
 
 
 /**
- * Marker interface for RDF4J implementations of Graph.
+ * Marker interface for Sesame implementations of Graph.
  * 
  * @see ModelGraphImpl
  * @see RepositoryGraphImpl
  */
-public interface RDF4JGraph extends Graph, RDF4JGraphLike<Triple> {
+public interface SesameGraph extends Graph, SesameGraphLike<Triple> {
 	
 	/**
 	 * Return a copy of the context filter, if present.
 	 * <p>
 	 * If {@link Optional#isPresent()}, the filter determines which
-	 * <em>contexts</em> in the corresponding RDF4J {@link Model} or
+	 * <em>contexts</em> in the corresponding Sesame {@link Model} or
 	 * {@link Repository} that this graph reflect. Modifications to the graph
 	 * (e.g. {@link #add(Triple)} will be performed for all the specified
 	 * contexts, while retrieval (e.g. {@link #contains(Triple)}) will succeed
@@ -55,7 +55,7 @@ public interface RDF4JGraph extends Graph, RDF4JGraphLike<Triple> {
 	 * <code>null</code>.
 	 * <p>
 	 * The filter array is a copy, and thus any modifications are not reflected
-	 * in the RDF4JGraph.
+	 * in the SesameGraph.
 	 * 
 	 * @return The context filter as an array of {@link Resource}s, or
 	 *         {@link Optional#empty()} indicating the union graph (any

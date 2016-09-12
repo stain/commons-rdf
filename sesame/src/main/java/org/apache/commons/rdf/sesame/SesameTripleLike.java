@@ -17,19 +17,26 @@
  */
 package org.apache.commons.rdf.sesame;
 
-import org.openrdf.model.BNode;
+import org.apache.commons.rdf.api.BlankNodeOrIRI;
+import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.RDFTerm;
+import org.apache.commons.rdf.api.TripleLike;
+import org.openrdf.model.Statement;
 
 /**
- * Marker interface for RDF4J implementations of BlankNode.
+ * Marker interface for Sesame implementations of TripleLike statements.
+ * <p>
+ * This is backed by a {@link Statement} retrievable with {@link #asStatement()}.
  * 
+ * @see SesameTriple
+ * @see SesameQuad
  */
-public interface RDF4JBlankNode 
-	extends RDF4JTerm<org.openrdf.model.BNode>, org.apache.commons.rdf.api.BlankNode {
-
+public interface SesameTripleLike extends TripleLike<BlankNodeOrIRI, IRI, RDFTerm> {
+	
 	/**
-	 * Return the corresponding RDF4J {@link BNode}.
+	 * Return the corresponding Sesame {@link Statement}.
 	 * 
-	 * @return The corresponding RDF4J BNode
+	 * @return The corresponding Sesame Statement.
 	 */
-	BNode asValue();
+	public Statement asStatement();
 }

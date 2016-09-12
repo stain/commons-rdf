@@ -17,10 +17,10 @@
  */
 package org.apache.commons.rdf.sesame.impl;
 
-import org.apache.commons.rdf.sesame.RDF4JTerm;
+import org.apache.commons.rdf.sesame.SesameTerm;
 import org.openrdf.model.Value;
 
-abstract class AbstractRDFTerm<T extends Value> implements RDF4JTerm<T> {
+abstract class AbstractRDFTerm<T extends Value> implements SesameTerm<T> {
 	T value;
 
 	AbstractRDFTerm(T value) {

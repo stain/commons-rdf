@@ -17,12 +17,22 @@
  */
 package org.apache.commons.rdf.sesame;
 
-import org.apache.commons.rdf.api.Triple;
+import org.apache.commons.rdf.api.RDFTerm;
+import org.openrdf.model.BNode;
+import org.openrdf.model.IRI;
+import org.openrdf.model.Literal;
+import org.openrdf.model.Value;
 
 /**
- * Marker interface for RDF4J implementations of Triple.
- * 
+ * Marker interface for Sesame implementations of RDFTerm.
+ *  
  */
-public interface RDF4JTriple extends Triple, RDF4JTripleLike {
+public interface SesameTerm<T extends Value> extends RDFTerm {
 	
+	/**
+	 * Return the Sesame {@link Value} that this RDFTerm represents.
+	 * 
+	 * @return The wrapped {@link Value} (e.g. a {@link Literal}, {@link IRI} or {@link BNode}.
+	 */
+	public T asValue();
 }

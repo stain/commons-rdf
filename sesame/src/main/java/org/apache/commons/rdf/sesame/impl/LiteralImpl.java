@@ -20,13 +20,13 @@ package org.apache.commons.rdf.sesame.impl;
 import java.util.Objects;
 import java.util.Optional;
 
-import org.apache.commons.rdf.sesame.RDF4JLiteral;
+import org.apache.commons.rdf.sesame.SesameLiteral;
 import org.openrdf.model.vocabulary.XMLSchema;
 import org.openrdf.rio.turtle.TurtleUtil;
 
 public final class LiteralImpl 
 	extends AbstractRDFTerm<org.openrdf.model.Literal>
-    implements RDF4JLiteral {		
+    implements SesameLiteral {		
 
 	private static final String QUOTE = "\"";
 	

@@ -25,8 +25,8 @@ import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.api.IRI;
 import org.apache.commons.rdf.api.RDFTerm;
 import org.apache.commons.rdf.api.Triple;
-import org.apache.commons.rdf.sesame.RDF4JGraph;
-import org.apache.commons.rdf.sesame.RDF4JTriple;
+import org.apache.commons.rdf.sesame.SesameGraph;
+import org.apache.commons.rdf.sesame.SesameTriple;
 import info.aduna.iteration.Iterations;
 import org.openrdf.model.Resource;
 import org.openrdf.model.Statement;
@@ -35,7 +35,7 @@ import org.openrdf.repository.Repository;
 import org.openrdf.repository.RepositoryConnection;
 import org.openrdf.repository.RepositoryResult;
 
-public class RepositoryGraphImpl extends AbstractRepositoryGraphLike<Triple> implements Graph, RDF4JGraph {
+public class RepositoryGraphImpl extends AbstractRepositoryGraphLike<Triple> implements Graph, SesameGraph {
 
 	private final Resource[] contextFilter;
 
@@ -136,12 +136,12 @@ public class RepositoryGraphImpl extends AbstractRepositoryGraphLike<Triple> imp
 	}
 
 	@Override
-	public Stream<RDF4JTriple> stream() {
+	public Stream<SesameTriple> stream() {
 		return stream(null, null, null);
 	}
 	
 	@Override
-	public Stream<RDF4JTriple> stream(BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+	public Stream<SesameTriple> stream(BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
 		Resource subj = (Resource) sesameTermFactory.asValue(subject);
 		org.openrdf.model.IRI pred = (org.openrdf.model.IRI) sesameTermFactory.asValue(predicate);
 		Value obj = sesameTermFactory.asValue(object);
@@ -152,7 +152,7 @@ public class RepositoryGraphImpl extends AbstractRepositoryGraphLike<Triple> imp
 	}
 	
 	@Override
-	protected RDF4JTriple asTripleLike(Statement statement) {
+	protected SesameTriple asTripleLike(Statement statement) {
 		return sesameTermFactory.asTriple(statement);
 	}
 

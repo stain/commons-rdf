@@ -28,35 +28,35 @@ import org.openrdf.model.Model;
 import org.openrdf.repository.Repository;
 
 /**
- * Marker interface for RDF4J implementations of GraphLike.
+ * Marker interface for Sesame implementations of GraphLike.
  * 
- * @see RDF4JGraph
+ * @see SesameGraph
  * 
  */
-public interface RDF4JGraphLike<T extends TripleLike<BlankNodeOrIRI, IRI, RDFTerm>>
+public interface SesameGraphLike<T extends TripleLike<BlankNodeOrIRI, IRI, RDFTerm>>
 		extends GraphLike<T, BlankNodeOrIRI, IRI, RDFTerm>, AutoCloseable {
 
 	/**
-	 * Return the corresponding RDF4J {@link Model}, if present.
+	 * Return the corresponding Sesame {@link Model}, if present.
 	 * <p>
 	 * The return value is {@link Optional#isPresent()} if this is backed by a
 	 * Model.
 	 * <p>
 	 * Changes to the Model are reflected in both directions.
 	 * 
-	 * @return The corresponding RDF4J Model.
+	 * @return The corresponding Sesame Model.
 	 */
 	public Optional<Model> asModel();
 
 	/**
-	 * Return the corresponding RDF4J {@link Repository}, if present.
+	 * Return the corresponding Sesame {@link Repository}, if present.
 	 * <p>
 	 * The return value is {@link Optional#isPresent()} if this is backed by a
 	 * Repository.
 	 * <p>
 	 * Changes to the Repository are reflected in both directions.
 	 * 
-	 * @return The corresponding RDF4J Repository.
+	 * @return The corresponding Sesame Repository.
 	 */
 	public Optional<Repository> asRepository();
 

@@ -26,8 +26,8 @@ import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.api.IRI;
 import org.apache.commons.rdf.api.Quad;
 import org.apache.commons.rdf.api.RDFTerm;
-import org.apache.commons.rdf.sesame.RDF4JDataset;
-import org.apache.commons.rdf.sesame.RDF4JQuad;
+import org.apache.commons.rdf.sesame.SesameDataset;
+import org.apache.commons.rdf.sesame.SesameQuad;
 import info.aduna.iteration.Iterations;
 import org.openrdf.model.Resource;
 import org.openrdf.model.Statement;
@@ -36,7 +36,7 @@ import org.openrdf.repository.Repository;
 import org.openrdf.repository.RepositoryConnection;
 import org.openrdf.repository.RepositoryResult;
 
-public class RepositoryDatasetImpl extends AbstractRepositoryGraphLike<Quad> implements RDF4JDataset, Dataset {
+public class RepositoryDatasetImpl extends AbstractRepositoryGraphLike<Quad> implements SesameDataset, Dataset {
 
 	public RepositoryDatasetImpl(Repository repository, boolean includeInferred) {
 		super(repository, includeInferred);
@@ -146,12 +146,12 @@ public class RepositoryDatasetImpl extends AbstractRepositoryGraphLike<Quad> imp
 	}
 
 	@Override
-	public Stream<RDF4JQuad> stream() {
+	public Stream<SesameQuad> stream() {
 		return stream(null, null, null, null);
 	}
 	
 	@Override
-	public Stream<RDF4JQuad> stream(Optional<BlankNodeOrIRI> graphName, BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+	public Stream<SesameQuad> stream(Optional<BlankNodeOrIRI> graphName, BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
 		Resource subj = (Resource) sesameTermFactory.asValue(subject);
 		org.openrdf.model.IRI pred = (org.openrdf.model.IRI) sesameTermFactory.asValue(predicate);
 		Value obj = sesameTermFactory.asValue(object);
@@ -164,7 +164,7 @@ public class RepositoryDatasetImpl extends AbstractRepositoryGraphLike<Quad> imp
 	}
 
 	@Override
-	protected RDF4JQuad asTripleLike(Statement s) {
+	protected SesameQuad asTripleLike(Statement s) {
 		return sesameTermFactory.asQuad(s);
 	}
 

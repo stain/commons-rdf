@@ -23,11 +23,11 @@ import java.util.UUID;
 import org.apache.commons.rdf.api.BlankNodeOrIRI;
 import org.apache.commons.rdf.api.RDFTerm;
 import org.apache.commons.rdf.api.Triple;
-import org.apache.commons.rdf.sesame.RDF4JTermFactory;
-import org.apache.commons.rdf.sesame.RDF4JTriple;
+import org.apache.commons.rdf.sesame.SesameTermFactory;
+import org.apache.commons.rdf.sesame.SesameTriple;
 import org.openrdf.model.Statement;
 
-public final class TripleImpl implements Triple, RDF4JTriple {
+public final class TripleImpl implements Triple, SesameTriple {
 		private UUID salt;	
 		private final Statement statement;
 		
@@ -53,17 +53,17 @@ public final class TripleImpl implements Triple, RDF4JTriple {
 	
 		@Override
 		public RDFTerm getObject() {
-			return RDF4JTermFactory.asRDFTerm(statement.getObject(), salt);
+			return SesameTermFactory.asRDFTerm(statement.getObject(), salt);
 		}
 	
 		@Override
 		public org.apache.commons.rdf.api.IRI getPredicate() {
-			return (org.apache.commons.rdf.api.IRI) RDF4JTermFactory.asRDFTerm(statement.getPredicate(), null);
+			return (org.apache.commons.rdf.api.IRI) SesameTermFactory.asRDFTerm(statement.getPredicate(), null);
 		}
 		
 		@Override
 		public BlankNodeOrIRI getSubject() {
-			return (BlankNodeOrIRI) RDF4JTermFactory.asRDFTerm(statement.getSubject(), salt);
+			return (BlankNodeOrIRI) SesameTermFactory.asRDFTerm(statement.getSubject(), salt);
 		}
 	
 		@Override

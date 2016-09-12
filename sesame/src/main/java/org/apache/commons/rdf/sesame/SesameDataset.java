@@ -22,9 +22,9 @@ import org.apache.commons.rdf.api.Quad;
 
 
 /**
- * Marker interface for RDF4J implementations of Dataset.
+ * Marker interface for Sesame implementations of Dataset.
  * 
  */
-public interface RDF4JDataset extends Dataset, RDF4JGraphLike<Quad> {
+public interface SesameDataset extends Dataset, SesameGraphLike<Quad> {
 	
 }

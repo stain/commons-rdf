@@ -18,16 +18,16 @@
 package org.apache.commons.rdf.sesame;
 
 /**
- * Marker interface for RDF4J implementations of IRI.
+ * Marker interface for Sesame implementations of IRI.
  * 
  */
-public interface RDF4JIRI 
-	extends RDF4JTerm<org.openrdf.model.IRI>, org.apache.commons.rdf.api.IRI {
+public interface SesameIRI 
+	extends SesameTerm<org.openrdf.model.IRI>, org.apache.commons.rdf.api.IRI {
 	
 	/**
-	 * Return the corresponding RDF4J {@link org.openrdf.model.IRI}.
+	 * Return the corresponding Sesame {@link org.openrdf.model.IRI}.
 	 * 
-	 * @return The corresponding RDF4J IRI
+	 * @return The corresponding Sesame IRI
 	 */
 	public org.openrdf.model.IRI asValue();
 	

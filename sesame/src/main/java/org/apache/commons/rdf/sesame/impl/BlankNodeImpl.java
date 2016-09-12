@@ -21,12 +21,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 import org.apache.commons.rdf.api.BlankNode;
-import org.apache.commons.rdf.sesame.RDF4JBlankNode;
+import org.apache.commons.rdf.sesame.SesameBlankNode;
 import org.openrdf.model.BNode;
 import org.openrdf.rio.turtle.TurtleUtil;
 
 public final class BlankNodeImpl extends AbstractRDFTerm<BNode>
-	implements RDF4JBlankNode {
+	implements SesameBlankNode {
 	
 	private transient int hashCode = 0;
 	private long saltUUIDleast;

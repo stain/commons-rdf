@@ -25,11 +25,11 @@ import org.apache.commons.rdf.api.BlankNodeOrIRI;
 import org.apache.commons.rdf.api.Quad;
 import org.apache.commons.rdf.api.RDFTerm;
 import org.apache.commons.rdf.api.Triple;
-import org.apache.commons.rdf.sesame.RDF4JQuad;
-import org.apache.commons.rdf.sesame.RDF4JTermFactory;
+import org.apache.commons.rdf.sesame.SesameQuad;
+import org.apache.commons.rdf.sesame.SesameTermFactory;
 import org.openrdf.model.Statement;
 
-public final class QuadImpl implements Quad, RDF4JQuad {
+public final class QuadImpl implements Quad, SesameQuad {
 		private transient int hashCode = 0;	
 		private UUID salt;
 		private final Statement statement;
@@ -64,23 +64,23 @@ public final class QuadImpl implements Quad, RDF4JQuad {
 			if (statement.getContext() == null) { 
 				return Optional.empty();
 			}
-			BlankNodeOrIRI g = (BlankNodeOrIRI) RDF4JTermFactory.asRDFTerm(statement.getContext(), salt);
+			BlankNodeOrIRI g = (BlankNodeOrIRI) SesameTermFactory.asRDFTerm(statement.getContext(), salt);
 			return Optional.of(g);
 		}
 		
 		@Override
 		public RDFTerm getObject() {
-			return RDF4JTermFactory.asRDFTerm(statement.getObject(), salt);
+			return SesameTermFactory.asRDFTerm(statement.getObject(), salt);
 		}
 	
 		@Override
 		public org.apache.commons.rdf.api.IRI getPredicate() {
-			return (org.apache.commons.rdf.api.IRI) RDF4JTermFactory.asRDFTerm(statement.getPredicate(), null);
+			return (org.apache.commons.rdf.api.IRI) SesameTermFactory.asRDFTerm(statement.getPredicate(), null);
 		}
 		
 		@Override
 		public BlankNodeOrIRI getSubject() {
-			return (BlankNodeOrIRI) RDF4JTermFactory.asRDFTerm(statement.getSubject(), salt);
+			return (BlankNodeOrIRI) SesameTermFactory.asRDFTerm(statement.getSubject(), salt);
 		}
 
 		@Override
