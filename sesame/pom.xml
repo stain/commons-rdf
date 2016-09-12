@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements. See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership. The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-rdf-parent</artifactId>
+		<version>0.3.0-incubating-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>commons-rdf-sesame</artifactId>
+	<packaging>jar</packaging>
+	<properties>
+		<sesame.version>4.1.2</sesame.version>
+	</properties>
+
+	<name>Commons RDF: Integration: Sesame</name>
+	<description>OpenRDF Sesame 4 (legacy) implementation of Commons RDF API.
+
+OpenRDF Sesame has changed name to Eclipse RDF4j. This module is provided for backwards compatibility; new users of RDF4j/Sesame should instead use the module commons-rdf-rdf4j.</description>
+
+	<build>
+		<plugins>
+			<plugin>
+
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<configuration>
+					<instructions>
+						<!-- Not sure why this is needed, .impl and .internal is normally hidden 
+							by the Bundle Plugin.. -->
+
+						<Export-Package>org.apache.commons.rdf.sesame</Export-Package>
+						<Private-Package>org.apache.commons.rdf.sesame.impl</Private-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>commons-rdf-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>commons-rdf-simple</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- Selected sesame dependencies We don't use sesame-runtime or sesame-runtime-osgi 
+			here, as they pull in various depenencies like lucene, which might not be 
+			needed. -->
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-model</artifactId>
+			<version>${sesame.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-repository-api</artifactId>
+			<version>${sesame.version}</version>
+		</dependency>
+
+		<!-- For RDF4JParserBuilder, these are the RIO dependencies for the standard 
+			RDF 1.1 languages -->
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-rio-turtle</artifactId>
+			<version>${sesame.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-rio-ntriples</artifactId>
+			<version>${sesame.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-rio-nquads</artifactId>
+			<version>${sesame.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-rio-rdfxml</artifactId>
+			<version>${sesame.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-rio-trig</artifactId>
+			<version>${sesame.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-rio-jsonld</artifactId>
+			<!-- FIXME: version should be in sesame-bom https://github.com/eclipse/rdf4j/issues/189 -->
+			<version>${sesame.version}</version>
+		</dependency>
+		<!-- Languages notably missing, and why: 
+		
+		sesame-rio-rdfjson: standard, but https://www.w3.org/TR/rdf-json/ says:
+			"The syntax defined in this document should not be used unless there is a specific reason to do so" 
+			
+		sesame-rio-binary: non-standard 
+		
+		sesame-rio-n3: unofficial standard, super-seeded by Turtle
+			
+		sesame-rio-trix: unofficial standard 
+		-->
+
+
+		<!-- There are multiple RDF4J sail/repository implementations, we use the 
+			below for testing. -->
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-sail-memory</artifactId>
+			<version>${sesame.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-sail-nativerdf</artifactId>
+			<version>${sesame.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-repository-sail</artifactId>
+			<version>${sesame.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>commons-rdf-api</artifactId>
+			<version>${project.version}</version>
+			<classifier>tests</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+
+
+	<!-- Ensure consistent sesame versions across the board -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.openrdf.sesame</groupId>
+				<artifactId>sesame-bom</artifactId>
+				<version>${sesame.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+</project>
