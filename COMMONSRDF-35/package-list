@@ -1,0 +1,12 @@
+org.apache.commons.rdf.api
+org.apache.commons.rdf.experimental
+org.apache.commons.rdf.jena
+org.apache.commons.rdf.jena.experimental
+org.apache.commons.rdf.jena.impl
+org.apache.commons.rdf.jsonldjava
+org.apache.commons.rdf.jsonldjava.experimental
+org.apache.commons.rdf.rdf4j
+org.apache.commons.rdf.rdf4j.experimental
+org.apache.commons.rdf.rdf4j.impl
+org.apache.commons.rdf.simple
+org.apache.commons.rdf.simple.experimental
