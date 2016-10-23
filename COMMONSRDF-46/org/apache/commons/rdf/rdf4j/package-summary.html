@@ -218,9 +218,9 @@
  <a href="http://rdf4j.org/javadoc/2.0/org/eclipse/rdf4j/repository/Repository.html?is-external=true" title="class or interface in org.eclipse.rdf4j.repository"><code>Repository</code></a> instances can be adapted to
  Commons RDF <a href="../../../../../org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api"><code>Graph</code></a> and
  <a href="../../../../../org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api"><code>Dataset</code></a>, e.g. using
- <a href="../../../../../org/apache/commons/rdf/rdf4j/RDF4J.html#asRDFTermGraph-org.eclipse.rdf4j.model.Model-"><code>RDF4J.asRDFTermGraph(org.eclipse.rdf4j.model.Model)</code></a>
+ <a href="../../../../../org/apache/commons/rdf/rdf4j/RDF4J.html#asGraph-org.eclipse.rdf4j.model.Model-"><code>RDF4J.asGraph(org.eclipse.rdf4j.model.Model)</code></a>
  or
- <a href="../../../../../org/apache/commons/rdf/rdf4j/RDF4J.html#asRDFTermDataset-org.eclipse.rdf4j.repository.Repository-org.apache.commons.rdf.rdf4j.RDF4J.Option...-"><code>RDF4J.asRDFTermDataset(org.eclipse.rdf4j.repository.Repository, org.apache.commons.rdf.rdf4j.RDF4J.Option...)</code></a>
+ <code>org.apache.commons.rdf.rdf4j.RDF4J#asDataset(org.eclipse.rdf4j.repository.Repository, org.apache.commons.rdf.rdf4j.RDF4JFactory.Option...)</code>
  The returned adapted graph/dataset is directly mapped, so changes are
  propagated both ways. For convenience, the marker interface
  <a href="../../../../../org/apache/commons/rdf/rdf4j/RDF4JGraph.html" title="interface in org.apache.commons.rdf.rdf4j"><code>RDF4JGraph</code></a> and
