@@ -108,20 +108,20 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaGraph.html" title="interface in org.apache.commons.rdf.jena">JenaGraph</a></code></td>
-<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#createGraph--">createGraph</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaGraph.html" title="interface in org.apache.commons.rdf.jena">JenaGraph</a></code></td>
-<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.jena.graph.Graph-">fromJena</a></span>(<a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Graph.html?is-external=true" title="class or interface in org.apache.jena.graph">Graph</a>&nbsp;graph)</code>
+<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#asGraph-org.apache.jena.graph.Graph-">asGraph</a></span>(<a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Graph.html?is-external=true" title="class or interface in org.apache.jena.graph">Graph</a>&nbsp;graph)</code>
 <div class="block">Adapt an existing Jena <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Graph.html?is-external=true" title="class or interface in org.apache.jena.graph"><code>Graph</code></a> to CommonsRDF
  <a href="../../../../../../org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api"><code>Graph</code></a>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaGraph.html" title="interface in org.apache.commons.rdf.jena">JenaGraph</a></code></td>
-<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.jena.rdf.model.Model-">fromJena</a></span>(<a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/rdf/model/Model.html?is-external=true" title="class or interface in org.apache.jena.rdf.model">Model</a>&nbsp;model)</code>
+<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#asGraph-org.apache.jena.rdf.model.Model-">asGraph</a></span>(<a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/rdf/model/Model.html?is-external=true" title="class or interface in org.apache.jena.rdf.model">Model</a>&nbsp;model)</code>
 <div class="block">Adapt an existing Jena <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/rdf/model/Model.html?is-external=true" title="class or interface in org.apache.jena.rdf.model"><code>Model</code></a> to CommonsRDF <a href="../../../../../../org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api"><code>Graph</code></a>.</div>
 </td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaGraph.html" title="interface in org.apache.commons.rdf.jena">JenaGraph</a></code></td>
+<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#createGraph--">createGraph</a></span>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaGraph.html" title="interface in org.apache.commons.rdf.jena">JenaGraph</a></code></td>
@@ -145,17 +145,17 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaGraph.html" title="interface in org.apache.commons.rdf.jena">JenaGraph</a></code></td>
-<td class="colLast"><span class="typeNameLabel">InternalJenaFactory.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createGraph-java.util.UUID-">createGraph</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a>&nbsp;salt)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">InternalJenaFactory.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createGraph-org.apache.jena.graph.Graph-java.util.UUID-">createGraph</a></span>(<a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Graph.html?is-external=true" title="class or interface in org.apache.jena.graph">Graph</a>&nbsp;graph,
+           <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a>&nbsp;salt)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaGraph.html" title="interface in org.apache.commons.rdf.jena">JenaGraph</a></code></td>
-<td class="colLast"><span class="typeNameLabel">InternalJenaFactory.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#fromJena-org.apache.jena.graph.Graph-java.util.UUID-">fromJena</a></span>(<a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Graph.html?is-external=true" title="class or interface in org.apache.jena.graph">Graph</a>&nbsp;graph,
-        <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a>&nbsp;salt)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">InternalJenaFactory.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createGraph-org.apache.jena.rdf.model.Model-java.util.UUID-">createGraph</a></span>(<a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/rdf/model/Model.html?is-external=true" title="class or interface in org.apache.jena.rdf.model">Model</a>&nbsp;model,
+           <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a>&nbsp;salt)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaGraph.html" title="interface in org.apache.commons.rdf.jena">JenaGraph</a></code></td>
-<td class="colLast"><span class="typeNameLabel">InternalJenaFactory.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#fromJena-org.apache.jena.rdf.model.Model-java.util.UUID-">fromJena</a></span>(<a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/rdf/model/Model.html?is-external=true" title="class or interface in org.apache.jena.rdf.model">Model</a>&nbsp;model,
-        <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a>&nbsp;salt)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">InternalJenaFactory.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createGraph-java.util.UUID-">createGraph</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a>&nbsp;salt)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

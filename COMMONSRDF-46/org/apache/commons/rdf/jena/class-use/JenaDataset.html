@@ -108,19 +108,19 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaDataset.html" title="interface in org.apache.commons.rdf.jena">JenaDataset</a></code></td>
-<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#createDataset--">createDataset</a></span>()</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#asDataset-org.apache.jena.query.Dataset-">asDataset</a></span>(<a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/query/Dataset.html?is-external=true" title="class or interface in org.apache.jena.query">Dataset</a>&nbsp;datasetGraph)</code>
+<div class="block">Adapt an existing Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/query/Dataset.html?is-external=true" title="class or interface in org.apache.jena.query"><code>Dataset</code></a> to CommonsRDF <a href="../../../../../../org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api"><code>Dataset</code></a>.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaDataset.html" title="interface in org.apache.commons.rdf.jena">JenaDataset</a></code></td>
-<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.jena.query.Dataset-">fromJena</a></span>(<a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/query/Dataset.html?is-external=true" title="class or interface in org.apache.jena.query">Dataset</a>&nbsp;datasetGraph)</code>
-<div class="block">Adapt an existing Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/query/Dataset.html?is-external=true" title="class or interface in org.apache.jena.query"><code>Dataset</code></a> to CommonsRDF <a href="../../../../../../org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api"><code>Dataset</code></a>.</div>
+<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#asDataset-org.apache.jena.sparql.core.DatasetGraph-">asDataset</a></span>(<a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/DatasetGraph.html?is-external=true" title="class or interface in org.apache.jena.sparql.core">DatasetGraph</a>&nbsp;datasetGraph)</code>
+<div class="block">Adapt an existing Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/DatasetGraph.html?is-external=true" title="class or interface in org.apache.jena.sparql.core"><code>DatasetGraph</code></a> to CommonsRDF <a href="../../../../../../org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api"><code>Dataset</code></a>.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaDataset.html" title="interface in org.apache.commons.rdf.jena">JenaDataset</a></code></td>
-<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.jena.sparql.core.DatasetGraph-">fromJena</a></span>(<a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/DatasetGraph.html?is-external=true" title="class or interface in org.apache.jena.sparql.core">DatasetGraph</a>&nbsp;datasetGraph)</code>
-<div class="block">Adapt an existing Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/DatasetGraph.html?is-external=true" title="class or interface in org.apache.jena.sparql.core"><code>DatasetGraph</code></a> to CommonsRDF <a href="../../../../../../org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api"><code>Dataset</code></a>.</div>
-</td>
+<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#createDataset--">createDataset</a></span>()</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -138,12 +138,12 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaDataset.html" title="interface in org.apache.commons.rdf.jena">JenaDataset</a></code></td>
-<td class="colLast"><span class="typeNameLabel">InternalJenaFactory.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createDataset-java.util.UUID-">createDataset</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a>&nbsp;salt)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">InternalJenaFactory.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createDataset-org.apache.jena.sparql.core.DatasetGraph-java.util.UUID-">createDataset</a></span>(<a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/DatasetGraph.html?is-external=true" title="class or interface in org.apache.jena.sparql.core">DatasetGraph</a>&nbsp;datasetGraph,
+             <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a>&nbsp;salt)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaDataset.html" title="interface in org.apache.commons.rdf.jena">JenaDataset</a></code></td>
-<td class="colLast"><span class="typeNameLabel">InternalJenaFactory.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#fromJena-org.apache.jena.sparql.core.DatasetGraph-java.util.UUID-">fromJena</a></span>(<a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/DatasetGraph.html?is-external=true" title="class or interface in org.apache.jena.sparql.core">DatasetGraph</a>&nbsp;datasetGraph,
-        <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a>&nbsp;salt)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">InternalJenaFactory.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createDataset-java.util.UUID-">createDataset</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a>&nbsp;salt)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

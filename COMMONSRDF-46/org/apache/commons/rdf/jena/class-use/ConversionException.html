@@ -107,14 +107,26 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaQuadLike.html" title="interface in org.apache.commons.rdf.jena">JenaQuadLike</a>&lt;<a href="../../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#asGeneralizedQuad-org.apache.jena.sparql.core.Quad-">asGeneralizedQuad</a></span>(<a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/Quad.html?is-external=true" title="class or interface in org.apache.jena.sparql.core">Quad</a>&nbsp;quad)</code>
+<div class="block">Adapt a generalized Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/Quad.html?is-external=true" title="class or interface in org.apache.jena.sparql.core"><code>Quad</code></a> to a CommonsRDF <a href="../../../../../../org/apache/commons/rdf/api/QuadLike.html" title="interface in org.apache.commons.rdf.api"><code>QuadLike</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaTripleLike.html" title="interface in org.apache.commons.rdf.jena">JenaTripleLike</a></code></td>
+<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#asGeneralizedTriple-org.apache.jena.graph.Triple-">asGeneralizedTriple</a></span>(<a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Triple.html?is-external=true" title="class or interface in org.apache.jena.graph">Triple</a>&nbsp;triple)</code>
+<div class="block">Adapt a generalized Jena <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Triple.html?is-external=true" title="class or interface in org.apache.jena.graph"><code>Triple</code></a> to a CommonsRDF <a href="../../../../../../org/apache/commons/rdf/api/TripleLike.html" title="interface in org.apache.commons.rdf.api"><code>TripleLike</code></a>.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDFTerm.html" title="interface in org.apache.commons.rdf.jena">JenaRDFTerm</a></code></td>
-<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.jena.graph.Node-">fromJena</a></span>(<a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Node.html?is-external=true" title="class or interface in org.apache.jena.graph">Node</a>&nbsp;node)</code>
+<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#asRDFTerm-org.apache.jena.graph.Node-">asRDFTerm</a></span>(<a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Node.html?is-external=true" title="class or interface in org.apache.jena.graph">Node</a>&nbsp;node)</code>
 <div class="block">Adapt an existing Jena Node to CommonsRDF <a href="../../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api"><code>RDFTerm</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api">Triple</a></code></td>
-<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.commons.rdf.api.RDF-org.apache.jena.graph.Triple-">fromJena</a></span>(<a href="../../../../../../org/apache/commons/rdf/api/RDF.html" title="interface in org.apache.commons.rdf.api">RDF</a>&nbsp;factory,
+<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#asTriple-org.apache.commons.rdf.api.RDF-org.apache.jena.graph.Triple-">asTriple</a></span>(<a href="../../../../../../org/apache/commons/rdf/api/RDF.html" title="interface in org.apache.commons.rdf.api">RDF</a>&nbsp;factory,
         <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Triple.html?is-external=true" title="class or interface in org.apache.jena.graph">Triple</a>&nbsp;triple)</code>
 <div class="block">Convert from Jena <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Triple.html?is-external=true" title="class or interface in org.apache.jena.graph"><code>Triple</code></a> to a Commons RDF
  <a href="../../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api"><code>Triple</code></a>.</div>
@@ -122,20 +134,8 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaTriple.html" title="interface in org.apache.commons.rdf.jena">JenaTriple</a></code></td>
-<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.jena.graph.Triple-">fromJena</a></span>(<a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Triple.html?is-external=true" title="class or interface in org.apache.jena.graph">Triple</a>&nbsp;triple)</code>
+<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#asTriple-org.apache.jena.graph.Triple-">asTriple</a></span>(<a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Triple.html?is-external=true" title="class or interface in org.apache.jena.graph">Triple</a>&nbsp;triple)</code>
 <div class="block">Adapt an existing Jena Triple to CommonsRDF <a href="../../../../../../org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api"><code>Triple</code></a>.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaQuadLike.html" title="interface in org.apache.commons.rdf.jena">JenaQuadLike</a>&lt;<a href="../../../../../../org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api">RDFTerm</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#fromJenaGeneralized-org.apache.jena.sparql.core.Quad-">fromJenaGeneralized</a></span>(<a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/Quad.html?is-external=true" title="class or interface in org.apache.jena.sparql.core">Quad</a>&nbsp;quad)</code>
-<div class="block">Adapt a generalized Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/Quad.html?is-external=true" title="class or interface in org.apache.jena.sparql.core"><code>Quad</code></a> to a CommonsRDF <a href="../../../../../../org/apache/commons/rdf/api/QuadLike.html" title="interface in org.apache.commons.rdf.api"><code>QuadLike</code></a>.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaTripleLike.html" title="interface in org.apache.commons.rdf.jena">JenaTripleLike</a></code></td>
-<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#fromJenaGeneralized-org.apache.jena.graph.Triple-">fromJenaGeneralized</a></span>(<a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Triple.html?is-external=true" title="class or interface in org.apache.jena.graph">Triple</a>&nbsp;triple)</code>
-<div class="block">Adapt a generalized Jena <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Triple.html?is-external=true" title="class or interface in org.apache.jena.graph"><code>Triple</code></a> to a CommonsRDF <a href="../../../../../../org/apache/commons/rdf/api/TripleLike.html" title="interface in org.apache.commons.rdf.api"><code>TripleLike</code></a>.</div>
 </td>
 </tr>
 </tbody>
@@ -154,8 +154,8 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDFTerm.html" title="interface in org.apache.commons.rdf.jena">JenaRDFTerm</a></code></td>
-<td class="colLast"><span class="typeNameLabel">InternalJenaFactory.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#fromJena-org.apache.jena.graph.Node-java.util.UUID-">fromJena</a></span>(<a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Node.html?is-external=true" title="class or interface in org.apache.jena.graph">Node</a>&nbsp;node,
-        <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a>&nbsp;salt)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">InternalJenaFactory.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createRDFTerm-org.apache.jena.graph.Node-java.util.UUID-">createRDFTerm</a></span>(<a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Node.html?is-external=true" title="class or interface in org.apache.jena.graph">Node</a>&nbsp;node,
+             <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a>&nbsp;salt)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

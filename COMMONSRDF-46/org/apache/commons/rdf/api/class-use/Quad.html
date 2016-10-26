@@ -266,8 +266,8 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a></code></td>
-<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.commons.rdf.api.RDF-org.apache.jena.sparql.core.Quad-">fromJena</a></span>(<a href="../../../../../../org/apache/commons/rdf/api/RDF.html" title="interface in org.apache.commons.rdf.api">RDF</a>&nbsp;factory,
-        <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/Quad.html?is-external=true" title="class or interface in org.apache.jena.sparql.core">Quad</a>&nbsp;quad)</code>
+<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#asQuad-org.apache.commons.rdf.api.RDF-org.apache.jena.sparql.core.Quad-">asQuad</a></span>(<a href="../../../../../../org/apache/commons/rdf/api/RDF.html" title="interface in org.apache.commons.rdf.api">RDF</a>&nbsp;factory,
+      <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/Quad.html?is-external=true" title="class or interface in org.apache.jena.sparql.core">Quad</a>&nbsp;quad)</code>
 <div class="block">Convert from Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/Quad.html?is-external=true" title="class or interface in org.apache.jena.sparql.core"><code>Quad</code></a> to a Commons
  RDF <a href="../../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api"><code>Quad</code></a>.</div>
 </td>
@@ -283,7 +283,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/Quad.html?is-external=true" title="class or interface in org.apache.jena.sparql.core">Quad</a></code></td>
-<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#toJena-org.apache.commons.rdf.api.Quad-">toJena</a></span>(<a href="../../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&nbsp;quad)</code>
+<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#asJenaQuad-org.apache.commons.rdf.api.Quad-">asJenaQuad</a></span>(<a href="../../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&nbsp;quad)</code>
 <div class="block">Convert a CommonsRDF <a href="../../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api"><code>Quad</code></a> to a Jena
  <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/Quad.html?is-external=true" title="class or interface in org.apache.jena.sparql.core"><code>Quad</code></a>.</div>
 </td>
@@ -299,8 +299,8 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/riot/system/StreamRDF.html?is-external=true" title="class or interface in org.apache.jena.riot.system">StreamRDF</a></code></td>
-<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#streamJenaToCommonsRDF-org.apache.commons.rdf.api.RDF-java.util.function.Consumer-">streamJenaToCommonsRDF</a></span>(<a href="../../../../../../org/apache/commons/rdf/api/RDF.html" title="interface in org.apache.commons.rdf.api">RDF</a>&nbsp;factory,
-                      <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;&nbsp;consumer)</code>
+<td class="colLast"><span class="typeNameLabel">JenaRDF.</span><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/jena/JenaRDF.html#streamJenaToQuad-org.apache.commons.rdf.api.RDF-java.util.function.Consumer-">streamJenaToQuad</a></span>(<a href="../../../../../../org/apache/commons/rdf/api/RDF.html" title="interface in org.apache.commons.rdf.api">RDF</a>&nbsp;factory,
+                <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a>&gt;&nbsp;consumer)</code>
 <div class="block">Create a <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/riot/system/StreamRDF.html?is-external=true" title="class or interface in org.apache.jena.riot.system"><code>StreamRDF</code></a> instance that inserts the converted
  <a href="../../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api"><code>Quad</code></a>s.</div>
 </td>

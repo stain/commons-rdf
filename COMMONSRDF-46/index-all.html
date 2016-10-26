@@ -108,6 +108,14 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/simple/DatasetGraphView.html#add-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">add(BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in class org.apache.commons.rdf.simple.<a href="org/apache/commons/rdf/simple/DatasetGraphView.html" title="class in org.apache.commons.rdf.simple">DatasetGraphView</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asDataset-org.apache.jena.sparql.core.DatasetGraph-">asDataset(DatasetGraph)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Adapt an existing Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/DatasetGraph.html?is-external=true" title="class or interface in org.apache.jena.sparql.core"><code>DatasetGraph</code></a> to CommonsRDF <a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api"><code>Dataset</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asDataset-org.apache.jena.query.Dataset-">asDataset(Dataset)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Adapt an existing Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/query/Dataset.html?is-external=true" title="class or interface in org.apache.jena.query"><code>Dataset</code></a> to CommonsRDF <a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api"><code>Dataset</code></a>.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jsonldjava/JsonLdRDF.html#asDataset-com.github.jsonldjava.core.RDFDataset-">asDataset(RDFDataset)</a></span> - Method in class org.apache.commons.rdf.jsonldjava.<a href="org/apache/commons/rdf/jsonldjava/JsonLdRDF.html" title="class in org.apache.commons.rdf.jsonldjava">JsonLdRDF</a></dt>
 <dd>
 <div class="block">Adapt a JsonLd <code>RDFDataset</code> as a Commons RDF <a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api"><code>Dataset</code></a>.</div>
@@ -115,6 +123,23 @@
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/rdf4j/RDF4J.html#asDataset-org.eclipse.rdf4j.repository.Repository-org.apache.commons.rdf.rdf4j.RDF4J.Option...-">asDataset(Repository, RDF4J.Option...)</a></span> - Method in class org.apache.commons.rdf.rdf4j.<a href="org/apache/commons/rdf/rdf4j/RDF4J.html" title="class in org.apache.commons.rdf.rdf4j">RDF4J</a></dt>
 <dd>
 <div class="block">Adapt an RDF4J <a href="http://rdf4j.org/javadoc/2.0/org/eclipse/rdf4j/repository/Repository.html?is-external=true" title="class or interface in org.eclipse.rdf4j.repository"><code>Repository</code></a> as a Commons RDF <a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api"><code>Dataset</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asGeneralizedQuad-org.apache.jena.sparql.core.Quad-">asGeneralizedQuad(Quad)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Adapt a generalized Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/Quad.html?is-external=true" title="class or interface in org.apache.jena.sparql.core"><code>Quad</code></a> to a CommonsRDF <a href="org/apache/commons/rdf/api/QuadLike.html" title="interface in org.apache.commons.rdf.api"><code>QuadLike</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asGeneralizedTriple-org.apache.jena.graph.Triple-">asGeneralizedTriple(Triple)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Adapt a generalized Jena <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Triple.html?is-external=true" title="class or interface in org.apache.jena.graph"><code>Triple</code></a> to a CommonsRDF <a href="org/apache/commons/rdf/api/TripleLike.html" title="interface in org.apache.commons.rdf.api"><code>TripleLike</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asGraph-org.apache.jena.graph.Graph-">asGraph(Graph)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Adapt an existing Jena <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Graph.html?is-external=true" title="class or interface in org.apache.jena.graph"><code>Graph</code></a> to CommonsRDF
+ <a href="org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api"><code>Graph</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asGraph-org.apache.jena.rdf.model.Model-">asGraph(Model)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Adapt an existing Jena <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/rdf/model/Model.html?is-external=true" title="class or interface in org.apache.jena.rdf.model"><code>Model</code></a> to CommonsRDF <a href="org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api"><code>Graph</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jsonldjava/JsonLdRDF.html#asGraph-com.github.jsonldjava.core.RDFDataset-">asGraph(RDFDataset)</a></span> - Method in class org.apache.commons.rdf.jsonldjava.<a href="org/apache/commons/rdf/jsonldjava/JsonLdRDF.html" title="class in org.apache.commons.rdf.jsonldjava">JsonLdRDF</a></dt>
 <dd>
@@ -144,15 +169,37 @@
 <dd>
 <div class="block">Return the underlying Jena <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Graph.html?is-external=true" title="class or interface in org.apache.jena.graph"><code>Graph</code></a>.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asJenaGraph-org.apache.commons.rdf.api.Graph-">asJenaGraph(Graph)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Convert a CommonsRDF Graph to a Jena Graph.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asJenaLang-org.apache.commons.rdf.api.RDFSyntax-">asJenaLang(RDFSyntax)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Return Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/riot/Lang.html?is-external=true" title="class or interface in org.apache.jena.riot"><code>Lang</code></a> corresponding to a <a href="org/apache/commons/rdf/api/RDFSyntax.html" title="enum in org.apache.commons.rdf.api"><code>RDFSyntax</code></a>.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaGraph.html#asJenaModel--">asJenaModel()</a></span> - Method in interface org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaGraph.html" title="interface in org.apache.commons.rdf.jena">JenaGraph</a></dt>
 <dd>
 <div class="block">Return the graph as a Jena <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/rdf/model/Model.html?is-external=true" title="class or interface in org.apache.jena.rdf.model"><code>Model</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asJenaNode-org.apache.commons.rdf.api.RDFTerm-">asJenaNode(RDFTerm)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Convert a CommonsRDF RDFTerm to a Jena Node.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDFTerm.html#asJenaNode--">asJenaNode()</a></span> - Method in interface org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDFTerm.html" title="interface in org.apache.commons.rdf.jena">JenaRDFTerm</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaQuadLike.html#asJenaQuad--">asJenaQuad()</a></span> - Method in interface org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaQuadLike.html" title="interface in org.apache.commons.rdf.jena">JenaQuadLike</a></dt>
 <dd>
 <div class="block">Return the adapted Jena quad</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asJenaQuad-org.apache.commons.rdf.api.Quad-">asJenaQuad(Quad)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Convert a CommonsRDF <a href="org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api"><code>Quad</code></a> to a Jena
+ <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/Quad.html?is-external=true" title="class or interface in org.apache.jena.sparql.core"><code>Quad</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asJenaTriple-org.apache.commons.rdf.api.Triple-">asJenaTriple(Triple)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Convert a CommonsRDF <a href="org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api"><code>Triple</code></a> to a Jena
+ <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Triple.html?is-external=true" title="class or interface in org.apache.jena.graph"><code>Triple</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaTripleLike.html#asJenaTriple--">asJenaTriple()</a></span> - Method in interface org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaTripleLike.html" title="interface in org.apache.commons.rdf.jena">JenaTripleLike</a></dt>
 <dd>
@@ -180,6 +227,15 @@
 <dd>
 <div class="block">Return the corresponding RDF4J <a href="http://rdf4j.org/javadoc/2.0/org/eclipse/rdf4j/model/Model.html?is-external=true" title="class or interface in org.eclipse.rdf4j.model"><code>Model</code></a>, if present.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asQuad-org.apache.jena.sparql.core.Quad-">asQuad(Quad)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Adapt an existing Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/Quad.html?is-external=true" title="class or interface in org.apache.jena.sparql.core"><code>Quad</code></a> to CommonsRDF <a href="org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api"><code>Quad</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asQuad-org.apache.commons.rdf.api.RDF-org.apache.jena.sparql.core.Quad-">asQuad(RDF, Quad)</a></span> - Static method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Convert from Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/Quad.html?is-external=true" title="class or interface in org.apache.jena.sparql.core"><code>Quad</code></a> to a Commons
+ RDF <a href="org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api"><code>Quad</code></a>.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jsonldjava/JsonLdRDF.html#asQuad-com.github.jsonldjava.core.RDFDataset.Quad-">asQuad(RDFDataset.Quad)</a></span> - Method in class org.apache.commons.rdf.jsonldjava.<a href="org/apache/commons/rdf/jsonldjava/JsonLdRDF.html" title="class in org.apache.commons.rdf.jsonldjava">JsonLdRDF</a></dt>
 <dd>
 <div class="block">Adapt a JsonLd <code>RDFDataset.Quad</code> as a Commons RDF
@@ -188,6 +244,18 @@
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/rdf4j/RDF4J.html#asQuad-org.eclipse.rdf4j.model.Statement-">asQuad(Statement)</a></span> - Method in class org.apache.commons.rdf.rdf4j.<a href="org/apache/commons/rdf/rdf4j/RDF4J.html" title="class in org.apache.commons.rdf.rdf4j">RDF4J</a></dt>
 <dd>
 <div class="block">Adapt a RDF4J <a href="http://rdf4j.org/javadoc/2.0/org/eclipse/rdf4j/model/Statement.html?is-external=true" title="class or interface in org.eclipse.rdf4j.model"><code>Statement</code></a> as a Commons RDF <a href="org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api"><code>Quad</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asRDFSyntax-org.apache.jena.riot.Lang-">asRDFSyntax(Lang)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Return <a href="org/apache/commons/rdf/api/RDFSyntax.html" title="enum in org.apache.commons.rdf.api"><code>RDFSyntax</code></a> corresponding to a Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/riot/Lang.html?is-external=true" title="class or interface in org.apache.jena.riot"><code>Lang</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asRDFTerm-org.apache.jena.graph.Node-">asRDFTerm(Node)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Adapt an existing Jena Node to CommonsRDF <a href="org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api"><code>RDFTerm</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asRDFTerm-org.apache.commons.rdf.api.RDF-org.apache.jena.graph.Node-">asRDFTerm(RDF, Node)</a></span> - Static method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Convert from Jena <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Node.html?is-external=true" title="class or interface in org.apache.jena.graph"><code>Node</code></a> to any Commons RDF implementation.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jsonldjava/JsonLdRDF.html#asRDFTerm-com.github.jsonldjava.core.RDFDataset.Node-">asRDFTerm(RDFDataset.Node)</a></span> - Method in class org.apache.commons.rdf.jsonldjava.<a href="org/apache/commons/rdf/jsonldjava/JsonLdRDF.html" title="class in org.apache.commons.rdf.jsonldjava">JsonLdRDF</a></dt>
 <dd>
@@ -219,6 +287,15 @@
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/Quad.html#asTriple--">asTriple()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api">Quad</a></dt>
 <dd>
 <div class="block">Adapt this Quad to a Triple.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asTriple-org.apache.jena.graph.Triple-">asTriple(Triple)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Adapt an existing Jena Triple to CommonsRDF <a href="org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api"><code>Triple</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#asTriple-org.apache.commons.rdf.api.RDF-org.apache.jena.graph.Triple-">asTriple(RDF, Triple)</a></span> - Static method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Convert from Jena <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Triple.html?is-external=true" title="class or interface in org.apache.jena.graph"><code>Triple</code></a> to a Commons RDF
+ <a href="org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api"><code>Triple</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jsonldjava/JsonLdRDF.html#asTriple-com.github.jsonldjava.core.RDFDataset.Quad-">asTriple(RDFDataset.Quad)</a></span> - Method in class org.apache.commons.rdf.jsonldjava.<a href="org/apache/commons/rdf/jsonldjava/JsonLdRDF.html" title="class in org.apache.commons.rdf.jsonldjava">JsonLdRDF</a></dt>
 <dd>
@@ -454,6 +531,8 @@
 <dd>
 <div class="block">Create a new dataset.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createDataset-org.apache.jena.sparql.core.DatasetGraph-java.util.UUID-">createDataset(DatasetGraph, UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createDataset-java.util.UUID-">createDataset(UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#createDataset--">createDataset()</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
@@ -466,12 +545,16 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/simple/SimpleRDF.html#createDataset--">createDataset()</a></span> - Method in class org.apache.commons.rdf.simple.<a href="org/apache/commons/rdf/simple/SimpleRDF.html" title="class in org.apache.commons.rdf.simple">SimpleRDF</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createGeneralizedQuad-org.apache.jena.sparql.core.Quad-java.util.UUID-">createGeneralizedQuad(Quad, UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createGeneralizedQuad-org.apache.commons.rdf.api.RDFTerm-org.apache.commons.rdf.api.RDFTerm-org.apache.commons.rdf.api.RDFTerm-org.apache.commons.rdf.api.RDFTerm-">createGeneralizedQuad(RDFTerm, RDFTerm, RDFTerm, RDFTerm)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#createGeneralizedQuad-org.apache.commons.rdf.api.RDFTerm-org.apache.commons.rdf.api.RDFTerm-org.apache.commons.rdf.api.RDFTerm-org.apache.commons.rdf.api.RDFTerm-">createGeneralizedQuad(RDFTerm, RDFTerm, RDFTerm, RDFTerm)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
 <dd>
 <div class="block">Create a generalized Jena quad.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createGeneralizedTriple-org.apache.jena.graph.Triple-java.util.UUID-">createGeneralizedTriple(Triple, UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createGeneralizedTriple-org.apache.commons.rdf.api.RDFTerm-org.apache.commons.rdf.api.RDFTerm-org.apache.commons.rdf.api.RDFTerm-">createGeneralizedTriple(RDFTerm, RDFTerm, RDFTerm)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#createGeneralizedTriple-org.apache.commons.rdf.api.RDFTerm-org.apache.commons.rdf.api.RDFTerm-org.apache.commons.rdf.api.RDFTerm-">createGeneralizedTriple(RDFTerm, RDFTerm, RDFTerm)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
@@ -486,6 +569,10 @@
 <dd>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span></div>
 &nbsp;</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createGraph-org.apache.jena.rdf.model.Model-java.util.UUID-">createGraph(Model, UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createGraph-org.apache.jena.graph.Graph-java.util.UUID-">createGraph(Graph, UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createGraph-java.util.UUID-">createGraph(UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#createGraph--">createGraph()</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
@@ -606,6 +693,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createQuad-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-org.apache.commons.rdf.api.BlankNodeOrIRI-">createQuad(BlankNodeOrIRI, IRI, RDFTerm, BlankNodeOrIRI)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createQuad-org.apache.jena.sparql.core.Quad-java.util.UUID-">createQuad(Quad, UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#createQuad-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">createQuad(BlankNodeOrIRI, BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jsonldjava/JsonLdRDF.html#createQuad-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">createQuad(BlankNodeOrIRI, BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in class org.apache.commons.rdf.jsonldjava.<a href="org/apache/commons/rdf/jsonldjava/JsonLdRDF.html" title="class in org.apache.commons.rdf.jsonldjava">JsonLdRDF</a></dt>
@@ -618,6 +707,8 @@
 <dd>
 <div class="block">Construct a <a href="org/apache/commons/rdf/rdf4j/RDF4JQuad.html" title="interface in org.apache.commons.rdf.rdf4j"><code>RDF4JQuad</code></a> from a RDF4J <a href="http://rdf4j.org/javadoc/2.0/org/eclipse/rdf4j/model/Statement.html?is-external=true" title="class or interface in org.eclipse.rdf4j.model"><code>Statement</code></a>.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createRDFTerm-org.apache.jena.graph.Node-java.util.UUID-">createRDFTerm(Node, UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/experimental/JenaRDFParser.html#createRDFTermFactory--">createRDFTermFactory()</a></span> - Method in class org.apache.commons.rdf.jena.experimental.<a href="org/apache/commons/rdf/jena/experimental/JenaRDFParser.html" title="class in org.apache.commons.rdf.jena.experimental">JenaRDFParser</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jsonldjava/experimental/JsonLdParser.html#createRDFTermFactory--">createRDFTermFactory()</a></span> - Method in class org.apache.commons.rdf.jsonldjava.experimental.<a href="org/apache/commons/rdf/jsonldjava/experimental/JsonLdParser.html" title="class in org.apache.commons.rdf.jsonldjava.experimental">JsonLdParser</a></dt>
@@ -645,6 +736,8 @@
 <div class="block"><span class="deprecatedLabel">Deprecated.</span></div>
 &nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createTriple-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">createTriple(BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#createTriple-org.apache.jena.graph.Triple-java.util.UUID-">createTriple(Triple, UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#createTriple-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">createTriple(BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
 <dd>&nbsp;</dd>
@@ -720,73 +813,6 @@
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/RDFSyntax.html#fileExtension">fileExtension</a></span> - Variable in enum org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/RDFSyntax.html" title="enum in org.apache.commons.rdf.api">RDFSyntax</a></dt>
 <dd>
 <div class="block">The <a href="https://tools.ietf.org/html/rfc2046">IANA-registered</a> file extension.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#fromJena-org.apache.jena.graph.Node-java.util.UUID-">fromJena(Node, UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#fromJena-org.apache.jena.graph.Graph-java.util.UUID-">fromJena(Graph, UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#fromJena-org.apache.jena.rdf.model.Model-java.util.UUID-">fromJena(Model, UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#fromJena-org.apache.jena.sparql.core.DatasetGraph-java.util.UUID-">fromJena(DatasetGraph, UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#fromJena-org.apache.jena.graph.Triple-java.util.UUID-">fromJena(Triple, UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#fromJena-org.apache.jena.sparql.core.Quad-java.util.UUID-">fromJena(Quad, UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.jena.graph.Node-">fromJena(Node)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Adapt an existing Jena Node to CommonsRDF <a href="org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api"><code>RDFTerm</code></a>.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.commons.rdf.api.RDF-org.apache.jena.graph.Node-">fromJena(RDF, Node)</a></span> - Static method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Convert from Jena <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Node.html?is-external=true" title="class or interface in org.apache.jena.graph"><code>Node</code></a> to any Commons RDF implementation.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.jena.graph.Triple-">fromJena(Triple)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Adapt an existing Jena Triple to CommonsRDF <a href="org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api"><code>Triple</code></a>.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.commons.rdf.api.RDF-org.apache.jena.graph.Triple-">fromJena(RDF, Triple)</a></span> - Static method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Convert from Jena <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Triple.html?is-external=true" title="class or interface in org.apache.jena.graph"><code>Triple</code></a> to a Commons RDF
- <a href="org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api"><code>Triple</code></a>.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.jena.sparql.core.Quad-">fromJena(Quad)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Adapt an existing Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/Quad.html?is-external=true" title="class or interface in org.apache.jena.sparql.core"><code>Quad</code></a> to CommonsRDF <a href="org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api"><code>Quad</code></a>.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.jena.graph.Graph-">fromJena(Graph)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Adapt an existing Jena <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Graph.html?is-external=true" title="class or interface in org.apache.jena.graph"><code>Graph</code></a> to CommonsRDF
- <a href="org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api"><code>Graph</code></a>.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.jena.rdf.model.Model-">fromJena(Model)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Adapt an existing Jena <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/rdf/model/Model.html?is-external=true" title="class or interface in org.apache.jena.rdf.model"><code>Model</code></a> to CommonsRDF <a href="org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api"><code>Graph</code></a>.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.jena.sparql.core.DatasetGraph-">fromJena(DatasetGraph)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Adapt an existing Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/DatasetGraph.html?is-external=true" title="class or interface in org.apache.jena.sparql.core"><code>DatasetGraph</code></a> to CommonsRDF <a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api"><code>Dataset</code></a>.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.jena.query.Dataset-">fromJena(Dataset)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Adapt an existing Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/query/Dataset.html?is-external=true" title="class or interface in org.apache.jena.query"><code>Dataset</code></a> to CommonsRDF <a href="org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api"><code>Dataset</code></a>.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#fromJena-org.apache.commons.rdf.api.RDF-org.apache.jena.sparql.core.Quad-">fromJena(RDF, Quad)</a></span> - Static method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Convert from Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/Quad.html?is-external=true" title="class or interface in org.apache.jena.sparql.core"><code>Quad</code></a> to a Commons
- RDF <a href="org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api"><code>Quad</code></a>.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#fromJenaGeneralized-org.apache.jena.graph.Triple-java.util.UUID-">fromJenaGeneralized(Triple, UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html#fromJenaGeneralized-org.apache.jena.sparql.core.Quad-java.util.UUID-">fromJenaGeneralized(Quad, UUID)</a></span> - Method in class org.apache.commons.rdf.jena.impl.<a href="org/apache/commons/rdf/jena/impl/InternalJenaFactory.html" title="class in org.apache.commons.rdf.jena.impl">InternalJenaFactory</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#fromJenaGeneralized-org.apache.jena.graph.Triple-">fromJenaGeneralized(Triple)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Adapt a generalized Jena <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Triple.html?is-external=true" title="class or interface in org.apache.jena.graph"><code>Triple</code></a> to a CommonsRDF <a href="org/apache/commons/rdf/api/TripleLike.html" title="interface in org.apache.commons.rdf.api"><code>TripleLike</code></a>.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#fromJenaGeneralized-org.apache.jena.sparql.core.Quad-">fromJenaGeneralized(Quad)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Adapt a generalized Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/Quad.html?is-external=true" title="class or interface in org.apache.jena.sparql.core"><code>Quad</code></a> to a CommonsRDF <a href="org/apache/commons/rdf/api/QuadLike.html" title="interface in org.apache.commons.rdf.api"><code>QuadLike</code></a>.</div>
 </dd>
 </dl>
 <a name="I:G">
@@ -912,10 +938,6 @@
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/simple/experimental/AbstractRDFParser.html#getRdfTermFactory--">getRdfTermFactory()</a></span> - Method in class org.apache.commons.rdf.simple.experimental.<a href="org/apache/commons/rdf/simple/experimental/AbstractRDFParser.html" title="class in org.apache.commons.rdf.simple.experimental">AbstractRDFParser</a></dt>
 <dd>
 <div class="block">Get the set <a href="org/apache/commons/rdf/api/RDF.html" title="interface in org.apache.commons.rdf.api"><code>RDF</code></a>, if any.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#getSalt--">getSalt()</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Return the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util"><code>UUID</code></a> salt used by this factory.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/simple/experimental/AbstractRDFParser.html#getSourceFile--">getSourceFile()</a></span> - Method in class org.apache.commons.rdf.simple.experimental.<a href="org/apache/commons/rdf/simple/experimental/AbstractRDFParser.html" title="class in org.apache.commons.rdf.simple.experimental">AbstractRDFParser</a></dt>
 <dd>
@@ -1197,10 +1219,6 @@
 </a>
 <h2 class="title">L</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#langToRdfSyntax-org.apache.jena.riot.Lang-">langToRdfSyntax(Lang)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Return <a href="org/apache/commons/rdf/api/RDFSyntax.html" title="enum in org.apache.commons.rdf.api"><code>RDFSyntax</code></a> corresponding to a Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/riot/Lang.html?is-external=true" title="class or interface in org.apache.jena.riot"><code>Lang</code></a>.</div>
-</dd>
 <dt><a href="org/apache/commons/rdf/api/Literal.html" title="interface in org.apache.commons.rdf.api"><span class="typeNameLink">Literal</span></a> - Interface in <a href="org/apache/commons/rdf/api/package-summary.html">org.apache.commons.rdf.api</a></dt>
 <dd>
 <div class="block">A RDF-1.1 Literal, as defined by <a href=
@@ -1456,10 +1474,6 @@
 <dd>
 <div class="block">Enumeration of the RDF 1.1 serialization syntaxes.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#rdfSyntaxToLang-org.apache.commons.rdf.api.RDFSyntax-">rdfSyntaxToLang(RDFSyntax)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Return Jena <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/riot/Lang.html?is-external=true" title="class or interface in org.apache.jena.riot"><code>Lang</code></a> corresponding to a <a href="org/apache/commons/rdf/api/RDFSyntax.html" title="enum in org.apache.commons.rdf.api"><code>RDFSyntax</code></a>.</div>
-</dd>
 <dt><a href="org/apache/commons/rdf/api/RDFTerm.html" title="interface in org.apache.commons.rdf.api"><span class="typeNameLink">RDFTerm</span></a> - Interface in <a href="org/apache/commons/rdf/api/package-summary.html">org.apache.commons.rdf.api</a></dt>
 <dd>
 <div class="block">An <a href= "http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-term" >RDF-1.1
@@ -1518,6 +1532,10 @@
 </a>
 <h2 class="title">S</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#salt--">salt()</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Return the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util"><code>UUID</code></a> salt used by this factory.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/rdf4j/experimental/RDF4JParser.html#setParserConfig-org.eclipse.rdf4j.rio.ParserConfig-">setParserConfig(ParserConfig)</a></span> - Method in class org.apache.commons.rdf.rdf4j.experimental.<a href="org/apache/commons/rdf/rdf4j/experimental/RDF4JParser.html" title="class in org.apache.commons.rdf.rdf4j.experimental">RDF4JParser</a></dt>
 <dd>
 <div class="block">Set an RDF4J <a href="http://rdf4j.org/javadoc/2.0/org/eclipse/rdf4j/rio/ParserConfig.html?is-external=true" title="class or interface in org.eclipse.rdf4j.rio"><code>ParserConfig</code></a> to use</div>
@@ -1614,11 +1632,6 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/simple/DatasetGraphView.html#stream-org.apache.commons.rdf.api.BlankNodeOrIRI-org.apache.commons.rdf.api.IRI-org.apache.commons.rdf.api.RDFTerm-">stream(BlankNodeOrIRI, IRI, RDFTerm)</a></span> - Method in class org.apache.commons.rdf.simple.<a href="org/apache/commons/rdf/simple/DatasetGraphView.html" title="class in org.apache.commons.rdf.simple">DatasetGraphView</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#streamJenaToCommonsRDF-org.apache.commons.rdf.api.RDF-java.util.function.Consumer-">streamJenaToCommonsRDF(RDF, Consumer&lt;Quad&gt;)</a></span> - Static method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Create a <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/riot/system/StreamRDF.html?is-external=true" title="class or interface in org.apache.jena.riot.system"><code>StreamRDF</code></a> instance that inserts the converted
- <a href="org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api"><code>Quad</code></a>s.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#streamJenaToGeneralizedQuad-java.util.function.Consumer-">streamJenaToGeneralizedQuad(Consumer&lt;QuadLike&lt;RDFTerm&gt;&gt;)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
 <dd>
 <div class="block">Create a <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/riot/system/StreamRDF.html?is-external=true" title="class or interface in org.apache.jena.riot.system"><code>StreamRDF</code></a> instance that inserts generalized
@@ -1628,6 +1641,11 @@
 <dd>
 <div class="block">Create a <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/riot/system/StreamRDF.html?is-external=true" title="class or interface in org.apache.jena.riot.system"><code>StreamRDF</code></a> instance that inserts generalized
  <a href="org/apache/commons/rdf/api/TripleLike.html" title="interface in org.apache.commons.rdf.api"><code>TripleLike</code></a>s.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#streamJenaToQuad-org.apache.commons.rdf.api.RDF-java.util.function.Consumer-">streamJenaToQuad(RDF, Consumer&lt;Quad&gt;)</a></span> - Static method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
+<dd>
+<div class="block">Create a <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/riot/system/StreamRDF.html?is-external=true" title="class or interface in org.apache.jena.riot.system"><code>StreamRDF</code></a> instance that inserts the converted
+ <a href="org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api"><code>Quad</code></a>s.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/RDFSyntax.html#supportsDataset">supportsDataset</a></span> - Variable in enum org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/RDFSyntax.html" title="enum in org.apache.commons.rdf.api">RDFSyntax</a></dt>
 <dd>
@@ -1663,24 +1681,6 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/simple/experimental/AbstractRDFParser.html#threadGroup">threadGroup</a></span> - Static variable in class org.apache.commons.rdf.simple.experimental.<a href="org/apache/commons/rdf/simple/experimental/AbstractRDFParser.html" title="class in org.apache.commons.rdf.simple.experimental">AbstractRDFParser</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#toJena-org.apache.commons.rdf.api.Graph-">toJena(Graph)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Convert a CommonsRDF Graph to a Jena Graph.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#toJena-org.apache.commons.rdf.api.RDFTerm-">toJena(RDFTerm)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Convert a CommonsRDF RDFTerm to a Jena Node.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#toJena-org.apache.commons.rdf.api.Triple-">toJena(Triple)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Convert a CommonsRDF <a href="org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api"><code>Triple</code></a> to a Jena
- <a href="https://jena.apache.org/documentation/javadoc/jena/org/apache/jena/graph/Triple.html?is-external=true" title="class or interface in org.apache.jena.graph"><code>Triple</code></a>.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/jena/JenaRDF.html#toJena-org.apache.commons.rdf.api.Quad-">toJena(Quad)</a></span> - Method in class org.apache.commons.rdf.jena.<a href="org/apache/commons/rdf/jena/JenaRDF.html" title="class in org.apache.commons.rdf.jena">JenaRDF</a></dt>
-<dd>
-<div class="block">Convert a CommonsRDF <a href="org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api"><code>Quad</code></a> to a Jena
- <a href="https://jena.apache.org/documentation/javadoc/arq/org/apache/jena/sparql/core/Quad.html?is-external=true" title="class or interface in org.apache.jena.sparql.core"><code>Quad</code></a>.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/RDFSyntax.html#toString--">toString()</a></span> - Method in enum org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/RDFSyntax.html" title="enum in org.apache.commons.rdf.api">RDFSyntax</a></dt>
 <dd>
 <div class="block">A human-readable name for the RDF syntax.</div>

@@ -204,35 +204,35 @@
 <h2 title="Package org.apache.commons.rdf.rdf4j Description">Package org.apache.commons.rdf.rdf4j Description</h2>
 <div class="block">Commons RDF integration with <a href="http://rdf4j.org/">RDF4J</a>.
  <p>
- Use the <a href="../../../../../org/apache/commons/rdf/rdf4j/RDF4J.html" title="class in org.apache.commons.rdf.rdf4j"><code>RDF4J</code></a> to convert
+ Use the <code>RDF4J</code> to convert
  between Commons RDF and RDF4J types, for instance
- <a href="../../../../../org/apache/commons/rdf/rdf4j/RDF4J.html#asQuad-org.eclipse.rdf4j.model.Statement-"><code>RDF4J.asQuad(org.eclipse.rdf4j.model.Statement)</code></a>
+ <code>RDF4J#asQuad(org.eclipse.rdf4j.model.Statement)</code>
  converts a RDF4J <a href="http://rdf4j.org/javadoc/2.0/org/eclipse/rdf4j/model/Statement.html?is-external=true" title="class or interface in org.eclipse.rdf4j.model"><code>Statement</code></a> to a
  <a href="../../../../../org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api"><code>Quad</code></a>. Converted RDF terms implement the
- <a href="../../../../../org/apache/commons/rdf/rdf4j/RDF4JTerm.html" title="interface in org.apache.commons.rdf.rdf4j"><code>RDF4JTerm</code></a> interface, and converted
- statements the <a href="../../../../../org/apache/commons/rdf/rdf4j/RDF4JTripleLike.html" title="interface in org.apache.commons.rdf.rdf4j"><code>RDF4JTripleLike</code></a>
+ <code>RDF4JTerm</code> interface, and converted
+ statements the <code>RDF4JTripleLike</code>
  interface, which provide convenience access to the underlying RDF4J
  implementations.
  <p>
  RDF4J <a href="http://rdf4j.org/javadoc/2.0/org/eclipse/rdf4j/model/Model.html?is-external=true" title="class or interface in org.eclipse.rdf4j.model"><code>Model</code></a>s and
  <a href="http://rdf4j.org/javadoc/2.0/org/eclipse/rdf4j/repository/Repository.html?is-external=true" title="class or interface in org.eclipse.rdf4j.repository"><code>Repository</code></a> instances can be adapted to
- Commons RDF <a href="../../../../../org/apache/commons/rdf/api/Graph.html" title="interface in org.apache.commons.rdf.api"><code>Graph</code></a> and
- <a href="../../../../../org/apache/commons/rdf/api/Dataset.html" title="interface in org.apache.commons.rdf.api"><code>Dataset</code></a>, e.g. using
- <a href="../../../../../org/apache/commons/rdf/rdf4j/RDF4J.html#asGraph-org.eclipse.rdf4j.model.Model-"><code>RDF4J.asGraph(org.eclipse.rdf4j.model.Model)</code></a>
+ Commons RDF <code>Graph</code> and
+ <code>Dataset</code>, e.g. using
+ <code>RDF4J#asGraph(org.eclipse.rdf4j.model.Model)</code>
  or
- <code>org.apache.commons.rdf.rdf4j.RDF4J#asDataset(org.eclipse.rdf4j.repository.Repository, org.apache.commons.rdf.rdf4j.RDF4JFactory.Option...)</code>
+ <code>RDF4J#asDataset(org.eclipse.rdf4j.repository.Repository, RDF4J.Option...)</code>
  The returned adapted graph/dataset is directly mapped, so changes are
  propagated both ways. For convenience, the marker interface
- <a href="../../../../../org/apache/commons/rdf/rdf4j/RDF4JGraph.html" title="interface in org.apache.commons.rdf.rdf4j"><code>RDF4JGraph</code></a> and
- <a href="../../../../../org/apache/commons/rdf/rdf4j/RDF4JDataset.html" title="interface in org.apache.commons.rdf.rdf4j"><code>RDF4JDataset</code></a> provide access to the
+ <code>RDF4JGraph</code> and
+ <code>RDF4JDataset</code> provide access to the
  underlying RDF4J implementations.
  <p>
- The <a href="../../../../../org/apache/commons/rdf/rdf4j/experimental/RDF4JParser.html" title="class in org.apache.commons.rdf.rdf4j.experimental"><code>RDF4JParser</code></a> can be used to
+ The <code>RDF4JParser</code> can be used to
  parse RDF files using RDF4j. It should be most efficient if used with
- <a href="../../../../../org/apache/commons/rdf/simple/experimental/AbstractRDFParser.html#target-org.apache.commons.rdf.api.Dataset-"><code>AbstractRDFParser.target(org.apache.commons.rdf.api.Dataset)</code></a>
- and an adapted <a href="../../../../../org/apache/commons/rdf/rdf4j/RDF4JDataset.html" title="interface in org.apache.commons.rdf.rdf4j"><code>RDF4JDataset</code></a>, or
- <a href="../../../../../org/apache/commons/rdf/simple/experimental/AbstractRDFParser.html#target-org.apache.commons.rdf.api.Graph-"><code>AbstractRDFParser.target(org.apache.commons.rdf.api.Graph)</code></a>
- and a an adapted <a href="../../../../../org/apache/commons/rdf/rdf4j/RDF4JGraph.html" title="interface in org.apache.commons.rdf.rdf4j"><code>RDF4JGraph</code></a></div>
+ <code>RDF4JParser#target(Dataset)</code>
+ and an adapted <code>RDF4JDataset</code>, or
+ <code>RDF4JParser#target(Graph)</code>
+ and a an adapted <code>RDF4JGraph</code></div>
 </div>
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar.bottom">
