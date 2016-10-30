@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>RDFParser.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Commons RDF: API</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.rdf.experimental</a> &gt; <span class="el_source">RDFParser.java</span></div><h1>RDFParser.java</h1><pre class="source lang-java linenums">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements. See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership. The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * &quot;License&quot;); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.rdf.experimental;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.concurrent.Future;
+import java.util.function.Consumer;
+
+import org.apache.commons.rdf.api.BlankNode;
+import org.apache.commons.rdf.api.Dataset;
+import org.apache.commons.rdf.api.Graph;
+import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.Quad;
+import org.apache.commons.rdf.api.RDFSyntax;
+import org.apache.commons.rdf.api.RDFTerm;
+import org.apache.commons.rdf.api.RDF;
+import org.apache.commons.rdf.api.Triple;
+
+/**
+ * Parse an RDF source into a target (e.g. a Graph/Dataset).
+ * &lt;h2&gt;Experimental&lt;/h2&gt; This interface (and its implementations) should be
+ * considered &lt;strong&gt;at risk&lt;/strong&gt;; they might change or be removed in the
+ * next minor update of Commons RDF. It may move to the the
+ * {@link org.apache.commons.rdf.api} package when it has stabilized.
+ * &lt;h2&gt;Description&lt;/h2&gt;
+ * &lt;p&gt;
+ * This interface follows the
+ * &lt;a href=&quot;https://en.wikipedia.org/wiki/Builder_pattern&quot;&gt;Builder pattern&lt;/a&gt;,
+ * allowing to set parser settings like {@link #contentType(RDFSyntax)} and
+ * {@link #base(IRI)}. A caller MUST call one of the &lt;code&gt;source&lt;/code&gt; methods
+ * (e.g. {@link #source(IRI)}, {@link #source(Path)},
+ * {@link #source(InputStream)}), and MUST call one of the &lt;code&gt;target&lt;/code&gt;
+ * methods (e.g. {@link #target(Consumer)}, {@link #target(Dataset)},
+ * {@link #target(Graph)}) before calling {@link #parse()} on the returned
+ * RDFParser - however methods can be called in any order.
+ * &lt;p&gt;
+ * The call to {@link #parse()} returns a {@link Future}, allowing asynchronous
+ * parse operations. Callers are recommended to check {@link Future#get()} to
+ * ensure parsing completed successfully, or catch exceptions thrown during
+ * parsing.
+ * &lt;p&gt;
+ * Setting a method that has already been set will override any existing value
+ * in the returned builder - regardless of the parameter type (e.g.
+ * {@link #source(IRI)} will override a previous {@link #source(Path)}. Settings
+ * can be unset by passing &lt;code&gt;null&lt;/code&gt; - note that this may require
+ * casting, e.g. &lt;code&gt;contentType( (RDFSyntax) null )&lt;/code&gt; to undo a previous
+ * call to {@link #contentType(RDFSyntax)}.
+ * &lt;p&gt;
+ * It is undefined if a RDFParser is mutable or thread-safe, so callers should
+ * always use the returned modified RDFParser from the builder methods. The
+ * builder may return itself after modification, or a cloned builder with the
+ * modified settings applied. Implementations are however encouraged to be
+ * immutable, thread-safe and document this. As an example starting point, see
+ * &lt;code&gt;org.apache.commons.rdf.simple.AbstractRDFParser&lt;/code&gt;.
+ * &lt;p&gt;
+ * Example usage:
+ * &lt;/p&gt;
+ * 
+ * &lt;pre&gt;
+ * Graph g1 = rDFTermFactory.createGraph();
+ * new ExampleRDFParserBuilder().source(Paths.get(&quot;/tmp/graph.ttl&quot;)).contentType(RDFSyntax.TURTLE).target(g1).parse()
+ *         .get(30, TimeUnit.Seconds);
+ * &lt;/pre&gt;
+ *
+ */
+public interface RDFParser {
+
+    /**
+     * The result of {@link RDFParser#parse()} indicating parsing completed.
+     * &lt;p&gt;
+     * This is a marker interface that may be subclassed to include parser
+     * details, e.g. warning messages or triple counts.
+     */
+    public interface ParseResult {
+    }
+
+    /**
+     * Specify which {@link RDF} to use for generating {@link RDFTerm}s.
+     * &lt;p&gt;
+     * This option may be used together with {@link #target(Graph)} to override
+     * the implementation's default factory and graph.
+     * &lt;p&gt;
+     * &lt;strong&gt;Warning:&lt;/strong&gt; Using the same {@link RDF} for multiple
+     * {@link #parse()} calls may accidentally merge {@link BlankNode}s having
+     * the same label, as the parser may use the
+     * {@link RDF#createBlankNode(String)} method from the parsed blank node
+     * labels.
+     * 
+     * @see #target(Graph)
+     * @param rdfTermFactory
+     *            {@link RDF} to use for generating RDFTerms.
+     * @return An {@link RDFParser} that will use the specified rdfTermFactory
+     */
+    RDFParser rdfTermFactory(RDF rdfTermFactory);
+
+    /**
+     * Specify the content type of the RDF syntax to parse.
+     * &lt;p&gt;
+     * This option can be used to select the RDFSyntax of the source, overriding
+     * any &lt;code&gt;Content-Type&lt;/code&gt; headers or equivalent.
+     * &lt;p&gt;
+     * The character set of the RDFSyntax is assumed to be
+     * {@link StandardCharsets#UTF_8} unless overridden within the document
+     * (e.g. {@code &lt;?xml version=&quot;1.0&quot; encoding=&quot;iso-8859-1&quot;?&gt;} in
+     * {@link RDFSyntax#RDFXML}).
+     * &lt;p&gt;
+     * This method will override any contentType set with
+     * {@link #contentType(String)}.
+     * 
+     * @see #contentType(String)
+     * @param rdfSyntax
+     *            An {@link RDFSyntax} to parse the source according to, e.g.
+     *            {@link RDFSyntax#TURTLE}.
+     * @throws IllegalArgumentException
+     *             If this RDFParser does not support the specified RDFSyntax.
+     * @return An {@link RDFParser} that will use the specified content type.
+     */
+    RDFParser contentType(RDFSyntax rdfSyntax) throws IllegalArgumentException;
+
+    /**
+     * Specify the content type of the RDF syntax to parse.
+     * &lt;p&gt;
+     * This option can be used to select the RDFSyntax of the source, overriding
+     * any &lt;code&gt;Content-Type&lt;/code&gt; headers or equivalent.
+     * &lt;p&gt;
+     * The content type MAY include a &lt;code&gt;charset&lt;/code&gt; parameter if the RDF
+     * media types permit it; the default charset is
+     * {@link StandardCharsets#UTF_8} unless overridden within the document.
+     * &lt;p&gt;
+     * This method will override any contentType set with
+     * {@link #contentType(RDFSyntax)}.
+     * 
+     * @see #contentType(RDFSyntax)
+     * @param contentType
+     *            A content-type string, e.g. &lt;code&gt;application/ld+json&lt;/code&gt;
+     *            or &lt;code&gt;text/turtle;charset=&quot;UTF-8&quot;&lt;/code&gt; as specified by
+     *            &lt;a href=&quot;https://tools.ietf.org/html/rfc7231#section-3.1.1.1&quot;&gt;
+     *            RFC7231&lt;/a&gt;.
+     * @return An {@link RDFParser} that will use the specified content type.
+     * @throws IllegalArgumentException
+     *             If the contentType has an invalid syntax, or this RDFParser
+     *             does not support the specified contentType.
+     */
+    RDFParser contentType(String contentType) throws IllegalArgumentException;
+
+    /**
+     * Specify a {@link Graph} to add parsed triples to.
+     * &lt;p&gt;
+     * If the source supports datasets (e.g. the {@link #contentType(RDFSyntax)}
+     * set has {@link RDFSyntax#supportsDataset} is true)), then only quads in
+     * the &lt;em&gt;default graph&lt;/em&gt; will be added to the Graph as {@link Triple}s.
+     * &lt;p&gt;
+     * It is undefined if any triples are added to the specified {@link Graph}
+     * if {@link #parse()} throws any exceptions. (However implementations are
+     * free to prevent this using transaction mechanisms or similar). If
+     * {@link Future#get()} does not indicate an exception, the parser
+     * implementation SHOULD have inserted all parsed triples to the specified
+     * graph.
+     * &lt;p&gt;
+     * Calling this method will override any earlier targets set with
+     * {@link #target(Graph)}, {@link #target(Consumer)} or
+     * {@link #target(Dataset)}.
+     * &lt;p&gt;
+     * The default implementation of this method calls {@link #target(Consumer)}
+     * with a {@link Consumer} that does {@link Graph#add(Triple)} with
+     * {@link Quad#asTriple()} if the quad is in the default graph.
+     * 
+     * @param graph
+     *            The {@link Graph} to add triples to.
+     * @return An {@link RDFParser} that will insert triples into the specified
+     *         graph.
+     */
+    default RDFParser target(Graph graph) {
+<span class="nc" id="L193">        return target(q -&gt; {</span>
+<span class="nc bnc" id="L194" title="All 2 branches missed.">            if (!q.getGraphName().isPresent()) {</span>
+<span class="nc" id="L195">                graph.add(q.asTriple());</span>
+            }
+<span class="nc" id="L197">        });</span>
+    }
+
+    /**
+     * Specify a {@link Dataset} to add parsed quads to.
+     * &lt;p&gt;
+     * It is undefined if any quads are added to the specified {@link Dataset}
+     * if {@link #parse()} throws any exceptions. (However implementations are
+     * free to prevent this using transaction mechanisms or similar). On the
+     * other hand, if {@link #parse()} does not indicate an exception, the
+     * implementation SHOULD have inserted all parsed quads to the specified
+     * dataset.
+     * &lt;p&gt;
+     * Calling this method will override any earlier targets set with
+     * {@link #target(Graph)}, {@link #target(Consumer)} or
+     * {@link #target(Dataset)}.
+     * &lt;p&gt;
+     * The default implementation of this method calls {@link #target(Consumer)}
+     * with a {@link Consumer} that does {@link Dataset#add(Quad)}.
+     * 
+     * @param dataset
+     *            The {@link Dataset} to add quads to.
+     * @return An {@link RDFParser} that will insert triples into the specified
+     *         dataset.
+     */
+    default RDFParser target(Dataset dataset) {
+<span class="nc" id="L223">        return target(dataset::add);</span>
+    }
+
+    /**
+     * Specify a consumer for parsed quads.
+     * &lt;p&gt;
+     * The quads will include triples in all named graphs of the parsed source,
+     * including any triples in the default graph. When parsing a source format
+     * which do not support datasets, all quads delivered to the consumer will
+     * be in the default graph (e.g. their {@link Quad#getGraphName()} will be
+     * as {@link Optional#empty()}), while for a source
+     * &lt;p&gt;
+     * It is undefined if any quads are consumed if {@link #parse()} throws any
+     * exceptions. On the other hand, if {@link #parse()} does not indicate an
+     * exception, the implementation SHOULD have produced all parsed quads to
+     * the specified consumer.
+     * &lt;p&gt;
+     * Calling this method will override any earlier targets set with
+     * {@link #target(Graph)}, {@link #target(Consumer)} or
+     * {@link #target(Dataset)}.
+     * &lt;p&gt;
+     * The consumer is not assumed to be thread safe - only one
+     * {@link Consumer#accept(Object)} is delivered at a time for a given
+     * {@link RDFParser#parse()} call.
+     * &lt;p&gt;
+     * This method is typically called with a functional consumer, for example:
+     * 
+     * &lt;pre&gt;
+     * {@code
+     * List&lt;Quad&gt; quads = new ArrayList&lt;Quad&gt;;
+     * parserBuilder.target(quads::add).parse();
+     * }
+     * &lt;/pre&gt;
+     * 
+     * @param consumer
+     *            A {@link Consumer} of {@link Quad}s
+     * @return An {@link RDFParser} that will call the consumer for into the
+     *         specified dataset.
+     */
+    RDFParser target(Consumer&lt;Quad&gt; consumer);
+
+    /**
+     * Specify a base IRI to use for parsing any relative IRI references.
+     * &lt;p&gt;
+     * Setting this option will override any protocol-specific base IRI (e.g.
+     * &lt;code&gt;Content-Location&lt;/code&gt; header) or the {@link #source(IRI)} IRI,
+     * but does not override any base IRIs set within the source document (e.g.
+     * &lt;code&gt;@base&lt;/code&gt; in Turtle documents).
+     * &lt;p&gt;
+     * If the source is in a syntax that does not support relative IRI
+     * references (e.g. {@link RDFSyntax#NTRIPLES}), setting the
+     * &lt;code&gt;base&lt;/code&gt; has no effect.
+     * &lt;p&gt;
+     * This method will override any base IRI set with {@link #base(String)}.
+     *
+     * @see #base(String)
+     * @param base
+     *            An absolute IRI to use as a base.
+     * @return An {@link RDFParser} that will use the specified base IRI.
+     */
+    RDFParser base(IRI base);
+
+    /**
+     * Specify a base IRI to use for parsing any relative IRI references.
+     * &lt;p&gt;
+     * Setting this option will override any protocol-specific base IRI (e.g.
+     * &lt;code&gt;Content-Location&lt;/code&gt; header) or the {@link #source(IRI)} IRI,
+     * but does not override any base IRIs set within the source document (e.g.
+     * &lt;code&gt;@base&lt;/code&gt; in Turtle documents).
+     * &lt;p&gt;
+     * If the source is in a syntax that does not support relative IRI
+     * references (e.g. {@link RDFSyntax#NTRIPLES}), setting the
+     * &lt;code&gt;base&lt;/code&gt; has no effect.
+     * &lt;p&gt;
+     * This method will override any base IRI set with {@link #base(IRI)}.
+     *
+     * @see #base(IRI)
+     * @param base
+     *            An absolute IRI to use as a base.
+     * @return An {@link RDFParser} that will use the specified base IRI.
+     * @throws IllegalArgumentException
+     *             If the base is not a valid absolute IRI string
+     */
+    RDFParser base(String base) throws IllegalArgumentException;
+
+    /**
+     * Specify a source {@link InputStream} to parse.
+     * &lt;p&gt;
+     * The source set will not be read before the call to {@link #parse()}.
+     * &lt;p&gt;
+     * The InputStream will not be closed after parsing. The InputStream does
+     * not need to support {@link InputStream#markSupported()}.
+     * &lt;p&gt;
+     * The parser might not consume the complete stream (e.g. an RDF/XML parser
+     * may not read beyond the closing tag of
+     * &lt;code&gt;&amp;lt;/rdf:Description&amp;gt;&lt;/code&gt;).
+     * &lt;p&gt;
+     * The {@link #contentType(RDFSyntax)} or {@link #contentType(String)}
+     * SHOULD be set before calling {@link #parse()}.
+     * &lt;p&gt;
+     * The character set is assumed to be {@link StandardCharsets#UTF_8} unless
+     * the {@link #contentType(String)} specifies otherwise or the document
+     * declares its own charset (e.g. RDF/XML with a
+     * &lt;code&gt;&amp;lt;?xml encoding=&quot;iso-8859-1&quot;&amp;gt;&lt;/code&gt; header).
+     * &lt;p&gt;
+     * The {@link #base(IRI)} or {@link #base(String)} MUST be set before
+     * calling {@link #parse()}, unless the RDF syntax does not permit relative
+     * IRIs (e.g. {@link RDFSyntax#NTRIPLES}).
+     * &lt;p&gt;
+     * This method will override any source set with {@link #source(IRI)},
+     * {@link #source(Path)} or {@link #source(String)}.
+     * 
+     * @param inputStream
+     *            An InputStream to consume
+     * @return An {@link RDFParser} that will use the specified source.
+     */
+    RDFParser source(InputStream inputStream);
+
+    /**
+     * Specify a source file {@link Path} to parse.
+     * &lt;p&gt;
+     * The source set will not be read before the call to {@link #parse()}.
+     * &lt;p&gt;
+     * The {@link #contentType(RDFSyntax)} or {@link #contentType(String)}
+     * SHOULD be set before calling {@link #parse()}.
+     * &lt;p&gt;
+     * The character set is assumed to be {@link StandardCharsets#UTF_8} unless
+     * the {@link #contentType(String)} specifies otherwise or the document
+     * declares its own charset (e.g. RDF/XML with a
+     * &lt;code&gt;&amp;lt;?xml encoding=&quot;iso-8859-1&quot;&amp;gt;&lt;/code&gt; header).
+     * &lt;p&gt;
+     * The {@link #base(IRI)} or {@link #base(String)} MAY be set before calling
+     * {@link #parse()}, otherwise {@link Path#toUri()} will be used as the base
+     * IRI.
+     * &lt;p&gt;
+     * This method will override any source set with {@link #source(IRI)},
+     * {@link #source(InputStream)} or {@link #source(String)}.
+     * 
+     * @param file
+     *            A Path for a file to parse
+     * @return An {@link RDFParser} that will use the specified source.
+     */
+    RDFParser source(Path file);
+
+    /**
+     * Specify an absolute source {@link IRI} to retrieve and parse.
+     * &lt;p&gt;
+     * The source set will not be read before the call to {@link #parse()}.
+     * &lt;p&gt;
+     * If this builder does not support the given IRI protocol (e.g.
+     * &lt;code&gt;urn:uuid:ce667463-c5ab-4c23-9b64-701d055c4890&lt;/code&gt;), this method
+     * should succeed, while the {@link #parse()} should throw an
+     * {@link IOException}.
+     * &lt;p&gt;
+     * The {@link #contentType(RDFSyntax)} or {@link #contentType(String)} MAY
+     * be set before calling {@link #parse()}, in which case that type MAY be
+     * used for content negotiation (e.g. &lt;code&gt;Accept&lt;/code&gt; header in HTTP),
+     * and SHOULD be used for selecting the RDFSyntax.
+     * &lt;p&gt;
+     * The character set is assumed to be {@link StandardCharsets#UTF_8} unless
+     * the protocol's equivalent of &lt;code&gt;Content-Type&lt;/code&gt; specifies
+     * otherwise or the document declares its own charset (e.g. RDF/XML with a
+     * &lt;code&gt;&amp;lt;?xml encoding=&quot;iso-8859-1&quot;&amp;gt;&lt;/code&gt; header).
+     * &lt;p&gt;
+     * The {@link #base(IRI)} or {@link #base(String)} MAY be set before calling
+     * {@link #parse()}, otherwise the source IRI will be used as the base IRI.
+     * &lt;p&gt;
+     * This method will override any source set with {@link #source(Path)},
+     * {@link #source(InputStream)} or {@link #source(String)}.
+     * 
+     * @param iri
+     *            An IRI to retrieve and parse
+     * @return An {@link RDFParser} that will use the specified source.
+     */
+    RDFParser source(IRI iri);
+
+    /**
+     * Specify an absolute source IRI to retrieve and parse.
+     * &lt;p&gt;
+     * The source set will not be read before the call to {@link #parse()}.
+     * &lt;p&gt;
+     * If this builder does not support the given IRI (e.g.
+     * &lt;code&gt;urn:uuid:ce667463-c5ab-4c23-9b64-701d055c4890&lt;/code&gt;), this method
+     * should succeed, while the {@link #parse()} should throw an
+     * {@link IOException}.
+     * &lt;p&gt;
+     * The {@link #contentType(RDFSyntax)} or {@link #contentType(String)} MAY
+     * be set before calling {@link #parse()}, in which case that type MAY be
+     * used for content negotiation (e.g. &lt;code&gt;Accept&lt;/code&gt; header in HTTP),
+     * and SHOULD be used for selecting the RDFSyntax.
+     * &lt;p&gt;
+     * The character set is assumed to be {@link StandardCharsets#UTF_8} unless
+     * the protocol's equivalent of &lt;code&gt;Content-Type&lt;/code&gt; specifies
+     * otherwise or the document declares its own charset (e.g. RDF/XML with a
+     * &lt;code&gt;&amp;lt;?xml encoding=&quot;iso-8859-1&quot;&amp;gt;&lt;/code&gt; header).
+     * &lt;p&gt;
+     * The {@link #base(IRI)} or {@link #base(String)} MAY be set before calling
+     * {@link #parse()}, otherwise the source IRI will be used as the base IRI.
+     * &lt;p&gt;
+     * This method will override any source set with {@link #source(Path)},
+     * {@link #source(InputStream)} or {@link #source(IRI)}.
+     * 
+     * @param iri
+     *            An IRI to retrieve and parse
+     * @return An {@link RDFParser} that will use the specified source.
+     * @throws IllegalArgumentException
+     *             If the base is not a valid absolute IRI string
+     * 
+     */
+    RDFParser source(String iri) throws IllegalArgumentException;
+
+    /**
+     * Parse the specified source.
+     * &lt;p&gt;
+     * A source method (e.g. {@link #source(InputStream)}, {@link #source(IRI)},
+     * {@link #source(Path)}, {@link #source(String)} or an equivalent subclass
+     * method) MUST have been called before calling this method, otherwise an
+     * {@link IllegalStateException} will be thrown.
+     * &lt;p&gt;
+     * A target method (e.g. {@link #target(Consumer)},
+     * {@link #target(Dataset)}, {@link #target(Graph)} or an equivalent
+     * subclass method) MUST have been called before calling parse(), otherwise
+     * an {@link IllegalStateException} will be thrown.
+     * &lt;p&gt;
+     * It is undefined if this method is thread-safe, however the
+     * {@link RDFParser} may be reused (e.g. setting a different source) as soon
+     * as the {@link Future} has been returned from this method.
+     * &lt;p&gt;
+     * The RDFParser SHOULD perform the parsing as an asynchronous operation,
+     * and return the {@link Future} as soon as preliminary checks (such as
+     * validity of the {@link #source(IRI)} and {@link #contentType(RDFSyntax)}
+     * settings) have finished. The future SHOULD not mark
+     * {@link Future#isDone()} before parsing is complete. A synchronous
+     * implementation MAY be blocking on the &lt;code&gt;parse()&lt;/code&gt; call and
+     * return a Future that is already {@link Future#isDone()}.
+     * &lt;p&gt;
+     * The returned {@link Future} contains a {@link ParseResult}.
+     * Implementations may subclass this interface to provide any parser
+     * details, e.g. list of warnings. &lt;code&gt;null&lt;/code&gt; is a possible return
+     * value if no details are available, but parsing succeeded.
+     * &lt;p&gt;
+     * If an exception occurs during parsing, (e.g. {@link IOException} or
+     * &lt;code&gt;org.apache.commons.rdf.simple.experimental.RDFParseException&lt;/code&gt;),
+     * it should be indicated as the
+     * {@link java.util.concurrent.ExecutionException#getCause()} in the
+     * {@link java.util.concurrent.ExecutionException} thrown on
+     * {@link Future#get()}.
+     * 
+     * @return A Future that will return the populated {@link Graph} when the
+     *         parsing has finished.
+     * @throws IOException
+     *             If an error occurred while starting to read the source (e.g.
+     *             file not found, unsupported IRI protocol). Note that IO
+     *             errors during parsing would instead be the
+     *             {@link java.util.concurrent.ExecutionException#getCause()} of
+     *             the {@link java.util.concurrent.ExecutionException} thrown on
+     *             {@link Future#get()}.
+     * @throws IllegalStateException
+     *             If the builder is in an invalid state, e.g. a
+     *             &lt;code&gt;source&lt;/code&gt; has not been set.
+     */
+    Future&lt;? extends ParseResult&gt; parse() throws IOException, IllegalStateException;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

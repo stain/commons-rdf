@@ -1,0 +1,113 @@
+Comparing source compatibility of /home/stain/src/rdf-0.3.0-rc1/site/apache-commons-rdf-0.3.0-incubating/api/target/commons-rdf-api-0.3.0-incubating.jar against /home/stain/.m2/repository/org/apache/commons/commons-rdf-api/0.2.0-incubating/commons-rdf-api-0.2.0-incubating.jar
++++* NEW INTERFACE: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.Dataset  (not serializable)
+	+++  NEW INTERFACE: java.lang.AutoCloseable
+	+++  NEW INTERFACE: org.apache.commons.rdf.api.GraphLike
+	+++  NEW SUPERCLASS: java.lang.Object
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) void add(org.apache.commons.rdf.api.Quad)
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) void add(org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.IRI, org.apache.commons.rdf.api.RDFTerm)
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) void clear()
+	+++* NEW METHOD: PUBLIC(+) void close()
+		+++  NEW EXCEPTION: java.lang.Exception
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) boolean contains(org.apache.commons.rdf.api.Quad)
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) boolean contains(java.util.Optional, org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.IRI, org.apache.commons.rdf.api.RDFTerm)
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.Graph getGraph()
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) java.util.Optional getGraph(org.apache.commons.rdf.api.BlankNodeOrIRI)
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) java.util.stream.Stream getGraphNames()
+	+++* NEW METHOD: PUBLIC(+) java.lang.Iterable iterate()
+		+++  NEW EXCEPTION: java.util.ConcurrentModificationException
+		+++  NEW EXCEPTION: java.lang.IllegalStateException
+	+++* NEW METHOD: PUBLIC(+) java.lang.Iterable iterate(java.util.Optional, org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.IRI, org.apache.commons.rdf.api.RDFTerm)
+		+++  NEW EXCEPTION: java.util.ConcurrentModificationException
+		+++  NEW EXCEPTION: java.lang.IllegalStateException
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) void remove(org.apache.commons.rdf.api.Quad)
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) void remove(java.util.Optional, org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.IRI, org.apache.commons.rdf.api.RDFTerm)
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) long size()
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) java.util.stream.Stream stream()
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) java.util.stream.Stream stream(java.util.Optional, org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.IRI, org.apache.commons.rdf.api.RDFTerm)
+**** MODIFIED INTERFACE: PUBLIC ABSTRACT org.apache.commons.rdf.api.Graph  (not serializable)
+	+++  NEW INTERFACE: org.apache.commons.rdf.api.GraphLike
+	***  MODIFIED METHOD: PUBLIC NON_ABSTRACT (<- ABSTRACT) java.util.stream.Stream getTriples()
+		+++  NEW ANNOTATION: java.lang.Deprecated
+	***  MODIFIED METHOD: PUBLIC NON_ABSTRACT (<- ABSTRACT) java.util.stream.Stream getTriples(org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.IRI, org.apache.commons.rdf.api.RDFTerm)
+		+++  NEW ANNOTATION: java.lang.Deprecated
+	+++* NEW METHOD: PUBLIC(+) ABSTRACT(+) java.util.stream.Stream stream()
+	+++* NEW METHOD: PUBLIC(+) ABSTRACT(+) java.util.stream.Stream stream(org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.IRI, org.apache.commons.rdf.api.RDFTerm)
++++* NEW INTERFACE: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.GraphLike  (not serializable)
+	+++  NEW SUPERCLASS: java.lang.Object
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) void add(org.apache.commons.rdf.api.TripleLike)
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) void clear()
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) boolean contains(org.apache.commons.rdf.api.TripleLike)
+	+++* NEW METHOD: PUBLIC(+) ABSTRACT(+) java.lang.Iterable iterate()
+		+++  NEW EXCEPTION: java.util.ConcurrentModificationException
+		+++  NEW EXCEPTION: java.lang.IllegalStateException
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) void remove(org.apache.commons.rdf.api.TripleLike)
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) long size()
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) java.util.stream.Stream stream()
++++  NEW INTERFACE: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.Quad  (not serializable)
+	+++  NEW INTERFACE: org.apache.commons.rdf.api.QuadLike
+	+++  NEW INTERFACE: org.apache.commons.rdf.api.TripleLike
+	+++  NEW SUPERCLASS: java.lang.Object
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.api.Triple asTriple()
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) boolean equals(java.lang.Object)
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) java.util.Optional getGraphName()
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.RDFTerm getObject()
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.IRI getPredicate()
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.BlankNodeOrIRI getSubject()
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) int hashCode()
++++  NEW INTERFACE: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.QuadLike  (not serializable)
+	+++  NEW INTERFACE: org.apache.commons.rdf.api.TripleLike
+	+++  NEW SUPERCLASS: java.lang.Object
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) java.util.Optional getGraphName()
++++* NEW INTERFACE: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.RDF  (not serializable)
+	+++  NEW SUPERCLASS: java.lang.Object
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.BlankNode createBlankNode()
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.BlankNode createBlankNode(java.lang.String)
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.Dataset createDataset()
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.Graph createGraph()
+	+++* NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.IRI createIRI(java.lang.String)
+		+++  NEW EXCEPTION: java.lang.IllegalArgumentException
+	+++* NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.Literal createLiteral(java.lang.String)
+		+++  NEW EXCEPTION: java.lang.IllegalArgumentException
+	+++* NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.Literal createLiteral(java.lang.String, org.apache.commons.rdf.api.IRI)
+		+++  NEW EXCEPTION: java.lang.IllegalArgumentException
+	+++* NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.Literal createLiteral(java.lang.String, java.lang.String)
+		+++  NEW EXCEPTION: java.lang.IllegalArgumentException
+	+++* NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.Quad createQuad(org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.IRI, org.apache.commons.rdf.api.RDFTerm)
+		+++  NEW EXCEPTION: java.lang.IllegalArgumentException
+	+++* NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.Triple createTriple(org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.IRI, org.apache.commons.rdf.api.RDFTerm)
+		+++  NEW EXCEPTION: java.lang.IllegalArgumentException
+**** MODIFIED INTERFACE: PUBLIC ABSTRACT org.apache.commons.rdf.api.RDFTerm  (not serializable)
+	+++* NEW METHOD: PUBLIC(+) ABSTRACT(+) boolean equals(java.lang.Object)
+	+++* NEW METHOD: PUBLIC(+) ABSTRACT(+) int hashCode()
+===  UNCHANGED INTERFACE: PUBLIC ABSTRACT org.apache.commons.rdf.api.RDFTermFactory  (not serializable)
+	+++  NEW ANNOTATION: java.lang.Deprecated
+***  MODIFIED INTERFACE: PUBLIC ABSTRACT org.apache.commons.rdf.api.Triple  (not serializable)
+	+++  NEW INTERFACE: org.apache.commons.rdf.api.TripleLike
++++  NEW INTERFACE: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.TripleLike  (not serializable)
+	+++  NEW SUPERCLASS: java.lang.Object
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.RDFTerm getObject()
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.RDFTerm getPredicate()
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.api.RDFTerm getSubject()
++++* NEW INTERFACE: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.experimental.RDFParser  (not serializable)
+	+++  NEW SUPERCLASS: java.lang.Object
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.experimental.RDFParser base(org.apache.commons.rdf.api.IRI)
+	+++* NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.experimental.RDFParser base(java.lang.String)
+		+++  NEW EXCEPTION: java.lang.IllegalArgumentException
+	+++* NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.experimental.RDFParser contentType(org.apache.commons.rdf.api.RDFSyntax)
+		+++  NEW EXCEPTION: java.lang.IllegalArgumentException
+	+++* NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.experimental.RDFParser contentType(java.lang.String)
+		+++  NEW EXCEPTION: java.lang.IllegalArgumentException
+	+++* NEW METHOD: PUBLIC(+) ABSTRACT(+) java.util.concurrent.Future parse()
+		+++  NEW EXCEPTION: java.io.IOException
+		+++  NEW EXCEPTION: java.lang.IllegalStateException
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.experimental.RDFParser rdfTermFactory(org.apache.commons.rdf.api.RDF)
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.experimental.RDFParser source(java.io.InputStream)
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.experimental.RDFParser source(java.nio.file.Path)
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.experimental.RDFParser source(org.apache.commons.rdf.api.IRI)
+	+++* NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.experimental.RDFParser source(java.lang.String)
+		+++  NEW EXCEPTION: java.lang.IllegalArgumentException
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.experimental.RDFParser target(org.apache.commons.rdf.api.Graph)
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.experimental.RDFParser target(org.apache.commons.rdf.api.Dataset)
+	+++  NEW METHOD: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.experimental.RDFParser target(java.util.function.Consumer)
++++  NEW INTERFACE: PUBLIC(+) ABSTRACT(+) STATIC(+) org.apache.commons.rdf.experimental.RDFParser$ParseResult  (not serializable)
+	+++  NEW SUPERCLASS: java.lang.Object

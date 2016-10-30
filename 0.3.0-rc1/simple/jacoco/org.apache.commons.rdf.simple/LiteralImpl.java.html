@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>LiteralImpl.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Commons RDF: Simple Implementation</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.rdf.simple</a> &gt; <span class="el_source">LiteralImpl.java</span></div><h1>LiteralImpl.java</h1><pre class="source lang-java linenums">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements. See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership. The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * &quot;License&quot;); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.rdf.simple;
+
+import java.util.IllformedLocaleException;
+import java.util.Locale;
+import java.util.Objects;
+import java.util.Optional;
+
+import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.Literal;
+
+/**
+ * A simple implementation of Literal.
+ */
+final class LiteralImpl implements Literal, SimpleRDF.SimpleRDFTerm {
+
+    private static final String QUOTE = &quot;\&quot;&quot;;
+
+    private final IRI dataType;
+    private final String languageTag;
+    private final String lexicalForm;
+
+    public LiteralImpl(String literal) {
+<span class="fc" id="L40">        this(literal, Types.XSD_STRING);</span>
+<span class="fc" id="L41">    }</span>
+
+<span class="fc" id="L43">    public LiteralImpl(String lexicalForm, IRI dataType) {</span>
+<span class="fc" id="L44">        this.lexicalForm = Objects.requireNonNull(lexicalForm);</span>
+<span class="fc" id="L45">        this.dataType = Types.get(Objects.requireNonNull(dataType)).orElse(dataType);</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        if (Types.RDF_LANGSTRING.equals(this.dataType)) {</span>
+<span class="nc" id="L47">            throw new IllegalArgumentException(</span>
+                    &quot;Cannot create a non-language literal with type &quot; + Types.RDF_LANGSTRING);
+        }
+<span class="fc" id="L50">        this.languageTag = null;</span>
+<span class="fc" id="L51">    }</span>
+
+<span class="fc" id="L53">    public LiteralImpl(String literal, String languageTag) {</span>
+<span class="fc" id="L54">        this.lexicalForm = Objects.requireNonNull(literal);</span>
+<span class="fc" id="L55">        this.languageTag = Objects.requireNonNull(languageTag).toLowerCase(Locale.ENGLISH);</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">        if (languageTag.isEmpty()) {</span>
+            // TODO: Check against
+            // http://www.w3.org/TR/n-triples/#n-triples-grammar
+<span class="nc" id="L59">            throw new IllegalArgumentException(&quot;Language tag can't be null&quot;);</span>
+        }
+        try {
+<span class="fc" id="L62">            new Locale.Builder().setLanguageTag(languageTag);</span>
+<span class="fc" id="L63">        } catch (IllformedLocaleException ex) {</span>
+<span class="fc" id="L64">            throw new IllegalArgumentException(&quot;Invalid languageTag: &quot; + languageTag, ex);</span>
+<span class="fc" id="L65">        }</span>
+
+        // System.out.println(aLocale);
+<span class="fc" id="L68">        this.dataType = Types.RDF_LANGSTRING;</span>
+<span class="fc" id="L69">    }</span>
+
+    @Override
+    public IRI getDatatype() {
+<span class="fc" id="L73">        return dataType;</span>
+    }
+
+    @Override
+    public Optional&lt;String&gt; getLanguageTag() {
+<span class="fc" id="L78">        return Optional.ofNullable(languageTag);</span>
+    }
+
+    @Override
+    public String getLexicalForm() {
+<span class="fc" id="L83">        return lexicalForm;</span>
+    }
+
+    @Override
+    public String ntriplesString() {
+<span class="fc" id="L88">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L89">        sb.append(QUOTE);</span>
+        // Escape special characters
+<span class="fc" id="L91">        sb.append(getLexicalForm().replace(&quot;\\&quot;, &quot;\\\\&quot;). // escaped to \\</span>
+<span class="fc" id="L92">                replace(&quot;\&quot;&quot;, &quot;\\\&quot;&quot;). // escaped to \&quot;</span>
+<span class="fc" id="L93">                replace(&quot;\r&quot;, &quot;\\r&quot;). // escaped to \r</span>
+<span class="fc" id="L94">                replace(&quot;\n&quot;, &quot;\\n&quot;)); // escaped to \n</span>
+<span class="fc" id="L95">        sb.append(QUOTE);</span>
+
+        // getLanguageTag().ifPresent(s -&gt; sb.append(&quot;@&quot; + s));
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        if (getLanguageTag().isPresent()) {</span>
+<span class="fc" id="L99">            sb.append(&quot;@&quot;);</span>
+<span class="fc" id="L100">            sb.append(getLanguageTag().get());</span>
+
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        } else if (!getDatatype().equals(Types.XSD_STRING)) {</span>
+<span class="fc" id="L103">            sb.append(&quot;^^&quot;);</span>
+<span class="fc" id="L104">            sb.append(getDatatype().ntriplesString());</span>
+        }
+<span class="fc" id="L106">        return sb.toString();</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L111">        return ntriplesString();</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L116">        return Objects.hash(lexicalForm, dataType, languageTag);</span>
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="pc bpc" id="L121" title="1 of 2 branches missed.">        if (this == obj) {</span>
+<span class="fc" id="L122">            return true;</span>
+        }
+<span class="nc bnc" id="L124" title="All 4 branches missed.">        if (obj == null || !(obj instanceof Literal)) {</span>
+<span class="nc" id="L125">            return false;</span>
+        }
+<span class="nc" id="L127">        Literal literal = (Literal) obj;</span>
+<span class="nc bnc" id="L128" title="All 4 branches missed.">        return getDatatype().equals(literal.getDatatype()) &amp;&amp; getLexicalForm().equals(literal.getLexicalForm())</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">                &amp;&amp; getLanguageTag().equals(literal.getLanguageTag());</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>DatasetImpl.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Commons RDF: Simple Implementation</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.rdf.simple</a> &gt; <span class="el_source">DatasetImpl.java</span></div><h1>DatasetImpl.java</h1><pre class="source lang-java linenums">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements. See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership. The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * &quot;License&quot;); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.rdf.simple;
+
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.apache.commons.rdf.api.BlankNode;
+import org.apache.commons.rdf.api.BlankNodeOrIRI;
+import org.apache.commons.rdf.api.Dataset;
+import org.apache.commons.rdf.api.Graph;
+import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.Literal;
+import org.apache.commons.rdf.api.Quad;
+import org.apache.commons.rdf.api.RDFTerm;
+import org.apache.commons.rdf.simple.SimpleRDF.SimpleRDFTerm;
+
+/**
+ * A simple, memory-based implementation of Dataset.
+ * &lt;p&gt;
+ * {@link Quad}s in the graph are kept in a {@link Set}.
+ * &lt;p&gt;
+ * All Stream operations are performed using parallel and unordered directives.
+ */
+final class DatasetImpl implements Dataset {
+
+    private static final int TO_STRING_MAX = 10;
+<span class="nc" id="L48">    private final Set&lt;Quad&gt; quads = new HashSet&lt;Quad&gt;();</span>
+    private final SimpleRDF factory;
+
+<span class="nc" id="L51">    DatasetImpl(SimpleRDF simpleRDF) {</span>
+<span class="nc" id="L52">        this.factory = simpleRDF;</span>
+<span class="nc" id="L53">    }</span>
+
+    @Override
+    public void add(BlankNodeOrIRI graphName, BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="nc" id="L57">        BlankNodeOrIRI newGraphName = (BlankNodeOrIRI) internallyMap(graphName);</span>
+<span class="nc" id="L58">        BlankNodeOrIRI newSubject = (BlankNodeOrIRI) internallyMap(subject);</span>
+<span class="nc" id="L59">        IRI newPredicate = (IRI) internallyMap(predicate);</span>
+<span class="nc" id="L60">        RDFTerm newObject = internallyMap(object);</span>
+<span class="nc" id="L61">        Quad result = factory.createQuad(newGraphName, newSubject, newPredicate, newObject);</span>
+<span class="nc" id="L62">        quads.add(result);</span>
+<span class="nc" id="L63">    }</span>
+
+    @Override
+    public void add(Quad quad) {
+<span class="nc" id="L67">        BlankNodeOrIRI newGraph = (BlankNodeOrIRI) internallyMap(quad.getGraphName().orElse(null));</span>
+<span class="nc" id="L68">        BlankNodeOrIRI newSubject = (BlankNodeOrIRI) internallyMap(quad.getSubject());</span>
+<span class="nc" id="L69">        IRI newPredicate = (IRI) internallyMap(quad.getPredicate());</span>
+<span class="nc" id="L70">        RDFTerm newObject = internallyMap(quad.getObject());</span>
+        // Check if any of the object references changed during the mapping, to
+        // avoid creating a new Quad object if possible
+<span class="nc bnc" id="L73" title="All 4 branches missed.">        if (newGraph == quad.getGraphName().orElse(null) &amp;&amp; newSubject == quad.getSubject()</span>
+<span class="nc bnc" id="L74" title="All 4 branches missed.">                &amp;&amp; newPredicate == quad.getPredicate() &amp;&amp; newObject == quad.getObject()) {</span>
+<span class="nc" id="L75">            quads.add(quad);</span>
+        } else {
+            // Make a new Quad with our mapped instances
+<span class="nc" id="L78">            Quad result = factory.createQuad(newGraph, newSubject, newPredicate, newObject);</span>
+<span class="nc" id="L79">            quads.add(result);</span>
+        }
+<span class="nc" id="L81">    }</span>
+
+    private &lt;T extends RDFTerm&gt; RDFTerm internallyMap(T object) {
+<span class="nc bnc" id="L84" title="All 4 branches missed.">        if (object == null || object instanceof SimpleRDFTerm) {</span>
+<span class="nc" id="L85">            return object;</span>
+        }
+<span class="nc bnc" id="L87" title="All 4 branches missed.">        if (object instanceof BlankNode &amp;&amp; !(object instanceof BlankNodeImpl)) {</span>
+<span class="nc" id="L88">            BlankNode blankNode = (BlankNode) object;</span>
+            // This guarantees that adding the same BlankNode multiple times to
+            // this graph will generate a local object that is mapped to an
+            // equivalent object, based on the code in the package private
+            // BlankNodeImpl class
+<span class="nc" id="L93">            return factory.createBlankNode(blankNode.uniqueReference());</span>
+<span class="nc bnc" id="L94" title="All 4 branches missed.">        } else if (object instanceof IRI &amp;&amp; !(object instanceof IRIImpl)) {</span>
+<span class="nc" id="L95">            IRI iri = (IRI) object;</span>
+<span class="nc" id="L96">            return factory.createIRI(iri.getIRIString());</span>
+<span class="nc bnc" id="L97" title="All 4 branches missed.">        } else if (object instanceof Literal &amp;&amp; !(object instanceof LiteralImpl)) {</span>
+<span class="nc" id="L98">            Literal literal = (Literal) object;</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            if (literal.getLanguageTag().isPresent()) {</span>
+<span class="nc" id="L100">                return factory.createLiteral(literal.getLexicalForm(), literal.getLanguageTag().get());</span>
+            } else {
+<span class="nc" id="L102">                return factory.createLiteral(literal.getLexicalForm(), (IRI) internallyMap(literal.getDatatype()));</span>
+            }
+        } else {
+<span class="nc" id="L105">            throw new IllegalArgumentException(&quot;Not a BlankNode, IRI or Literal: &quot; + object);</span>
+        }
+    }
+
+    @Override
+    public void clear() {
+<span class="nc" id="L111">        quads.clear();</span>
+<span class="nc" id="L112">    }</span>
+
+    @Override
+    public boolean contains(Optional&lt;BlankNodeOrIRI&gt; graphName, BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="nc" id="L116">        return stream(graphName, subject, predicate, object).findAny().isPresent();</span>
+    }
+
+    @Override
+    public boolean contains(Quad quad) {
+<span class="nc" id="L121">        return quads.contains(Objects.requireNonNull(quad));</span>
+    }
+
+    @Override
+    public Stream&lt;Quad&gt; stream() {
+<span class="nc" id="L126">        return quads.parallelStream().unordered();</span>
+    }
+
+    @Override
+    public Stream&lt;Quad&gt; stream(Optional&lt;BlankNodeOrIRI&gt; graphName, BlankNodeOrIRI subject, IRI predicate,
+            RDFTerm object) {
+<span class="nc" id="L132">        final Optional&lt;BlankNodeOrIRI&gt; newGraphName = graphName.map(g -&gt; (BlankNodeOrIRI) internallyMap(g));</span>
+<span class="nc" id="L133">        final BlankNodeOrIRI newSubject = (BlankNodeOrIRI) internallyMap(subject);</span>
+<span class="nc" id="L134">        final IRI newPredicate = (IRI) internallyMap(predicate);</span>
+<span class="nc" id="L135">        final RDFTerm newObject = internallyMap(object);</span>
+
+<span class="nc" id="L137">        return getQuads(t -&gt; {</span>
+<span class="nc bnc" id="L138" title="All 4 branches missed.">            if (newGraphName != null &amp;&amp; !t.getGraphName().equals(newGraphName)) {</span>
+                // This would check Optional.empty() == Optional.empty()
+<span class="nc" id="L140">                return false;</span>
+            }
+<span class="nc bnc" id="L142" title="All 4 branches missed.">            if (subject != null &amp;&amp; !t.getSubject().equals(newSubject)) {</span>
+<span class="nc" id="L143">                return false;</span>
+            }
+<span class="nc bnc" id="L145" title="All 4 branches missed.">            if (predicate != null &amp;&amp; !t.getPredicate().equals(newPredicate)) {</span>
+<span class="nc" id="L146">                return false;</span>
+            }
+<span class="nc bnc" id="L148" title="All 4 branches missed.">            if (object != null &amp;&amp; !t.getObject().equals(newObject)) {</span>
+<span class="nc" id="L149">                return false;</span>
+            }
+<span class="nc" id="L151">            return true;</span>
+        });
+    }
+
+    private Stream&lt;Quad&gt; getQuads(final Predicate&lt;Quad&gt; filter) {
+<span class="nc" id="L156">        return stream().filter(filter);</span>
+    }
+
+    @Override
+    public void remove(Optional&lt;BlankNodeOrIRI&gt; graphName, BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="nc" id="L161">        Stream&lt;Quad&gt; toRemove = stream(graphName, subject, predicate, object);</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">        for (Quad t : toRemove.collect(Collectors.toList())) {</span>
+            // Avoid ConcurrentModificationException in ArrayList
+<span class="nc" id="L164">            remove(t);</span>
+<span class="nc" id="L165">        }</span>
+<span class="nc" id="L166">    }</span>
+
+    @Override
+    public void remove(Quad quad) {
+<span class="nc" id="L170">        quads.remove(Objects.requireNonNull(quad));</span>
+<span class="nc" id="L171">    }</span>
+
+    @Override
+    public long size() {
+<span class="nc" id="L175">        return quads.size();</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L180">        String s = stream().limit(TO_STRING_MAX).map(Object::toString).collect(Collectors.joining(&quot;\n&quot;));</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">        if (size() &gt; TO_STRING_MAX) {</span>
+<span class="nc" id="L182">            return s + &quot;\n# ... +&quot; + (size() - TO_STRING_MAX) + &quot; more&quot;;</span>
+        } else {
+<span class="nc" id="L184">            return s;</span>
+        }
+    }
+
+    @Override
+    public void close() {
+<span class="nc" id="L190">    }</span>
+
+    @Override
+    public Graph getGraph() {
+<span class="nc" id="L194">        return getGraph(null).get();</span>
+    }
+
+    @Override
+    public Optional&lt;Graph&gt; getGraph(BlankNodeOrIRI graphName) {
+<span class="nc" id="L199">        return Optional.of(new DatasetGraphView(this, graphName));</span>
+    }
+
+    @Override
+    public Stream&lt;BlankNodeOrIRI&gt; getGraphNames() {
+        // Not very efficient..
+<span class="nc" id="L205">        return stream().map(Quad::getGraphName).filter(Optional::isPresent).map(Optional::get).distinct();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
