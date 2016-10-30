@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Types.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Commons RDF: Simple Implementation</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.rdf.simple</a> &gt; <span class="el_source">Types.java</span></div><h1>Types.java</h1><pre class="source lang-java linenums">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements. See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership. The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * &quot;License&quot;); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.rdf.simple;
+
+import org.apache.commons.rdf.api.IRI;
+
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Optional;
+import java.util.Set;
+
+/**
+ * Types from the RDF and XML Schema vocabularies.
+ */
+public final class Types implements IRI, SimpleRDF.SimpleRDFTerm {
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/1999/02/22-rdf-syntax-ns#HTML&lt;/tt&gt;
+     */
+<span class="fc" id="L35">    public static final Types RDF_HTML = new Types(&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#HTML&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/1999/02/22-rdf-syntax-ns#langString&lt;/tt&gt;
+     */
+<span class="fc" id="L40">    public static final Types RDF_LANGSTRING = new Types(&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#langString&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral&lt;/tt&gt;
+     *
+     * @deprecated Not used in RDF-1.1
+     */
+    @Deprecated
+<span class="fc" id="L48">    public static final Types RDF_PLAINLITERAL = new Types(&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral&lt;/tt&gt;
+     */
+<span class="fc" id="L53">    public static final Types RDF_XMLLITERAL = new Types(&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#anyURI&lt;/tt&gt;
+     */
+<span class="fc" id="L58">    public static final Types XSD_ANYURI = new Types(&quot;http://www.w3.org/2001/XMLSchema#anyURI&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#base64Binary&lt;/tt&gt;
+     */
+<span class="fc" id="L63">    public static final Types XSD_BASE64BINARY = new Types(&quot;http://www.w3.org/2001/XMLSchema#base64Binary&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#boolean&lt;/tt&gt;
+     */
+<span class="fc" id="L68">    public static final Types XSD_BOOLEAN = new Types(&quot;http://www.w3.org/2001/XMLSchema#boolean&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#byte&lt;/tt&gt;
+     */
+<span class="fc" id="L73">    public static final Types XSD_BYTE = new Types(&quot;http://www.w3.org/2001/XMLSchema#byte&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#date&lt;/tt&gt;
+     */
+<span class="fc" id="L78">    public static final Types XSD_DATE = new Types(&quot;http://www.w3.org/2001/XMLSchema#date&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#dateTime&lt;/tt&gt;
+     */
+<span class="fc" id="L83">    public static final Types XSD_DATETIME = new Types(&quot;http://www.w3.org/2001/XMLSchema#dateTime&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#dayTimeDuration&lt;/tt&gt;
+     */
+<span class="fc" id="L88">    public static final Types XSD_DAYTIMEDURATION = new Types(&quot;http://www.w3.org/2001/XMLSchema#dayTimeDuration&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#decimal&lt;/tt&gt;
+     */
+<span class="fc" id="L93">    public static final Types XSD_DECIMAL = new Types(&quot;http://www.w3.org/2001/XMLSchema#decimal&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#double&lt;/tt&gt;
+     */
+<span class="fc" id="L98">    public static final Types XSD_DOUBLE = new Types(&quot;http://www.w3.org/2001/XMLSchema#double&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#duration&lt;/tt&gt;
+     */
+<span class="fc" id="L103">    public static final Types XSD_DURATION = new Types(&quot;http://www.w3.org/2001/XMLSchema#duration&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#float&lt;/tt&gt;
+     */
+<span class="fc" id="L108">    public static final Types XSD_FLOAT = new Types(&quot;http://www.w3.org/2001/XMLSchema#float&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#gDay&lt;/tt&gt;
+     */
+<span class="fc" id="L113">    public static final Types XSD_GDAY = new Types(&quot;http://www.w3.org/2001/XMLSchema#gDay&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#gMonth&lt;/tt&gt;
+     */
+<span class="fc" id="L118">    public static final Types XSD_GMONTH = new Types(&quot;http://www.w3.org/2001/XMLSchema#gMonth&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#gMonthDay&lt;/tt&gt;
+     */
+<span class="fc" id="L123">    public static final Types XSD_GMONTHDAY = new Types(&quot;http://www.w3.org/2001/XMLSchema#gMonthDay&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#gYear&lt;/tt&gt;
+     */
+<span class="fc" id="L128">    public static final Types XSD_GYEAR = new Types(&quot;http://www.w3.org/2001/XMLSchema#gYear&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#gYearMonth&lt;/tt&gt;
+     */
+<span class="fc" id="L133">    public static final Types XSD_GYEARMONTH = new Types(&quot;http://www.w3.org/2001/XMLSchema#gYearMonth&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#hexBinary&lt;/tt&gt;
+     */
+<span class="fc" id="L138">    public static final Types XSD_HEXBINARY = new Types(&quot;http://www.w3.org/2001/XMLSchema#hexBinary&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#int&lt;/tt&gt;
+     */
+<span class="fc" id="L143">    public static final Types XSD_INT = new Types(&quot;http://www.w3.org/2001/XMLSchema#int&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#integer&lt;/tt&gt;
+     */
+<span class="fc" id="L148">    public static final Types XSD_INTEGER = new Types(&quot;http://www.w3.org/2001/XMLSchema#integer&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#language&lt;/tt&gt;
+     */
+<span class="fc" id="L153">    public static final Types XSD_LANGUAGE = new Types(&quot;http://www.w3.org/2001/XMLSchema#language&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#long&lt;/tt&gt;
+     */
+<span class="fc" id="L158">    public static final Types XSD_LONG = new Types(&quot;http://www.w3.org/2001/XMLSchema#long&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#Name&lt;/tt&gt;
+     */
+<span class="fc" id="L163">    public static final Types XSD_NAME = new Types(&quot;http://www.w3.org/2001/XMLSchema#Name&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#NCName&lt;/tt&gt;
+     */
+<span class="fc" id="L168">    public static final Types XSD_NCNAME = new Types(&quot;http://www.w3.org/2001/XMLSchema#NCName&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#negativeInteger&lt;/tt&gt;
+     */
+<span class="fc" id="L173">    public static final Types XSD_NEGATIVEINTEGER = new Types(&quot;http://www.w3.org/2001/XMLSchema#negativeInteger&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#NMTOKEN&lt;/tt&gt;
+     */
+<span class="fc" id="L178">    public static final Types XSD_NMTOKEN = new Types(&quot;http://www.w3.org/2001/XMLSchema#NMTOKEN&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#nonNegativeInteger&lt;/tt&gt;
+     */
+<span class="fc" id="L183">    public static final Types XSD_NONNEGATIVEINTEGER = new Types(&quot;http://www.w3.org/2001/XMLSchema#nonNegativeInteger&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#nonPositiveInteger&lt;/tt&gt;
+     */
+<span class="fc" id="L188">    public static final Types XSD_NONPOSITIVEINTEGER = new Types(&quot;http://www.w3.org/2001/XMLSchema#nonPositiveInteger&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#normalizedString&lt;/tt&gt;
+     */
+<span class="fc" id="L193">    public static final Types XSD_NORMALIZEDSTRING = new Types(&quot;http://www.w3.org/2001/XMLSchema#normalizedString&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#positiveInteger&lt;/tt&gt;
+     */
+<span class="fc" id="L198">    public static final Types XSD_POSITIVEINTEGER = new Types(&quot;http://www.w3.org/2001/XMLSchema#positiveInteger&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#short&lt;/tt&gt;
+     */
+<span class="fc" id="L203">    public static final Types XSD_SHORT = new Types(&quot;http://www.w3.org/2001/XMLSchema#short&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#string&lt;/tt&gt;
+     */
+<span class="fc" id="L208">    public static final Types XSD_STRING = new Types(&quot;http://www.w3.org/2001/XMLSchema#string&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#time&lt;/tt&gt;
+     */
+<span class="fc" id="L213">    public static final Types XSD_TIME = new Types(&quot;http://www.w3.org/2001/XMLSchema#time&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#token&lt;/tt&gt;
+     */
+<span class="fc" id="L218">    public static final Types XSD_TOKEN = new Types(&quot;http://www.w3.org/2001/XMLSchema#token&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#unsignedByte&lt;/tt&gt;
+     */
+<span class="fc" id="L223">    public static final Types XSD_UNSIGNEDBYTE = new Types(&quot;http://www.w3.org/2001/XMLSchema#unsignedByte&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#unsignedInt&lt;/tt&gt;
+     */
+<span class="fc" id="L228">    public static final Types XSD_UNSIGNEDINT = new Types(&quot;http://www.w3.org/2001/XMLSchema#unsignedInt&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#unsignedLong&lt;/tt&gt;
+     */
+<span class="fc" id="L233">    public static final Types XSD_UNSIGNEDLONG = new Types(&quot;http://www.w3.org/2001/XMLSchema#unsignedLong&quot;);</span>
+
+    /**
+     * &lt;tt&gt;http://www.w3.org/2001/XMLSchema#unsignedShort&lt;/tt&gt;
+     */
+<span class="fc" id="L238">    public static final Types XSD_UNSIGNEDSHORT = new Types(&quot;http://www.w3.org/2001/XMLSchema#unsignedShort&quot;);</span>
+
+    private static final Set&lt;IRI&gt; ALL_TYPES;
+
+    static {
+<span class="fc" id="L243">        Set&lt;IRI&gt; tempTypes = new LinkedHashSet&lt;&gt;();</span>
+<span class="fc" id="L244">        tempTypes.add(RDF_HTML);</span>
+<span class="fc" id="L245">        tempTypes.add(RDF_LANGSTRING);</span>
+<span class="fc" id="L246">        tempTypes.add(RDF_PLAINLITERAL);</span>
+<span class="fc" id="L247">        tempTypes.add(RDF_XMLLITERAL);</span>
+<span class="fc" id="L248">        tempTypes.add(XSD_ANYURI);</span>
+<span class="fc" id="L249">        tempTypes.add(XSD_BASE64BINARY);</span>
+<span class="fc" id="L250">        tempTypes.add(XSD_BOOLEAN);</span>
+<span class="fc" id="L251">        tempTypes.add(XSD_BYTE);</span>
+<span class="fc" id="L252">        tempTypes.add(XSD_DATE);</span>
+<span class="fc" id="L253">        tempTypes.add(XSD_DATETIME);</span>
+<span class="fc" id="L254">        tempTypes.add(XSD_DAYTIMEDURATION);</span>
+<span class="fc" id="L255">        tempTypes.add(XSD_DECIMAL);</span>
+<span class="fc" id="L256">        tempTypes.add(XSD_DOUBLE);</span>
+<span class="fc" id="L257">        tempTypes.add(XSD_DURATION);</span>
+<span class="fc" id="L258">        tempTypes.add(XSD_FLOAT);</span>
+<span class="fc" id="L259">        tempTypes.add(XSD_GDAY);</span>
+<span class="fc" id="L260">        tempTypes.add(XSD_GMONTH);</span>
+<span class="fc" id="L261">        tempTypes.add(XSD_GMONTHDAY);</span>
+<span class="fc" id="L262">        tempTypes.add(XSD_GYEAR);</span>
+<span class="fc" id="L263">        tempTypes.add(XSD_GYEARMONTH);</span>
+<span class="fc" id="L264">        tempTypes.add(XSD_HEXBINARY);</span>
+<span class="fc" id="L265">        tempTypes.add(XSD_INT);</span>
+<span class="fc" id="L266">        tempTypes.add(XSD_INTEGER);</span>
+<span class="fc" id="L267">        tempTypes.add(XSD_LANGUAGE);</span>
+<span class="fc" id="L268">        tempTypes.add(XSD_LONG);</span>
+<span class="fc" id="L269">        tempTypes.add(XSD_NAME);</span>
+<span class="fc" id="L270">        tempTypes.add(XSD_NCNAME);</span>
+<span class="fc" id="L271">        tempTypes.add(XSD_NEGATIVEINTEGER);</span>
+<span class="fc" id="L272">        tempTypes.add(XSD_NMTOKEN);</span>
+<span class="fc" id="L273">        tempTypes.add(XSD_NONNEGATIVEINTEGER);</span>
+<span class="fc" id="L274">        tempTypes.add(XSD_NONPOSITIVEINTEGER);</span>
+<span class="fc" id="L275">        tempTypes.add(XSD_NORMALIZEDSTRING);</span>
+<span class="fc" id="L276">        tempTypes.add(XSD_POSITIVEINTEGER);</span>
+<span class="fc" id="L277">        tempTypes.add(XSD_SHORT);</span>
+<span class="fc" id="L278">        tempTypes.add(XSD_STRING);</span>
+<span class="fc" id="L279">        tempTypes.add(XSD_TIME);</span>
+<span class="fc" id="L280">        tempTypes.add(XSD_TOKEN);</span>
+<span class="fc" id="L281">        tempTypes.add(XSD_UNSIGNEDBYTE);</span>
+<span class="fc" id="L282">        tempTypes.add(XSD_UNSIGNEDINT);</span>
+<span class="fc" id="L283">        tempTypes.add(XSD_UNSIGNEDLONG);</span>
+<span class="fc" id="L284">        tempTypes.add(XSD_UNSIGNEDSHORT);</span>
+<span class="fc" id="L285">        ALL_TYPES = Collections.unmodifiableSet(tempTypes);</span>
+<span class="fc" id="L286">    }</span>
+
+    private final IRI field;
+
+<span class="fc" id="L290">    private Types(String field) {</span>
+<span class="fc" id="L291">        this.field = new IRIImpl(field);</span>
+<span class="fc" id="L292">    }</span>
+
+    @Override
+    public String getIRIString() {
+<span class="fc" id="L296">        return this.field.getIRIString();</span>
+    }
+
+    @Override
+    public String ntriplesString() {
+<span class="fc" id="L301">        return this.field.ntriplesString();</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="fc" id="L306">        return this.field.equals(other);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L311">        return this.field.hashCode();</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L316">        return this.field.toString();</span>
+    }
+
+    /**
+     * Get an immutable set of the IRIs used by the RDF-1.1 specification to
+     * define types, from the RDF and XML Schema vocabularies.
+     *
+     * @return A {@link Set} containing all of the IRIs in this collection.
+     */
+    public static Set&lt;IRI&gt; values() {
+<span class="fc" id="L326">        return ALL_TYPES;</span>
+    }
+
+    /**
+     * Get the IRI from this collection if it is present, or return
+     * {@link Optional#empty()} otherwise.
+     *
+     * @param nextIRI
+     *            The IRI to look for.
+     * @return An {@link Optional} containing the IRI from this collection or
+     *         {@link Optional#empty()} if it is not present here.
+     */
+    public static Optional&lt;IRI&gt; get(IRI nextIRI) {
+<span class="fc bfc" id="L339" title="All 2 branches covered.">        if (ALL_TYPES.contains(nextIRI)) {</span>
+            // If we know about this IRI, then look through our set to find the
+            // object that matches and return it
+<span class="pc bpc" id="L342" title="1 of 2 branches missed.">            for (IRI nextType : ALL_TYPES) {</span>
+<span class="fc bfc" id="L343" title="All 2 branches covered.">                if (nextType.equals(nextIRI)) {</span>
+<span class="fc" id="L344">                    return Optional.of(nextType);</span>
+                }
+<span class="fc" id="L346">            }</span>
+        }
+<span class="fc" id="L348">        return Optional.empty();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
