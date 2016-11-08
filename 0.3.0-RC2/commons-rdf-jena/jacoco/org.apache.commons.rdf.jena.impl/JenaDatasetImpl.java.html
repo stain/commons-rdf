@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JenaDatasetImpl.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Commons RDF: Integration: Apache Jena</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.rdf.jena.impl</a> &gt; <span class="el_source">JenaDatasetImpl.java</span></div><h1>JenaDatasetImpl.java</h1><pre class="source lang-java linenums">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * &quot;License&quot;); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.apache.commons.rdf.jena.impl;
+
+import static org.apache.jena.graph.Node.ANY;
+
+import java.io.StringWriter;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.apache.commons.rdf.api.BlankNodeOrIRI;
+import org.apache.commons.rdf.api.Graph;
+import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.Quad;
+import org.apache.commons.rdf.api.RDFTerm;
+import org.apache.commons.rdf.jena.JenaDataset;
+import org.apache.commons.rdf.jena.JenaGraph;
+import org.apache.commons.rdf.jena.JenaRDF;
+import org.apache.jena.atlas.iterator.Iter;
+import org.apache.jena.graph.Node;
+import org.apache.jena.riot.Lang;
+import org.apache.jena.riot.RDFDataMgr;
+import org.apache.jena.sparql.core.DatasetGraph;
+import org.apache.jena.sparql.core.GraphView;
+
+class JenaDatasetImpl implements JenaDataset {
+
+    private DatasetGraph graph;
+    private UUID salt;
+    private JenaRDF factory;
+
+<span class="fc" id="L50">    JenaDatasetImpl(DatasetGraph graph, UUID salt) {</span>
+<span class="fc" id="L51">        this.graph = graph;</span>
+<span class="fc" id="L52">        this.salt = salt;</span>
+<span class="fc" id="L53">        this.factory = new JenaRDF(salt);</span>
+<span class="fc" id="L54">    }</span>
+
+    @Override
+    public void add(BlankNodeOrIRI graphName, BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="fc" id="L58">        graph.add(org.apache.jena.sparql.core.Quad.create(factory.asJenaNode(graphName), factory.asJenaNode(subject),</span>
+<span class="fc" id="L59">                factory.asJenaNode(predicate), factory.asJenaNode(object)));</span>
+<span class="fc" id="L60">    }</span>
+
+    @Override
+    public void add(Quad quad) {
+<span class="fc" id="L64">        graph.add(factory.asJenaQuad(quad));</span>
+<span class="fc" id="L65">    }</span>
+
+    @Override
+    public DatasetGraph asJenaDatasetGraph() {
+<span class="nc" id="L69">        return graph;</span>
+    }
+
+    @Override
+    public void clear() {
+<span class="fc" id="L74">        graph.clear();</span>
+<span class="fc" id="L75">    }</span>
+
+    @Override
+    public void close() {
+<span class="nc" id="L79">        graph.close();</span>
+<span class="nc" id="L80">    }</span>
+
+    @Override
+    public boolean contains(Optional&lt;BlankNodeOrIRI&gt; graphName, BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="fc" id="L84">        return graph.contains(toJenaPattern(graphName), toJenaPattern(subject), toJenaPattern(predicate),</span>
+<span class="fc" id="L85">                toJenaPattern(object));</span>
+    }
+
+    private Node toJenaPattern(Optional&lt;? extends RDFTerm&gt; graphName) {
+        // In theory we could have done:
+        // factory.toJena(graphName.orElse(internalJenaFactory::createAnyVariable))
+        // but because of generics casting rules that doesn't work :(
+
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        if (graphName == null) {</span>
+<span class="fc" id="L94">            return ANY;</span>
+        }
+        // null: default graph
+<span class="fc" id="L97">        return factory.asJenaNode(graphName.orElse(null));</span>
+    }
+
+    private Node toJenaPattern(RDFTerm term) {
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        if (term == null)</span>
+<span class="fc" id="L102">            return ANY;</span>
+<span class="fc" id="L103">        return factory.asJenaNode(term);</span>
+    }
+
+    @Override
+    public boolean contains(Quad quad) {
+<span class="fc" id="L108">        return graph.contains(factory.asJenaQuad(quad));</span>
+    }
+
+    @Override
+    public void remove(Optional&lt;BlankNodeOrIRI&gt; graphName, BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="fc" id="L113">        graph.deleteAny(toJenaPattern(graphName), toJenaPattern(subject),</span>
+<span class="fc" id="L114">                toJenaPattern(predicate), toJenaPattern(object));</span>
+<span class="fc" id="L115">    }</span>
+
+    @Override
+    public void remove(Quad quad) {
+<span class="fc" id="L119">        graph.delete(factory.asJenaQuad(quad));</span>
+<span class="fc" id="L120">    }</span>
+
+    @Override
+    public long size() {
+<span class="fc" id="L124">        long quads = Iter.asStream(graph.listGraphNodes())</span>
+<span class="fc" id="L125">                .map(graph::getGraph)</span>
+<span class="fc" id="L126">                .collect(Collectors.summingLong(org.apache.jena.graph.Graph::size));</span>
+<span class="fc" id="L127">        return quads + graph.getDefaultGraph().size();</span>
+    }
+
+    @Override
+    public Stream&lt;? extends Quad&gt; stream() {
+<span class="fc" id="L132">        JenaRDF factory = new JenaRDF(salt);</span>
+<span class="fc" id="L133">        return Iter.asStream(graph.find(ANY, ANY, ANY, ANY), true).map(factory::asQuad);</span>
+    }
+
+    @Override
+    public Stream&lt;? extends Quad&gt; stream(Optional&lt;BlankNodeOrIRI&gt; g, BlankNodeOrIRI s, IRI p, RDFTerm o) {
+<span class="fc" id="L138">        JenaRDF factory = new JenaRDF(salt);</span>
+<span class="fc" id="L139">        return Iter.asStream(graph.find(toJenaPattern(g), toJenaPattern(s), toJenaPattern(p), toJenaPattern(o)), true)</span>
+<span class="fc" id="L140">                .map(factory::asQuad);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L145">        StringWriter sw = new StringWriter();</span>
+<span class="nc" id="L146">        RDFDataMgr.write(sw, graph, Lang.NT);</span>
+<span class="nc" id="L147">        return sw.toString();</span>
+    }
+
+    @Override
+    public Graph getGraph() {
+<span class="fc" id="L152">        GraphView g = GraphView.createDefaultGraph(graph);</span>
+<span class="fc" id="L153">        return new JenaGraphImpl(g, salt);</span>
+    }
+
+    @Override
+    public JenaGraph getUnionGraph() {
+<span class="nc" id="L158">        GraphView gv = GraphView.createUnionGraph(graph);</span>
+<span class="nc" id="L159">        return new JenaGraphImpl(gv, salt);</span>
+    }
+
+    @Override
+    public Optional&lt;Graph&gt; getGraph(BlankNodeOrIRI graphName) {
+<span class="fc" id="L164">        GraphView gv = GraphView.createNamedGraph(graph, factory.asJenaNode(graphName));</span>
+<span class="fc" id="L165">        return Optional.of(new JenaGraphImpl(gv, salt));</span>
+    }
+
+    @Override
+    public Stream&lt;BlankNodeOrIRI&gt; getGraphNames() {
+<span class="fc" id="L170">        JenaRDF factory = new JenaRDF(salt);</span>
+<span class="fc" id="L171">        return Iter.asStream(graph.listGraphNodes()).map(node -&gt; (BlankNodeOrIRI) factory.asRDFTerm(node));</span>
+    }
+
+    @Override
+    public Iterable&lt;Quad&gt; iterate() {
+<span class="fc" id="L176">        final JenaRDF factory = new JenaRDF(salt);</span>
+<span class="fc" id="L177">        return Iter.asStream(graph.find(), false).map(q -&gt; (Quad) factory.asQuad(q))::iterator;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

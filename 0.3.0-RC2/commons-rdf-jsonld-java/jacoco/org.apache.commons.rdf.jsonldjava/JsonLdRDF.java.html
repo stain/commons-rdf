@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JsonLdRDF.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Commons RDF: Integration: JSON-LD Java</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.rdf.jsonldjava</a> &gt; <span class="el_source">JsonLdRDF.java</span></div><h1>JsonLdRDF.java</h1><pre class="source lang-java linenums">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements. See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership. The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * &quot;License&quot;); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.rdf.jsonldjava;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.UUID;
+
+import org.apache.commons.rdf.api.BlankNode;
+import org.apache.commons.rdf.api.BlankNodeOrIRI;
+import org.apache.commons.rdf.api.Dataset;
+import org.apache.commons.rdf.api.Graph;
+import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.Literal;
+import org.apache.commons.rdf.api.RDFTerm;
+import org.apache.commons.rdf.api.RDF;
+import org.apache.commons.rdf.api.Triple;
+import org.apache.commons.rdf.simple.Types;
+
+import com.github.jsonldjava.core.RDFDataset;
+import com.github.jsonldjava.core.RDFDataset.Node;
+
+/**
+ * JSON-LD Java RDF implementation.
+ */
+public final class JsonLdRDF implements RDF {
+
+    final String bnodePrefix;
+
+    public JsonLdRDF() {
+        // An &quot;outside Graph&quot; bnodePrefix
+<span class="fc" id="L47">        this(&quot;urn:uuid:&quot; + UUID.randomUUID() + &quot;#b&quot;);</span>
+<span class="fc" id="L48">    }</span>
+
+<span class="fc" id="L50">    JsonLdRDF(String bnodePrefix) {</span>
+<span class="fc" id="L51">        this.bnodePrefix = Objects.requireNonNull(bnodePrefix);</span>
+<span class="fc" id="L52">    }</span>
+
+    /**
+     * Adapt a JsonLd {@link RDFDataset} as a Commons RDF {@link Dataset}.
+     * &lt;p&gt;
+     * Changes to the Commons RDF {@link Dataset} are reflected in the JsonLd
+     * {@link RDFDataset} and vice versa.
+     * 
+     * @see #asGraph(RDFDataset)
+     * @param rdfDataSet
+     *            JsonLd {@link RDFDataset} to adapt
+     * @return Adapted {@link Dataset}
+     */
+    public JsonLdDataset asDataset(RDFDataset rdfDataSet) {
+<span class="nc" id="L66">        return new JsonLdDatasetImpl(rdfDataSet);</span>
+    }
+
+    /**
+     * Adapt a JsonLd {@link RDFDataset} as a Commons RDF {@link Graph}.
+     * &lt;p&gt;
+     * Only triples in the &lt;em&gt;default graph&lt;/em&gt; are included. To retrieve any
+     * other graph, {@link #asDataset(RDFDataset)} together with
+     * {@link Dataset#getGraph(BlankNodeOrIRI)}.
+     * &lt;p&gt;
+     * Changes to the Commons RDF {@link Graph} are reflected in the JsonLd
+     * {@link RDFDataset} and vice versa.
+     * 
+     * @see #asDataset(RDFDataset)
+     * @see #asUnionGraph(RDFDataset)
+     * @param rdfDataSet
+     *            JsonLd {@link RDFDataset} to adapt
+     * @return Adapted {@link Graph} covering the &lt;em&gt;default graph&lt;/em&gt;
+     */
+    public JsonLdGraph asGraph(RDFDataset rdfDataSet) {
+<span class="nc" id="L86">        return new JsonLdGraphImpl(rdfDataSet);</span>
+    }
+
+    public Node asJsonLdNode(RDFTerm term) {
+<span class="fc bfc" id="L90" title="All 2 branches covered.">        if (term instanceof JsonLdBlankNode) {</span>
+<span class="fc" id="L91">            JsonLdBlankNode jsonLdBlankNode = (JsonLdBlankNode) term;</span>
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">            if (jsonLdBlankNode.uniqueReference().startsWith(bnodePrefix)) {</span>
+                // Only return blank nodes 'as is' if they have the same prefix
+<span class="fc" id="L94">                return jsonLdBlankNode.asJsonLdNode();</span>
+            }
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">        } else if (term instanceof JsonLdTerm) {</span>
+            // non-Bnodes can always be return as-is
+<span class="fc" id="L98">            return ((JsonLdTerm) term).asJsonLdNode();</span>
+        }
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (term instanceof IRI) {</span>
+<span class="nc" id="L101">            return new RDFDataset.IRI(((IRI) term).getIRIString());</span>
+        }
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        if (term instanceof BlankNode) {</span>
+<span class="nc" id="L104">            String ref = ((BlankNode) term).uniqueReference();</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            if (ref.startsWith(bnodePrefix)) {</span>
+                // one of our own (but no longer a JsonLdBlankNode),
+                // we can recover the label after our unique prefix
+<span class="nc" id="L108">                return new RDFDataset.BlankNode(ref.replace(bnodePrefix, &quot;&quot;));</span>
+            }
+            // The &quot;foreign&quot; unique reference might not be a valid bnode string,
+            // we'll convert to a UUID
+<span class="nc" id="L112">            UUID uuid = UUID.nameUUIDFromBytes(ref.getBytes(StandardCharsets.UTF_8));</span>
+<span class="nc" id="L113">            return new RDFDataset.BlankNode(&quot;_:&quot; + uuid);</span>
+        }
+<span class="nc bnc" id="L115" title="All 2 branches missed.">        if (term instanceof Literal) {</span>
+<span class="nc" id="L116">            Literal literal = (Literal) term;</span>
+<span class="nc" id="L117">            return new RDFDataset.Literal(literal.getLexicalForm(), literal.getDatatype().getIRIString(),</span>
+<span class="nc" id="L118">                    literal.getLanguageTag().orElse(null));</span>
+        }
+<span class="nc" id="L120">        throw new IllegalArgumentException(&quot;RDFTerm not instanceof IRI, BlankNode or Literal: &quot; + term);</span>
+    }
+
+    /**
+     * Adapt a Commons RDF {@link org.apache.commons.rdf.api.Quad} as a JsonLd
+     * {@link com.github.jsonldjava.core.RDFDataset.Quad}.
+     * 
+     * @param quad
+     *            Commons RDF {@link org.apache.commons.rdf.api.Quad} to adapt
+     * @return Adapted JsonLd {@link com.github.jsonldjava.core.RDFDataset.Quad}
+     */
+    public RDFDataset.Quad asJsonLdQuad(org.apache.commons.rdf.api.Quad quad) {
+<span class="nc" id="L132">        BlankNodeOrIRI g = quad.getGraphName().orElse(null);</span>
+<span class="nc" id="L133">        return createJsonLdQuad(g, quad.getSubject(), quad.getPredicate(), quad.getObject());</span>
+    }
+
+    /**
+     * Adapt a Commons RDF {@link Triple} as a JsonLd
+     * {@link com.github.jsonldjava.core.RDFDataset.Quad}.
+     * 
+     * @param triple
+     *            Commons RDF {@link Triple} to adapt
+     * @return Adapted JsonLd {@link com.github.jsonldjava.core.RDFDataset.Quad}
+     */
+    public RDFDataset.Quad asJsonLdQuad(Triple triple) {
+<span class="nc" id="L145">        return createJsonLdQuad(null, triple.getSubject(), triple.getPredicate(), triple.getObject());</span>
+    }
+
+    /**
+     * Adapt a JsonLd {@link com.github.jsonldjava.core.RDFDataset.Quad} as a
+     * Commons RDF {@link org.apache.commons.rdf.api.Quad}.
+     * &lt;p&gt;
+     * The underlying JsonLd quad can be retrieved with
+     * {@link JsonLdQuad#asJsonLdQuad()}.
+     * 
+     * @param quad
+     *            A JsonLd {@link com.github.jsonldjava.core.RDFDataset.Quad} to
+     *            adapt
+     * @return Adapted {@link JsonLdQuad}
+     */
+    public JsonLdQuad asQuad(final RDFDataset.Quad quad) {
+<span class="fc" id="L161">        return new JsonLdQuadImpl(quad, bnodePrefix);</span>
+    }
+
+    /**
+     * Adapt a JsonLd {@link Node} as a Commons RDF {@link RDFTerm}.
+     * &lt;p&gt;
+     * The underlying node can be retrieved with
+     * {@link JsonLdTerm#asJsonLdNode()}.
+     * 
+     * @param node
+     *            A JsonLd {@link Node} to adapt
+     * @return Adapted {@link JsonLdTerm}
+     */
+    public JsonLdTerm asRDFTerm(final Node node) {
+<span class="fc" id="L175">        return asRDFTerm(node, bnodePrefix);</span>
+    }
+
+    /**
+     * Adapt a JsonLd {@link com.github.jsonldjava.core.RDFDataset.Quad} as a
+     * Commons RDF {@link org.apache.commons.rdf.api.Triple}.
+     * &lt;p&gt;
+     * The underlying JsonLd quad can be retrieved with
+     * {@link JsonLdTriple#asJsonLdQuad()}.
+     * 
+     * @param quad
+     *            A JsonLd {@link com.github.jsonldjava.core.RDFDataset.Quad} to
+     *            adapt
+     * @return Adapted {@link JsonLdTriple}
+     */
+    public JsonLdTriple asTriple(final RDFDataset.Quad quad) {
+<span class="fc" id="L191">        return new JsonLdTripleImpl(quad, bnodePrefix);</span>
+    }
+
+    /**
+     * Adapt a JsonLd {@link RDFDataset} as a Commons RDF {@link Graph}.
+     * &lt;p&gt;
+     * The graph can be seen as a &lt;em&gt;union graph&lt;/em&gt; as it will contains all
+     * the triples across all the graphs of the underlying {@link RDFDataset}.
+     * &lt;p&gt;
+     * Note that some triple operations on a union graph can be inefficient as
+     * they need to remove any duplicate triples across the graphs.
+     * &lt;p&gt;
+     * Changes to the Commons RDF {@link Graph} are reflected in the JsonLd
+     * {@link RDFDataset} and vice versa. Triples removed from the graph are
+     * removed from &lt;strong&gt;all&lt;/strong&gt; graphs, while triples added are added
+     * to the &lt;em&gt;default graph&lt;/em&gt;.
+     * 
+     * @param rdfDataSet
+     *            JsonLd {@link RDFDataset} to adapt
+     * @return Adapted {@link Dataset}
+     */
+    public JsonLdUnionGraph asUnionGraph(RDFDataset rdfDataSet) {
+<span class="nc" id="L213">        return new JsonLdUnionGraphImpl(rdfDataSet);</span>
+    }
+
+    @Override
+    public JsonLdBlankNode createBlankNode() {
+<span class="fc" id="L218">        String id = &quot;_:&quot; + UUID.randomUUID().toString();</span>
+<span class="fc" id="L219">        return new JsonLdBlankNodeImpl(new RDFDataset.BlankNode(id), bnodePrefix);</span>
+    }
+
+    @Override
+    public JsonLdBlankNode createBlankNode(String name) {
+<span class="fc" id="L224">        String id = &quot;_:&quot; + name;</span>
+        // TODO: Check if name is valid JSON-LD BlankNode identifier
+<span class="fc" id="L226">        return new JsonLdBlankNodeImpl(new RDFDataset.BlankNode(id), bnodePrefix);</span>
+    }
+
+    @Override
+    public JsonLdDataset createDataset() {
+<span class="fc" id="L231">        return new JsonLdDatasetImpl(bnodePrefix);</span>
+    }
+
+    @Override
+    public JsonLdGraph createGraph() {
+<span class="fc" id="L236">        return new JsonLdGraphImpl(bnodePrefix);</span>
+    }
+
+    @Override
+    public JsonLdIRI createIRI(String iri) {
+<span class="fc" id="L241">        return new JsonLdIRIImpl(iri);</span>
+    }
+
+    @Override
+    public JsonLdLiteral createLiteral(String literal) {
+<span class="fc" id="L246">        return new JsonLdLiteralImpl(new RDFDataset.Literal(literal, null, null));</span>
+    }
+
+    @Override
+    public JsonLdLiteral createLiteral(String literal, IRI dataType) {
+<span class="fc" id="L251">        return new JsonLdLiteralImpl(new RDFDataset.Literal(literal, dataType.getIRIString(), null));</span>
+    }
+
+    @Override
+    public JsonLdLiteral createLiteral(String literal, String language) {
+<span class="fc" id="L256">        return new JsonLdLiteralImpl(new RDFDataset.Literal(literal, Types.RDF_LANGSTRING.getIRIString(), language));</span>
+    }
+
+    @Override
+    public JsonLdQuad createQuad(BlankNodeOrIRI graphName, BlankNodeOrIRI subject, IRI predicate, RDFTerm object)
+            throws IllegalArgumentException, UnsupportedOperationException {
+<span class="fc" id="L262">        return new JsonLdQuadImpl(createJsonLdQuad(graphName, subject, predicate, object), bnodePrefix);</span>
+    }
+
+    @Override
+    public JsonLdTriple createTriple(BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="fc" id="L267">        return new JsonLdTripleImpl(createJsonLdQuad(null, subject, predicate, object), bnodePrefix);</span>
+    }
+
+    String asJsonLdString(BlankNodeOrIRI blankNodeOrIRI) {
+<span class="fc bfc" id="L271" title="All 2 branches covered.">        if (blankNodeOrIRI == null) {</span>
+<span class="fc" id="L272">            return null;</span>
+        }
+<span class="fc bfc" id="L274" title="All 2 branches covered.">        if (blankNodeOrIRI instanceof IRI) {</span>
+<span class="fc" id="L275">            return ((IRI) blankNodeOrIRI).getIRIString();</span>
+<span class="pc bpc" id="L276" title="1 of 2 branches missed.">        } else if (blankNodeOrIRI instanceof BlankNode) {</span>
+<span class="fc" id="L277">            BlankNode blankNode = (BlankNode) blankNodeOrIRI;</span>
+<span class="fc" id="L278">            String ref = blankNode.uniqueReference();</span>
+<span class="fc bfc" id="L279" title="All 2 branches covered.">            if (ref.startsWith(bnodePrefix)) {</span>
+                // One of ours (but possibly not a JsonLdBlankNode) -
+                // we can use the suffix directly
+<span class="fc" id="L282">                return ref.replace(bnodePrefix, &quot;&quot;);</span>
+            } else {
+                // Map to unique bnode identifier, e.g.
+                // _:0dbd92ee-ab1a-45e7-bba2-7ade54f87ec5
+<span class="fc" id="L286">                UUID uuid = UUID.nameUUIDFromBytes(ref.getBytes(StandardCharsets.UTF_8));</span>
+<span class="fc" id="L287">                return &quot;_:&quot; + uuid;</span>
+            }
+        } else {
+<span class="nc" id="L290">            throw new IllegalArgumentException(&quot;Expected a BlankNode or IRI, not: &quot; + blankNodeOrIRI);</span>
+        }
+    }
+
+    JsonLdTerm asRDFTerm(final Node node, String blankNodePrefix) {
+<span class="fc bfc" id="L295" title="All 2 branches covered.">        if (node == null) {</span>
+<span class="fc" id="L296">            return null; // e.g. default graph</span>
+        }
+<span class="fc bfc" id="L298" title="All 2 branches covered.">        if (node.isIRI()) {</span>
+<span class="fc" id="L299">            return new JsonLdIRIImpl(node);</span>
+<span class="fc bfc" id="L300" title="All 2 branches covered.">        } else if (node.isBlankNode()) {</span>
+<span class="fc" id="L301">            return new JsonLdBlankNodeImpl(node, blankNodePrefix);</span>
+<span class="pc bpc" id="L302" title="1 of 2 branches missed.">        } else if (node.isLiteral()) {</span>
+            // TODO: Our own JsonLdLiteral
+<span class="fc bfc" id="L304" title="All 2 branches covered.">            if (node.getLanguage() != null) {</span>
+<span class="fc" id="L305">                return createLiteral(node.getValue(), node.getLanguage());</span>
+            } else {
+<span class="fc" id="L307">                return createLiteral(node.getValue(), createIRI(node.getDatatype()));</span>
+            }
+        } else {
+<span class="nc" id="L310">            throw new IllegalArgumentException(&quot;Node is neither IRI, BlankNode nor Literal: &quot; + node);</span>
+        }
+    }
+
+    RDFDataset.Quad createJsonLdQuad(BlankNodeOrIRI graphName, BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="fc" id="L315">        return new RDFDataset.Quad(asJsonLdNode(subject), asJsonLdNode(predicate), asJsonLdNode(object),</span>
+<span class="fc" id="L316">                asJsonLdString(graphName));</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

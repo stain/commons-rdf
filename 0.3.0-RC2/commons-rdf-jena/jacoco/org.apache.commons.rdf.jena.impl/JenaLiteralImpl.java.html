@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JenaLiteralImpl.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Commons RDF: Integration: Apache Jena</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.rdf.jena.impl</a> &gt; <span class="el_source">JenaLiteralImpl.java</span></div><h1>JenaLiteralImpl.java</h1><pre class="source lang-java linenums">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * &quot;License&quot;); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.apache.commons.rdf.jena.impl;
+
+import java.util.Objects;
+import java.util.Optional;
+
+import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.Literal;
+import org.apache.commons.rdf.jena.JenaLiteral;
+import org.apache.jena.graph.Node;
+
+class JenaLiteralImpl extends AbstractJenaRDFTerm implements JenaLiteral {
+
+<span class="fc" id="L31">    private static InternalJenaFactory internalJenaFactory = new InternalJenaFactory() {</span>
+    };
+
+    JenaLiteralImpl(Node node) {
+<span class="fc" id="L35">        super(node);</span>
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">        if (!node.isLiteral()) {</span>
+<span class="nc" id="L37">            throw new IllegalArgumentException(&quot;Node is not a literal: &quot; + node);</span>
+        }
+<span class="fc" id="L39">    }</span>
+
+    @Override
+    public boolean equals(Object other) {
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (other == this)</span>
+<span class="fc" id="L44">            return true;</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        if (other == null)</span>
+<span class="nc" id="L46">            return false;</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">        if (!(other instanceof Literal))</span>
+<span class="nc" id="L48">            return false;</span>
+<span class="fc" id="L49">        Literal literal = (Literal) other;</span>
+<span class="pc bpc" id="L50" title="2 of 4 branches missed.">        return getLexicalForm().equals(literal.getLexicalForm()) &amp;&amp; getLanguageTag().equals(literal.getLanguageTag())</span>
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">                &amp;&amp; getDatatype().equals(literal.getDatatype());</span>
+    }
+
+    @Override
+    public IRI getDatatype() {
+<span class="fc" id="L56">        return internalJenaFactory.createIRI(asJenaNode().getLiteralDatatype().getURI());</span>
+    }
+
+    @Override
+    public Optional&lt;String&gt; getLanguageTag() {
+<span class="fc" id="L61">        String x = asJenaNode().getLiteralLanguage();</span>
+<span class="pc bpc" id="L62" title="1 of 4 branches missed.">        if (x == null || x.isEmpty())</span>
+<span class="fc" id="L63">            return Optional.empty();</span>
+<span class="fc" id="L64">        return Optional.of(x);</span>
+    }
+
+    @Override
+    public String getLexicalForm() {
+<span class="fc" id="L69">        return asJenaNode().getLiteralLexicalForm();</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L74">        return Objects.hash(getLexicalForm(), getDatatype(), getLanguageTag());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

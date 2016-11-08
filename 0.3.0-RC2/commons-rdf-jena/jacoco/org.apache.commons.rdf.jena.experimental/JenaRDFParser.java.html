@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JenaRDFParser.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Commons RDF: Integration: Apache Jena</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.rdf.jena.experimental</a> &gt; <span class="el_source">JenaRDFParser.java</span></div><h1>JenaRDFParser.java</h1><pre class="source lang-java linenums">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * &quot;License&quot;); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.apache.commons.rdf.jena.experimental;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.util.function.Consumer;
+
+import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.QuadLike;
+import org.apache.commons.rdf.api.RDFTerm;
+import org.apache.commons.rdf.api.RDF;
+import org.apache.commons.rdf.api.TripleLike;
+import org.apache.commons.rdf.experimental.RDFParser;
+import org.apache.commons.rdf.jena.JenaGraph;
+import org.apache.commons.rdf.jena.JenaRDF;
+import org.apache.commons.rdf.simple.experimental.AbstractRDFParser;
+import org.apache.jena.graph.Graph;
+import org.apache.jena.riot.Lang;
+import org.apache.jena.riot.RDFDataMgr;
+import org.apache.jena.riot.system.StreamRDF;
+import org.apache.jena.riot.system.StreamRDFLib;
+
+<span class="fc" id="L41">public class JenaRDFParser extends AbstractRDFParser&lt;JenaRDFParser&gt; implements RDFParser {</span>
+
+    private Consumer&lt;TripleLike&gt; generalizedConsumerTriple;
+    private Consumer&lt;QuadLike&lt;RDFTerm&gt;&gt; generalizedConsumerQuad;
+
+    protected RDF createRDFTermFactory() {
+<span class="fc" id="L47">        return new JenaRDF();</span>
+    }
+
+    public JenaRDFParser targetGeneralizedTriple(Consumer&lt;TripleLike&gt; consumer) {
+<span class="nc" id="L51">        JenaRDFParser c = this.clone();</span>
+<span class="nc" id="L52">        c.resetTarget();</span>
+<span class="nc" id="L53">        c.generalizedConsumerTriple = consumer;</span>
+<span class="nc" id="L54">        return c;</span>
+    }
+
+    public JenaRDFParser targetGeneralizedQuad(Consumer&lt;QuadLike&lt;RDFTerm&gt;&gt; consumer) {
+<span class="nc" id="L58">        JenaRDFParser c = this.clone();</span>
+<span class="nc" id="L59">        c.resetTarget();</span>
+<span class="nc" id="L60">        c.generalizedConsumerQuad = consumer;</span>
+<span class="nc" id="L61">        return c;</span>
+    }
+
+    @Override
+    protected void resetTarget() {
+<span class="fc" id="L66">        super.resetTarget();</span>
+<span class="fc" id="L67">        this.generalizedConsumerTriple = null;</span>
+<span class="fc" id="L68">        this.generalizedConsumerQuad = null;</span>
+<span class="fc" id="L69">    }</span>
+
+    @Override
+    protected void parseSynchronusly() throws IOException {
+        StreamRDF dest;
+<span class="fc" id="L74">        JenaRDF jenaRDF = getJenaFactory();</span>
+<span class="pc bpc" id="L75" title="2 of 4 branches missed.">        if (getTargetGraph().isPresent() &amp;&amp; getTargetGraph().get() instanceof JenaGraph) {</span>
+<span class="fc" id="L76">            Graph jenaGraph = ((JenaGraph) getTargetGraph().get()).asJenaGraph();</span>
+<span class="fc" id="L77">            dest = StreamRDFLib.graph(jenaGraph);</span>
+<span class="fc" id="L78">        } else {</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            if (generalizedConsumerQuad != null) {</span>
+<span class="nc" id="L80">                dest = jenaRDF.streamJenaToGeneralizedQuad(generalizedConsumerQuad);</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            } else if (generalizedConsumerTriple != null) {</span>
+<span class="nc" id="L82">                dest = jenaRDF.streamJenaToGeneralizedTriple(generalizedConsumerTriple);</span>
+            } else {
+<span class="nc" id="L84">                dest = JenaRDF.streamJenaToQuad(getRdfTermFactory().get(), getTarget());</span>
+            }
+        }
+
+<span class="fc" id="L88">        Lang lang = getContentTypeSyntax().flatMap(jenaRDF::asJenaLang).orElse(null);</span>
+<span class="fc" id="L89">        String baseStr = getBase().map(IRI::getIRIString).orElse(null);</span>
+
+<span class="pc bpc" id="L91" title="1 of 2 branches missed.">        if (getSourceIri().isPresent()) {</span>
+<span class="nc" id="L92">            RDFDataMgr.parse(dest, getSourceIri().get().toString(), baseStr, lang, null);</span>
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">        } else if (getSourceFile().isPresent()) {</span>
+<span class="pc" id="L94">            try (InputStream s = Files.newInputStream(getSourceFile().get())) {</span>
+<span class="fc" id="L95">                RDFDataMgr.parse(dest, s, baseStr, lang, null);</span>
+<span class="pc bpc" id="L96" title="6 of 8 branches missed.">            }</span>
+        } else {
+<span class="nc" id="L98">            RDFDataMgr.parse(dest, getSourceInputStream().get(), baseStr, lang, null);</span>
+        }
+<span class="fc" id="L100">    }</span>
+
+    private JenaRDF getJenaFactory() {
+<span class="fc" id="L103">        return (JenaRDF) getRdfTermFactory().filter(JenaRDF.class::isInstance).orElseGet(this::createRDFTermFactory);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

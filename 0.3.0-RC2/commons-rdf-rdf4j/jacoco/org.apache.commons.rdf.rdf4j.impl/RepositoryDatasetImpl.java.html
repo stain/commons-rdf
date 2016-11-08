@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>RepositoryDatasetImpl.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Commons RDF: Integration: RDF4j</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.rdf.rdf4j.impl</a> &gt; <span class="el_source">RepositoryDatasetImpl.java</span></div><h1>RepositoryDatasetImpl.java</h1><pre class="source lang-java linenums">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements. See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership. The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * &quot;License&quot;); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.rdf.rdf4j.impl;
+
+import java.util.ConcurrentModificationException;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.stream.Stream;
+
+import org.apache.commons.rdf.api.BlankNodeOrIRI;
+import org.apache.commons.rdf.api.Dataset;
+import org.apache.commons.rdf.api.Graph;
+import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.Quad;
+import org.apache.commons.rdf.api.RDFTerm;
+import org.apache.commons.rdf.rdf4j.ClosableIterable;
+import org.apache.commons.rdf.rdf4j.RDF4JDataset;
+import org.apache.commons.rdf.rdf4j.RDF4JQuad;
+import org.eclipse.rdf4j.common.iteration.Iterations;
+import org.eclipse.rdf4j.model.Resource;
+import org.eclipse.rdf4j.model.Statement;
+import org.eclipse.rdf4j.model.Value;
+import org.eclipse.rdf4j.repository.Repository;
+import org.eclipse.rdf4j.repository.RepositoryConnection;
+import org.eclipse.rdf4j.repository.RepositoryResult;
+
+class RepositoryDatasetImpl extends AbstractRepositoryGraphLike&lt;Quad&gt; implements RDF4JDataset, Dataset {
+
+    RepositoryDatasetImpl(Repository repository, UUID salt, boolean handleInitAndShutdown, boolean includeInferred) {
+<span class="fc" id="L45">        super(repository, salt, handleInitAndShutdown, includeInferred);</span>
+<span class="fc" id="L46">    }</span>
+
+    @Override
+    public void add(Quad tripleLike) {
+<span class="fc" id="L50">        Statement statement = rdf4jTermFactory.asStatement(tripleLike);</span>
+<span class="pc" id="L51">        try (RepositoryConnection conn = getRepositoryConnection()) {</span>
+<span class="fc" id="L52">            conn.add(statement);</span>
+<span class="fc" id="L53">            conn.commit();</span>
+<span class="pc bpc" id="L54" title="6 of 8 branches missed.">        }</span>
+<span class="fc" id="L55">    }</span>
+
+    @Override
+    public boolean contains(Quad tripleLike) {
+<span class="fc" id="L59">        Statement statement = rdf4jTermFactory.asStatement(tripleLike);</span>
+<span class="pc" id="L60">        try (RepositoryConnection conn = getRepositoryConnection()) {</span>
+<span class="fc" id="L61">            return conn.hasStatement(statement, includeInferred);</span>
+<span class="pc bpc" id="L62" title="6 of 8 branches missed.">        }</span>
+    }
+
+    @Override
+    public void remove(Quad tripleLike) {
+<span class="fc" id="L67">        Statement statement = rdf4jTermFactory.asStatement(tripleLike);</span>
+<span class="pc" id="L68">        try (RepositoryConnection conn = getRepositoryConnection()) {</span>
+<span class="fc" id="L69">            conn.remove(statement);</span>
+<span class="fc" id="L70">            conn.commit();</span>
+<span class="pc bpc" id="L71" title="6 of 8 branches missed.">        }</span>
+<span class="fc" id="L72">    }</span>
+
+    @Override
+    public void clear() {
+<span class="pc" id="L76">        try (RepositoryConnection conn = getRepositoryConnection()) {</span>
+<span class="fc" id="L77">            conn.clear();</span>
+<span class="fc" id="L78">            conn.commit();</span>
+<span class="pc bpc" id="L79" title="6 of 8 branches missed.">        }</span>
+<span class="fc" id="L80">    }</span>
+
+    @Override
+    public long size() {
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">        if (includeInferred) {</span>
+            // We'll need to count them all
+<span class="nc" id="L86">            return stream().count();</span>
+        }
+        // else: Ask directly
+<span class="pc" id="L89">        try (RepositoryConnection conn = getRepositoryConnection()) {</span>
+<span class="fc" id="L90">            return conn.size();</span>
+<span class="pc bpc" id="L91" title="6 of 8 branches missed.">        }</span>
+    }
+
+    @Override
+    public void add(BlankNodeOrIRI graphName, BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="fc" id="L96">        Resource context = (Resource) rdf4jTermFactory.asValue(graphName);</span>
+<span class="fc" id="L97">        Resource subj = (Resource) rdf4jTermFactory.asValue(subject);</span>
+<span class="fc" id="L98">        org.eclipse.rdf4j.model.IRI pred = (org.eclipse.rdf4j.model.IRI) rdf4jTermFactory.asValue(predicate);</span>
+<span class="fc" id="L99">        Value obj = rdf4jTermFactory.asValue(object);</span>
+<span class="pc" id="L100">        try (RepositoryConnection conn = getRepositoryConnection()) {</span>
+<span class="fc" id="L101">            conn.add(subj, pred, obj, context);</span>
+<span class="fc" id="L102">            conn.commit();</span>
+<span class="pc bpc" id="L103" title="6 of 8 branches missed.">        }</span>
+<span class="fc" id="L104">    }</span>
+
+    @Override
+    public boolean contains(Optional&lt;BlankNodeOrIRI&gt; graphName, BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="fc" id="L108">        Resource subj = (Resource) rdf4jTermFactory.asValue(subject);</span>
+<span class="fc" id="L109">        org.eclipse.rdf4j.model.IRI pred = (org.eclipse.rdf4j.model.IRI) rdf4jTermFactory.asValue(predicate);</span>
+<span class="fc" id="L110">        Value obj = rdf4jTermFactory.asValue(object);</span>
+<span class="fc" id="L111">        Resource[] contexts = asContexts(graphName);</span>
+<span class="pc" id="L112">        try (RepositoryConnection conn = getRepositoryConnection()) {</span>
+<span class="fc" id="L113">            return conn.hasStatement(subj, pred, obj, includeInferred, contexts);</span>
+<span class="pc bpc" id="L114" title="6 of 8 branches missed.">        }</span>
+    }
+
+    private Resource[] asContexts(Optional&lt;BlankNodeOrIRI&gt; graphName) {
+        Resource[] contexts;
+<span class="fc bfc" id="L119" title="All 2 branches covered.">        if (graphName == null) {</span>
+            // no contexts == any contexts
+<span class="fc" id="L121">            contexts = new Resource[0];</span>
+        } else {
+<span class="fc" id="L123">            BlankNodeOrIRI g = graphName.orElse(null);</span>
+<span class="fc" id="L124">            Resource context = (Resource) rdf4jTermFactory.asValue(g);</span>
+<span class="fc" id="L125">            contexts = new Resource[] { context };</span>
+        }
+<span class="fc" id="L127">        return contexts;</span>
+    }
+
+    @Override
+    public void remove(Optional&lt;BlankNodeOrIRI&gt; graphName, BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="fc" id="L132">        Resource subj = (Resource) rdf4jTermFactory.asValue(subject);</span>
+<span class="fc" id="L133">        org.eclipse.rdf4j.model.IRI pred = (org.eclipse.rdf4j.model.IRI) rdf4jTermFactory.asValue(predicate);</span>
+<span class="fc" id="L134">        Value obj = rdf4jTermFactory.asValue(object);</span>
+<span class="fc" id="L135">        Resource[] contexts = asContexts(graphName);</span>
+
+<span class="pc" id="L137">        try (RepositoryConnection conn = getRepositoryConnection()) {</span>
+<span class="fc" id="L138">            conn.remove(subj, pred, obj, contexts);</span>
+<span class="fc" id="L139">            conn.commit();</span>
+<span class="pc bpc" id="L140" title="6 of 8 branches missed.">        }</span>
+<span class="fc" id="L141">    }</span>
+
+    @Override
+    public Stream&lt;RDF4JQuad&gt; stream() {
+<span class="fc" id="L145">        return stream(null, null, null, null);</span>
+    }
+
+    @Override
+    public Stream&lt;RDF4JQuad&gt; stream(Optional&lt;BlankNodeOrIRI&gt; graphName, BlankNodeOrIRI subject, IRI predicate,
+            RDFTerm object) {
+<span class="fc" id="L151">        Resource subj = (Resource) rdf4jTermFactory.asValue(subject);</span>
+<span class="fc" id="L152">        org.eclipse.rdf4j.model.IRI pred = (org.eclipse.rdf4j.model.IRI) rdf4jTermFactory.asValue(predicate);</span>
+<span class="fc" id="L153">        Value obj = rdf4jTermFactory.asValue(object);</span>
+<span class="fc" id="L154">        Resource[] contexts = asContexts(graphName);</span>
+
+        // NOTE: We can't do the usual try..with closing of the
+        // RepositoryConnection here as it will have to be closed outside
+        // by the user of the returned stream
+<span class="fc" id="L159">        RepositoryConnection conn = getRepositoryConnection();</span>
+<span class="fc" id="L160">        Stream&lt;RDF4JQuad&gt; stream = null;</span>
+        try {
+<span class="fc" id="L162">            RepositoryResult&lt;Statement&gt; statements = conn.getStatements(subj, pred, obj, includeInferred, contexts);</span>
+            // NOTE: Iterations.stream should close RepositoryResult as long as
+            // our caller closes the stream
+<span class="fc" id="L165">            stream = Iterations.stream(statements).map(rdf4jTermFactory::asQuad);</span>
+        } finally {
+<span class="pc bpc" id="L167" title="3 of 4 branches missed.">            if (stream == null) {</span>
+                // Some exception before we made the stream, close connection
+                // here
+<span class="nc" id="L170">                conn.close();</span>
+            }
+        }
+        // Make sure the RepositoryConnection is closed
+<span class="fc" id="L174">        return stream.onClose(conn::close);</span>
+
+    }
+
+    @Override
+    public ClosableIterable&lt;Quad&gt; iterate() throws ConcurrentModificationException, IllegalStateException {
+<span class="fc" id="L180">        return iterate(null, null, null, null);</span>
+    }
+
+    @Override
+    public ClosableIterable&lt;Quad&gt; iterate(Optional&lt;BlankNodeOrIRI&gt; graphName, BlankNodeOrIRI subject, IRI predicate,
+            RDFTerm object) throws ConcurrentModificationException, IllegalStateException {
+<span class="fc" id="L186">        Resource[] contexts = asContexts(graphName);</span>
+<span class="fc" id="L187">        Resource subj = (Resource) rdf4jTermFactory.asValue(subject);</span>
+<span class="fc" id="L188">        org.eclipse.rdf4j.model.IRI pred = (org.eclipse.rdf4j.model.IRI) rdf4jTermFactory.asValue(predicate);</span>
+<span class="fc" id="L189">        Value obj = rdf4jTermFactory.asValue(object);</span>
+<span class="fc" id="L190">        return new ConvertedStatements&lt;Quad&gt;(this::getRepositoryConnection, rdf4jTermFactory::asQuad, subj, pred, obj,</span>
+                contexts);
+    }
+
+    @Override
+    protected RDF4JQuad asTripleLike(Statement s) {
+<span class="nc" id="L196">        return rdf4jTermFactory.asQuad(s);</span>
+    }
+
+    @Override
+    public Graph getGraph() {
+        // default context only
+        // NOTE: We carry over the 'salt' as the graph's BlankNode should be
+        // equal to our BlankNodes
+<span class="fc" id="L204">        return new RepositoryGraphImpl(repository, salt, false, includeInferred, (Resource) null);</span>
+    }
+
+    @Override
+    public Optional&lt;Graph&gt; getGraph(BlankNodeOrIRI graphName) {
+        // NOTE: May be null to indicate default context
+<span class="fc" id="L210">        Resource context = (Resource) rdf4jTermFactory.asValue(graphName);</span>
+        // NOTE: We carry over the 'salt' as the graph's BlankNode should be
+        // equal to our BlankNodes
+<span class="fc" id="L213">        return Optional.of(new RepositoryGraphImpl(repository, salt, false, includeInferred, context));</span>
+    }
+
+    @Override
+    public Stream&lt;BlankNodeOrIRI&gt; getGraphNames() {
+<span class="fc" id="L218">       RepositoryConnection conn = getRepositoryConnection();</span>
+<span class="fc" id="L219">       RepositoryResult&lt;Resource&gt; contexts = conn.getContextIDs();</span>
+<span class="fc" id="L220">        return Iterations.stream(contexts).map(g -&gt; (BlankNodeOrIRI) rdf4jTermFactory.asRDFTerm(g))</span>
+<span class="fc" id="L221">                .onClose(conn::close);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>TripleImpl.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Commons RDF: Integration: RDF4j</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.rdf.rdf4j.impl</a> &gt; <span class="el_source">TripleImpl.java</span></div><h1>TripleImpl.java</h1><pre class="source lang-java linenums">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements. See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership. The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * &quot;License&quot;); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.rdf.rdf4j.impl;
+
+import java.util.Objects;
+import java.util.UUID;
+
+import org.apache.commons.rdf.api.BlankNodeOrIRI;
+import org.apache.commons.rdf.api.RDFTerm;
+import org.apache.commons.rdf.api.Triple;
+import org.apache.commons.rdf.rdf4j.RDF4J;
+import org.apache.commons.rdf.rdf4j.RDF4JTriple;
+import org.eclipse.rdf4j.model.Statement;
+
+final class TripleImpl implements Triple, RDF4JTriple {
+    private UUID salt;
+    private final Statement statement;
+
+<span class="fc" id="L34">    TripleImpl(Statement statement, UUID salt) {</span>
+<span class="fc" id="L35">        this.statement = statement;</span>
+<span class="fc" id="L36">        this.salt = salt;</span>
+<span class="fc" id="L37">    }</span>
+
+    @Override
+    public Statement asStatement() {
+<span class="fc" id="L41">        return statement;</span>
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        if (obj instanceof Triple) {</span>
+<span class="fc" id="L47">            Triple triple = (Triple) obj;</span>
+<span class="pc bpc" id="L48" title="1 of 4 branches missed.">            return getSubject().equals(triple.getSubject()) &amp;&amp; getPredicate().equals(triple.getPredicate())</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">                    &amp;&amp; getObject().equals(triple.getObject());</span>
+        }
+<span class="nc" id="L51">        return false;</span>
+    }
+
+    @Override
+    public RDFTerm getObject() {
+<span class="fc" id="L56">        return RDF4J.asRDFTerm(statement.getObject(), salt);</span>
+    }
+
+    @Override
+    public org.apache.commons.rdf.api.IRI getPredicate() {
+<span class="fc" id="L61">        return (org.apache.commons.rdf.api.IRI) RDF4J.asRDFTerm(statement.getPredicate(), null);</span>
+    }
+
+    @Override
+    public BlankNodeOrIRI getSubject() {
+<span class="fc" id="L66">        return (BlankNodeOrIRI) RDF4J.asRDFTerm(statement.getSubject(), salt);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L71">        return Objects.hash(getSubject(), getPredicate(), getObject());</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L76">        return statement.toString();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

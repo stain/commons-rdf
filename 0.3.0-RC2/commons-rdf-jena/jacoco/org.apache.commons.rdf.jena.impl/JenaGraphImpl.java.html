@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JenaGraphImpl.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Commons RDF: Integration: Apache Jena</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.rdf.jena.impl</a> &gt; <span class="el_source">JenaGraphImpl.java</span></div><h1>JenaGraphImpl.java</h1><pre class="source lang-java linenums">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * &quot;License&quot;); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.apache.commons.rdf.jena.impl;
+
+import java.io.StringWriter;
+import java.util.UUID;
+import java.util.stream.Stream;
+
+import org.apache.commons.rdf.api.BlankNodeOrIRI;
+import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.RDFTerm;
+import org.apache.commons.rdf.api.Triple;
+import org.apache.commons.rdf.jena.JenaGraph;
+import org.apache.commons.rdf.jena.JenaRDF;
+import org.apache.jena.atlas.iterator.Iter;
+import org.apache.jena.graph.Node;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.riot.Lang;
+import org.apache.jena.riot.RDFDataMgr;
+
+class JenaGraphImpl implements JenaGraph {
+
+    private final org.apache.jena.graph.Graph graph;
+    private final UUID salt;
+    private final transient JenaRDF factory;
+    private Model model;
+
+<span class="fc" id="L45">    JenaGraphImpl(org.apache.jena.graph.Graph graph, UUID salt) {</span>
+<span class="fc" id="L46">        this.graph = graph;</span>
+<span class="fc" id="L47">        this.salt = salt;</span>
+<span class="fc" id="L48">        this.factory = new JenaRDF(salt);</span>
+<span class="fc" id="L49">    }</span>
+
+<span class="nc" id="L51">    JenaGraphImpl(Model model, UUID salt) {</span>
+<span class="nc" id="L52">        this.model = model;</span>
+<span class="nc" id="L53">        this.graph = model.getGraph();</span>
+<span class="nc" id="L54">        this.salt = salt;</span>
+<span class="nc" id="L55">        this.factory = new JenaRDF(salt);</span>
+<span class="nc" id="L56">    }</span>
+
+    @Override
+    public void add(BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="fc" id="L60">        graph.add(org.apache.jena.graph.Triple.create(factory.asJenaNode(subject), factory.asJenaNode(predicate),</span>
+<span class="fc" id="L61">                factory.asJenaNode(object)));</span>
+<span class="fc" id="L62">    }</span>
+
+    @Override
+    public void add(Triple triple) {
+<span class="fc" id="L66">        graph.add(factory.asJenaTriple(triple));</span>
+<span class="fc" id="L67">    }</span>
+
+    @Override
+    public org.apache.jena.graph.Graph asJenaGraph() {
+<span class="fc" id="L71">        return graph;</span>
+    }
+
+    @Override
+    public void clear() {
+<span class="fc" id="L76">        graph.clear();</span>
+<span class="fc" id="L77">    }</span>
+
+    @Override
+    public void close() {
+<span class="nc" id="L81">        graph.close();</span>
+<span class="nc" id="L82">    }</span>
+
+    @Override
+    public boolean contains(BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="fc" id="L86">        return graph.contains(toJenaPattern(subject), toJenaPattern(predicate), toJenaPattern(object));</span>
+    }
+
+    @Override
+    public boolean contains(Triple triple) {
+<span class="fc" id="L91">        return graph.contains(factory.asJenaTriple(triple));</span>
+    }
+
+    @Override
+    public void remove(BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="fc" id="L96">        graph.delete(org.apache.jena.graph.Triple.create(toJenaPattern(subject), toJenaPattern(predicate),</span>
+<span class="fc" id="L97">                toJenaPattern(object)));</span>
+<span class="fc" id="L98">    }</span>
+
+    private Node toJenaPattern(RDFTerm pattern) {
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        if (pattern == null) { </span>
+<span class="fc" id="L102">            return Node.ANY;</span>
+        }
+<span class="fc" id="L104">        return factory.asJenaNode(pattern);</span>
+    }
+
+    @Override
+    public void remove(Triple triple) {
+<span class="fc" id="L109">        graph.delete(factory.asJenaTriple(triple));</span>
+<span class="fc" id="L110">    }</span>
+
+    @Override
+    public long size() {
+<span class="fc" id="L114">        return graph.size();</span>
+    }
+
+    @Override
+    public Stream&lt;? extends Triple&gt; stream() {
+<span class="fc" id="L119">        JenaRDF factory = new JenaRDF(salt);</span>
+<span class="fc" id="L120">        return Iter.asStream(graph.find(null, null, null), true).map(factory::asTriple);</span>
+    }
+
+    @Override
+    public Stream&lt;? extends Triple&gt; stream(BlankNodeOrIRI s, IRI p, RDFTerm o) {
+<span class="fc" id="L125">        JenaRDF factory = new JenaRDF(salt);</span>
+<span class="fc" id="L126">        return Iter.asStream(graph.find(toJenaAny(s), toJenaAny(p), toJenaAny(o)), true).map(factory::asTriple);</span>
+    }
+
+    private Node toJenaAny(RDFTerm term) {
+<span class="fc bfc" id="L130" title="All 2 branches covered.">        if (term == null)</span>
+<span class="fc" id="L131">            return Node.ANY;</span>
+<span class="fc" id="L132">        return factory.asJenaNode(term);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L137">        StringWriter sw = new StringWriter();</span>
+<span class="nc" id="L138">        RDFDataMgr.write(sw, graph, Lang.NT);</span>
+<span class="nc" id="L139">        return sw.toString();</span>
+    }
+
+    @Override
+    public Model asJenaModel() {
+<span class="nc bnc" id="L144" title="All 2 branches missed.">        if (model == null) {</span>
+<span class="nc" id="L145">            synchronized (this) {</span>
+                // As Model can be used for locks, we should make sure we don't
+                // make
+                // more than one model
+<span class="nc bnc" id="L149" title="All 2 branches missed.">                if (model == null) {</span>
+<span class="nc" id="L150">                    model = ModelFactory.createModelForGraph(graph);</span>
+                }
+<span class="nc" id="L152">            }</span>
+        }
+<span class="nc" id="L154">        return model;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

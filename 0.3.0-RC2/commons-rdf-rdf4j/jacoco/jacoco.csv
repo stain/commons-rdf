@@ -1,0 +1,21 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j.impl,ConvertedStatements.ConvertedIterator,0,27,0,2,0,6,0,4,0,3
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j.impl,AbstractRepositoryGraphLike,13,34,3,3,5,10,5,3,3,2
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j.impl,IRIImpl,18,49,4,2,5,10,3,6,0,6
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j.impl,ModelGraphImpl,13,164,1,1,4,28,4,13,3,13
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j.impl,QuadImpl,42,93,8,6,6,19,9,8,2,8
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j.impl,BlankNodeImpl,21,128,3,13,4,24,4,11,1,6
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j.impl,ConvertedStatements,0,33,0,0,0,9,0,3,0,3
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j.impl,TripleImpl,6,81,3,5,2,13,4,8,1,7
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j.impl,InternalRDF4JFactory,0,54,0,0,0,9,0,9,0,9
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j.impl,RepositoryDatasetImpl,259,457,52,20,3,82,36,19,1,18
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j.impl,LiteralImpl,8,141,5,9,3,17,6,9,1,7
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j.impl,ModelGraphImpl.new ClosableIterable() {...},0,29,0,0,0,4,0,3,0,3
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j.impl,RepositoryGraphImpl,330,348,63,19,8,66,42,14,1,14
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j.impl,AbstractRDFTerm,0,9,0,0,0,4,0,2,0,2
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j,RDF4J.new InternalRDF4JFactory() {...},0,3,0,0,0,1,0,1,0,1
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j,RDF4J,145,302,9,13,27,65,10,31,3,27
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j,RDF4J.Option,5,33,0,0,0,3,1,3,1,3
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j.experimental,RDF4JParser.AddToModel,19,0,0,0,7,0,3,0,3,0
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j.experimental,RDF4JParser.AddToQuadConsumer,18,0,0,0,5,0,2,0,2,0
+Commons RDF: Integration: RDF4j,org.apache.commons.rdf.rdf4j.experimental,RDF4JParser,318,0,28,0,51,0,22,0,8,0

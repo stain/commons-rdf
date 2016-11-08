@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JsonLdGraph.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Commons RDF: Integration: JSON-LD Java</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.rdf.jsonldjava</a> &gt; <span class="el_source">JsonLdGraph.java</span></div><h1>JsonLdGraph.java</h1><pre class="source lang-java linenums">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements. See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership. The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * &quot;License&quot;); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.rdf.jsonldjava;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Stream;
+
+import org.apache.commons.rdf.api.BlankNodeOrIRI;
+import org.apache.commons.rdf.api.Graph;
+import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.RDFTerm;
+import org.apache.commons.rdf.api.Triple;
+
+import com.github.jsonldjava.core.RDFDataset;
+
+/**
+ * A {@link Graph} view of a JsonLd {@link RDFDataset}.
+ * 
+ */
+public interface JsonLdGraph extends JsonLdGraphLike&lt;Triple&gt;, Graph {
+}
+
+class JsonLdGraphImpl extends AbstractJsonLdGraphLike&lt;Triple&gt; implements JsonLdGraph {
+
+    private final Optional&lt;BlankNodeOrIRI&gt; graphName;
+
+    JsonLdGraphImpl(RDFDataset rdfDataSet) {
+<span class="nc" id="L45">        super(rdfDataSet);</span>
+<span class="nc" id="L46">        this.graphName = Optional.empty();</span>
+<span class="nc" id="L47">    }</span>
+
+    JsonLdGraphImpl(RDFDataset rdfDataSet, Optional&lt;BlankNodeOrIRI&gt; graphName, String bnodePrefix) {
+<span class="fc" id="L50">        super(rdfDataSet, bnodePrefix);</span>
+<span class="fc" id="L51">        this.graphName = Objects.requireNonNull(graphName);</span>
+<span class="fc" id="L52">    }</span>
+
+    JsonLdGraphImpl(String bnodePrefix) {
+<span class="fc" id="L55">        super(bnodePrefix);</span>
+<span class="fc" id="L56">        this.graphName = Optional.empty();</span>
+<span class="fc" id="L57">    }</span>
+
+    @Override
+    public void clear() {
+<span class="fc" id="L61">        filteredGraphs(graphName).forEach(l -&gt; l.clear());</span>
+<span class="fc" id="L62">    }</span>
+
+    @Override
+    public void add(Triple t) {
+        // Ensure it's added in the correct graph
+<span class="fc" id="L67">        super.add(graphName.orElse(null), t.getSubject(), t.getPredicate(), t.getObject());</span>
+<span class="fc" id="L68">    }</span>
+
+    @Override
+    public void add(BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="fc" id="L72">        super.add(graphName.orElse(null), subject, predicate, object);</span>
+<span class="fc" id="L73">    }</span>
+
+    @Override
+    public boolean contains(BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="fc" id="L77">        return super.contains(graphName, subject, predicate, object);</span>
+    }
+
+    @Override
+    public boolean contains(Triple t) {
+<span class="fc" id="L82">        return contains(graphName, t.getSubject(), t.getPredicate(), t.getObject());</span>
+    }
+
+    @Override
+    public void remove(BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="fc" id="L87">        super.remove(graphName, subject, predicate, object);</span>
+<span class="fc" id="L88">    }</span>
+
+    @Override
+    public void remove(Triple t) {
+        // Only remove from the particular graph
+<span class="fc" id="L93">        remove(graphName, t.getSubject(), t.getPredicate(), t.getObject());</span>
+<span class="fc" id="L94">    }</span>
+
+    @Override
+    public long size() {
+<span class="fc" id="L98">        String g = graphName.map(factory::asJsonLdString).orElse(&quot;@default&quot;);</span>
+<span class="fc" id="L99">        return Optional.ofNullable(rdfDataSet.getQuads(g)).map(List::size).orElse(0);</span>
+    }
+
+    @Override
+    public Stream&lt;JsonLdTriple&gt; stream(BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="fc" id="L104">        return filteredGraphs(graphName).flatMap(List::stream).filter(quadFilter(subject, predicate, object))</span>
+<span class="fc" id="L105">                .map(factory::asTriple);</span>
+    }
+
+    @Override
+    JsonLdTriple asTripleOrQuad(com.github.jsonldjava.core.RDFDataset.Quad jsonldQuad) {
+<span class="fc" id="L110">        return factory.asTriple(jsonldQuad);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

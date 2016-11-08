@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JsonLdQuadLike.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Commons RDF: Integration: JSON-LD Java</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.rdf.jsonldjava</a> &gt; <span class="el_source">JsonLdQuadLike.java</span></div><h1>JsonLdQuadLike.java</h1><pre class="source lang-java linenums">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements. See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership. The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * &quot;License&quot;); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.rdf.jsonldjava;
+
+import java.util.Optional;
+
+import org.apache.commons.rdf.api.QuadLike;
+import org.apache.commons.rdf.api.RDFTerm;
+
+import com.github.jsonldjava.core.RDFDataset.Quad;
+
+public interface JsonLdQuadLike&lt;G extends RDFTerm&gt; extends QuadLike&lt;G&gt;, JsonLdTripleLike {
+
+}
+
+class JsonLdQuadLikeImpl&lt;S extends RDFTerm, P extends RDFTerm, O extends RDFTerm, G extends RDFTerm&gt;
+        implements JsonLdQuadLike&lt;G&gt; {
+
+    // Note: We always pass the blankNodePrefix and don't rely on the internal
+    // blankNodePrefix in this static factory
+<span class="fc" id="L36">    private static JsonLdRDF rdfTermFactory = new JsonLdRDF();</span>
+
+    private final Quad quad;
+    private String blankNodePrefix;
+
+<span class="fc" id="L41">    JsonLdQuadLikeImpl(Quad jsonldQuad, String blankNodePrefix) {</span>
+<span class="fc" id="L42">        this.quad = jsonldQuad;</span>
+<span class="fc" id="L43">        this.blankNodePrefix = blankNodePrefix;</span>
+<span class="fc" id="L44">    }</span>
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    @Override
+    public Optional&lt;G&gt; getGraphName() {
+<span class="fc" id="L49">        G g = (G) rdfTermFactory.asRDFTerm(quad.getGraph(), blankNodePrefix);</span>
+<span class="fc" id="L50">        return Optional.ofNullable(g);</span>
+    }
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    @Override
+    public S getSubject() {
+<span class="fc" id="L56">        return (S) rdfTermFactory.asRDFTerm(quad.getSubject(), blankNodePrefix);</span>
+    }
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    @Override
+    public P getPredicate() {
+<span class="fc" id="L62">        return (P) rdfTermFactory.asRDFTerm(quad.getPredicate(), blankNodePrefix);</span>
+    }
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    @Override
+    public O getObject() {
+<span class="fc" id="L68">        return (O) rdfTermFactory.asRDFTerm(quad.getObject(), blankNodePrefix);</span>
+    }
+
+    public Quad asJsonLdQuad() {
+<span class="nc" id="L72">        return quad;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

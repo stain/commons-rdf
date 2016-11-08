@@ -1,0 +1,105 @@
+Comparing source compatibility of /home/stain/src/rdf-0.3.0-rc2/1/apache-commons-rdf-0.3.0-incubating/simple/target/commons-rdf-simple-0.3.0-incubating.jar against /home/stain/.m2/repository/org/apache/commons/commons-rdf-simple/0.2.0-incubating/commons-rdf-simple-0.2.0-incubating.jar
++++* NEW CLASS: PUBLIC(+) org.apache.commons.rdf.simple.DatasetGraphView  (not serializable)
+	+++  NEW INTERFACE: org.apache.commons.rdf.api.Graph
+	+++  NEW INTERFACE: java.lang.AutoCloseable
+	+++  NEW INTERFACE: org.apache.commons.rdf.api.GraphLike
+	+++  NEW SUPERCLASS: java.lang.Object
+	+++  NEW CONSTRUCTOR: PUBLIC(+) DatasetGraphView(org.apache.commons.rdf.api.Dataset)
+	+++  NEW CONSTRUCTOR: PUBLIC(+) DatasetGraphView(org.apache.commons.rdf.api.Dataset, org.apache.commons.rdf.api.BlankNodeOrIRI)
+	+++  NEW METHOD: PUBLIC(+) void add(org.apache.commons.rdf.api.Triple)
+	+++  NEW METHOD: PUBLIC(+) void add(org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.IRI, org.apache.commons.rdf.api.RDFTerm)
+	+++  NEW METHOD: PUBLIC(+) void clear()
+	+++* NEW METHOD: PUBLIC(+) void close()
+		+++  NEW EXCEPTION: java.lang.Exception
+	+++  NEW METHOD: PUBLIC(+) boolean contains(org.apache.commons.rdf.api.Triple)
+	+++  NEW METHOD: PUBLIC(+) boolean contains(org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.IRI, org.apache.commons.rdf.api.RDFTerm)
+	+++  NEW METHOD: PUBLIC(+) void remove(org.apache.commons.rdf.api.Triple)
+	+++  NEW METHOD: PUBLIC(+) void remove(org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.IRI, org.apache.commons.rdf.api.RDFTerm)
+	+++  NEW METHOD: PUBLIC(+) long size()
+	+++  NEW METHOD: PUBLIC(+) java.util.stream.Stream stream()
+	+++  NEW METHOD: PUBLIC(+) java.util.stream.Stream stream(org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.IRI, org.apache.commons.rdf.api.RDFTerm)
++++* NEW CLASS: PUBLIC(+) ABSTRACT(+) org.apache.commons.rdf.simple.experimental.AbstractRDFParser  (not serializable)
+	+++  NEW INTERFACE: org.apache.commons.rdf.experimental.RDFParser
+	+++  NEW INTERFACE: java.lang.Cloneable
+	+++  NEW SUPERCLASS: java.lang.Object
+	+++  NEW FIELD: PUBLIC(+) STATIC(+) FINAL(+) java.lang.ThreadGroup threadGroup
+	+++  NEW CONSTRUCTOR: PUBLIC(+) AbstractRDFParser()
+	+++  NEW METHOD: PROTECTED(+) org.apache.commons.rdf.simple.experimental.AbstractRDFParser asT()
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.simple.experimental.AbstractRDFParser base(org.apache.commons.rdf.api.IRI)
+	+++* NEW METHOD: PUBLIC(+) org.apache.commons.rdf.simple.experimental.AbstractRDFParser base(java.lang.String)
+		+++  NEW EXCEPTION: java.lang.IllegalArgumentException
+	+++* NEW METHOD: PROTECTED(+) void checkBaseRequired()
+		+++  NEW EXCEPTION: java.lang.IllegalStateException
+	+++* NEW METHOD: PROTECTED(+) void checkContentType()
+		+++  NEW EXCEPTION: java.lang.IllegalStateException
+	+++* NEW METHOD: PROTECTED(+) void checkIsAbsolute(org.apache.commons.rdf.api.IRI)
+		+++  NEW EXCEPTION: java.lang.IllegalArgumentException
+	+++* NEW METHOD: PROTECTED(+) void checkSource()
+		+++  NEW EXCEPTION: java.io.IOException
+	+++  NEW METHOD: PROTECTED(+) void checkTarget()
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.simple.experimental.AbstractRDFParser clone()
+	+++* NEW METHOD: PUBLIC(+) org.apache.commons.rdf.simple.experimental.AbstractRDFParser contentType(org.apache.commons.rdf.api.RDFSyntax)
+		+++  NEW EXCEPTION: java.lang.IllegalArgumentException
+	+++* NEW METHOD: PUBLIC(+) org.apache.commons.rdf.simple.experimental.AbstractRDFParser contentType(java.lang.String)
+		+++  NEW EXCEPTION: java.lang.IllegalArgumentException
+	+++  NEW METHOD: PROTECTED(+) org.apache.commons.rdf.api.RDF createRDFTermFactory()
+	+++  NEW METHOD: PUBLIC(+) java.util.Optional getBase()
+	+++  NEW METHOD: PUBLIC(+) FINAL(+) java.util.Optional getContentType()
+	+++  NEW METHOD: PUBLIC(+) java.util.Optional getContentTypeSyntax()
+	+++  NEW METHOD: PUBLIC(+) java.util.Optional getRdfTermFactory()
+	+++  NEW METHOD: PUBLIC(+) java.util.Optional getSourceFile()
+	+++  NEW METHOD: PUBLIC(+) java.util.Optional getSourceInputStream()
+	+++  NEW METHOD: PUBLIC(+) java.util.Optional getSourceIri()
+	+++  NEW METHOD: PUBLIC(+) java.util.function.Consumer getTarget()
+	+++  NEW METHOD: PUBLIC(+) java.util.Optional getTargetDataset()
+	+++  NEW METHOD: PUBLIC(+) java.util.Optional getTargetGraph()
+	+++  NEW METHOD: PROTECTED(+) STATIC(+) java.util.Optional guessRDFSyntax(java.nio.file.Path)
+	+++* NEW METHOD: PUBLIC(+) java.util.concurrent.Future parse()
+		+++  NEW EXCEPTION: java.io.IOException
+		+++  NEW EXCEPTION: java.lang.IllegalStateException
+	+++* NEW METHOD: PROTECTED(+) ABSTRACT(+) void parseSynchronusly()
+		+++  NEW EXCEPTION: java.io.IOException
+		+++  NEW EXCEPTION: org.apache.commons.rdf.simple.experimental.RDFParseException
+	+++* NEW METHOD: PROTECTED(+) org.apache.commons.rdf.simple.experimental.AbstractRDFParser prepareForParsing()
+		+++  NEW EXCEPTION: java.io.IOException
+		+++  NEW EXCEPTION: java.lang.IllegalStateException
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.simple.experimental.AbstractRDFParser rdfTermFactory(org.apache.commons.rdf.api.RDF)
+	+++  NEW METHOD: PROTECTED(+) void resetSource()
+	+++  NEW METHOD: PROTECTED(+) void resetTarget()
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.simple.experimental.AbstractRDFParser source(java.io.InputStream)
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.simple.experimental.AbstractRDFParser source(java.nio.file.Path)
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.simple.experimental.AbstractRDFParser source(org.apache.commons.rdf.api.IRI)
+	+++* NEW METHOD: PUBLIC(+) org.apache.commons.rdf.simple.experimental.AbstractRDFParser source(java.lang.String)
+		+++  NEW EXCEPTION: java.lang.IllegalArgumentException
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.simple.experimental.AbstractRDFParser target(java.util.function.Consumer)
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.simple.experimental.AbstractRDFParser target(org.apache.commons.rdf.api.Dataset)
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.simple.experimental.AbstractRDFParser target(org.apache.commons.rdf.api.Graph)
++++  NEW CLASS: PUBLIC(+) org.apache.commons.rdf.simple.experimental.RDFParseException  (compatible)
+	+++  NEW INTERFACE: java.io.Serializable
+	+++  NEW SUPERCLASS: java.lang.Exception
+	+++  NEW CONSTRUCTOR: PUBLIC(+) RDFParseException(org.apache.commons.rdf.experimental.RDFParser, java.lang.String)
+	+++  NEW CONSTRUCTOR: PUBLIC(+) RDFParseException(org.apache.commons.rdf.experimental.RDFParser, java.lang.String, java.lang.Throwable)
+	+++  NEW CONSTRUCTOR: PUBLIC(+) RDFParseException(org.apache.commons.rdf.experimental.RDFParser, java.lang.Throwable)
+	+++  NEW CONSTRUCTOR: PUBLIC(+) RDFParseException(org.apache.commons.rdf.experimental.RDFParser)
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.experimental.RDFParser getRDFParserBuilder()
++++* NEW CLASS: PUBLIC(+) org.apache.commons.rdf.simple.SimpleRDF  (not serializable)
+	+++  NEW INTERFACE: org.apache.commons.rdf.api.RDF
+	+++  NEW SUPERCLASS: java.lang.Object
+	+++  NEW CONSTRUCTOR: PUBLIC(+) SimpleRDF()
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.api.BlankNode createBlankNode()
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.api.BlankNode createBlankNode(java.lang.String)
+	+++* NEW METHOD: PUBLIC(+) org.apache.commons.rdf.api.Dataset createDataset()
+		+++  NEW EXCEPTION: java.lang.UnsupportedOperationException
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.api.Graph createGraph()
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.api.IRI createIRI(java.lang.String)
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.api.Literal createLiteral(java.lang.String)
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.api.Literal createLiteral(java.lang.String, org.apache.commons.rdf.api.IRI)
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.api.Literal createLiteral(java.lang.String, java.lang.String)
+	+++* NEW METHOD: PUBLIC(+) org.apache.commons.rdf.api.Quad createQuad(org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.IRI, org.apache.commons.rdf.api.RDFTerm)
+		+++  NEW EXCEPTION: java.lang.IllegalArgumentException
+	+++  NEW METHOD: PUBLIC(+) org.apache.commons.rdf.api.Triple createTriple(org.apache.commons.rdf.api.BlankNodeOrIRI, org.apache.commons.rdf.api.IRI, org.apache.commons.rdf.api.RDFTerm)
+===  UNCHANGED CLASS: PUBLIC org.apache.commons.rdf.simple.SimpleRDFTermFactory  (not serializable)
+	+++  NEW ANNOTATION: java.lang.Deprecated
+***  MODIFIED CLASS: PUBLIC FINAL org.apache.commons.rdf.simple.Types  (not serializable)
+	---* REMOVED INTERFACE: org.apache.commons.rdf.simple.SimpleRDFTermFactory$SimpleRDFTerm
+	+++  NEW INTERFACE: org.apache.commons.rdf.simple.SimpleRDF$SimpleRDFTerm

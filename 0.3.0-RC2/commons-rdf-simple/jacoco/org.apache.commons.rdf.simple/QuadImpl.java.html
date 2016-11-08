@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>QuadImpl.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Commons RDF: Simple Implementation</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.rdf.simple</a> &gt; <span class="el_source">QuadImpl.java</span></div><h1>QuadImpl.java</h1><pre class="source lang-java linenums">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements. See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership. The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * &quot;License&quot;); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.rdf.simple;
+
+import org.apache.commons.rdf.api.BlankNodeOrIRI;
+import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.Quad;
+import org.apache.commons.rdf.api.RDFTerm;
+import org.apache.commons.rdf.api.Triple;
+
+import java.util.Objects;
+import java.util.Optional;
+
+/**
+ * A simple implementation of Quad.
+ */
+final class QuadImpl implements Quad {
+
+    private final BlankNodeOrIRI graphName;
+    private final BlankNodeOrIRI subject;
+    private final IRI predicate;
+    private final RDFTerm object;
+
+    /**
+     * Construct Quad from its constituent parts.
+     * &lt;p&gt;
+     * The objects are not changed. All mapping of BNode objects is done in
+     * {@link SimpleRDF#createQuad(BlankNodeOrIRI, BlankNodeOrIRI, IRI, RDFTerm)}.
+     *
+     * @param graphName
+     *            graphName of triple
+     * @param subject
+     *            subject of triple
+     * @param predicate
+     *            predicate of triple
+     * @param object
+     *            object of triple
+     */
+<span class="fc" id="L54">    public QuadImpl(BlankNodeOrIRI graphName, BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {</span>
+<span class="fc" id="L55">        this.graphName = graphName; // possibly null</span>
+<span class="fc" id="L56">        this.subject = Objects.requireNonNull(subject);</span>
+<span class="fc" id="L57">        this.predicate = Objects.requireNonNull(predicate);</span>
+<span class="fc" id="L58">        this.object = Objects.requireNonNull(object);</span>
+<span class="fc" id="L59">    }</span>
+
+    @Override
+    public Optional&lt;BlankNodeOrIRI&gt; getGraphName() {
+<span class="fc" id="L63">        return Optional.ofNullable(graphName);</span>
+    }
+
+    @Override
+    public BlankNodeOrIRI getSubject() {
+<span class="fc" id="L68">        return subject;</span>
+    }
+
+    @Override
+    public IRI getPredicate() {
+<span class="fc" id="L73">        return predicate;</span>
+    }
+
+    @Override
+    public RDFTerm getObject() {
+<span class="fc" id="L78">        return object;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L83">        return getSubject().ntriplesString() + &quot; &quot; + getPredicate().ntriplesString() + &quot; &quot;</span>
+<span class="fc" id="L84">                + getObject().ntriplesString() + &quot; &quot; + getGraphName().map(g -&gt; g.ntriplesString() + &quot; &quot;).orElse(&quot;&quot;)</span>
+                + &quot;.&quot;;
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L90">        return Objects.hash(subject, predicate, object, graphName);</span>
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">        if (!(obj instanceof Quad)) {</span>
+<span class="nc" id="L96">            return false;</span>
+        }
+<span class="fc" id="L98">        Quad other = (Quad) obj;</span>
+<span class="fc bfc" id="L99" title="All 4 branches covered.">        return getGraphName().equals(other.getGraphName()) &amp;&amp; getSubject().equals(other.getSubject())</span>
+<span class="pc bpc" id="L100" title="1 of 4 branches missed.">                &amp;&amp; getPredicate().equals(other.getPredicate()) &amp;&amp; getObject().equals(other.getObject());</span>
+    }
+
+    @Override
+    public Triple asTriple() {
+<span class="fc" id="L105">        return new TripleImpl(getSubject(), getPredicate(), getObject());</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

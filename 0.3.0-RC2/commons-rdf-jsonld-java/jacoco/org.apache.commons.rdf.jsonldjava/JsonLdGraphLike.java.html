@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JsonLdGraphLike.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Commons RDF: Integration: JSON-LD Java</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.rdf.jsonldjava</a> &gt; <span class="el_source">JsonLdGraphLike.java</span></div><h1>JsonLdGraphLike.java</h1><pre class="source lang-java linenums">/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements. See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership. The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * &quot;License&quot;); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.rdf.jsonldjava;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
+
+import org.apache.commons.rdf.api.BlankNodeOrIRI;
+import org.apache.commons.rdf.api.GraphLike;
+import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.Literal;
+import org.apache.commons.rdf.api.RDFTerm;
+// NOTE: To avod confusion, don't importing either of the Quad
+import org.apache.commons.rdf.api.Triple;
+import org.apache.commons.rdf.api.TripleLike;
+
+import com.github.jsonldjava.core.RDFDataset;
+import com.github.jsonldjava.core.RDFDataset.Node;
+
+/**
+ * Common abstract {@link GraphLike}.
+ * &lt;p&gt;
+ * Specialised by {@link JsonLdGraph}, {@link JsonLdUnionGraph} and
+ * {@link JsonLdDataset}.
+ *
+ * @param &lt;T&gt;
+ *            specialisation of {@link TripleLike}, e.g. {@link Triple} or
+ *            {@link org.apache.commons.rdf.api.Quad}
+ */
+public interface JsonLdGraphLike&lt;T extends TripleLike&gt; extends GraphLike&lt;T&gt; {
+    /**
+     * Return the underlying JSONLD-Java {@link RDFDataset}.
+     * &lt;p&gt;
+     * Changes in the JSONLD-Java dataset is reflected in this class and vice
+     * versa.
+     * 
+     * @return The underlying JSONLD-JAva RDFDataset
+     */
+    public RDFDataset getRdfDataSet();
+}
+
+abstract class AbstractJsonLdGraphLike&lt;T extends TripleLike&gt; implements JsonLdGraphLike&lt;T&gt; {
+
+    /**
+     * Used by {@link #bnodePrefix()} to get a unique UUID per JVM run
+     */
+<span class="fc" id="L66">    private static UUID SALT = UUID.randomUUID();</span>
+
+    /**
+     * Prefix to use in blank node identifiers
+     */
+    final String bnodePrefix;
+
+    final JsonLdRDF factory;
+
+    /**
+     * The underlying JSON-LD {@link RDFDataset}.
+     * &lt;p&gt;
+     * Note: This is NOT final as it is reset to &lt;code&gt;null&lt;/code&gt; by
+     * {@link #close()} (to free memory).
+     */
+    RDFDataset rdfDataSet;
+
+    AbstractJsonLdGraphLike(RDFDataset rdfDataSet) {
+<span class="nc" id="L84">        this(rdfDataSet, &quot;urn:uuid:&quot; + SALT + &quot;#&quot; + &quot;g&quot; + System.identityHashCode(rdfDataSet));</span>
+<span class="nc" id="L85">    }</span>
+
+<span class="fc" id="L87">    AbstractJsonLdGraphLike(RDFDataset rdfDataSet, String bnodePrefix) {</span>
+<span class="fc" id="L88">        this.rdfDataSet = Objects.requireNonNull(rdfDataSet);</span>
+<span class="fc" id="L89">        this.bnodePrefix = Objects.requireNonNull(bnodePrefix);</span>
+<span class="fc" id="L90">        this.factory = new JsonLdRDF(bnodePrefix);</span>
+<span class="fc" id="L91">    }</span>
+
+    AbstractJsonLdGraphLike(String bnodePrefix) {
+<span class="fc" id="L94">        this(new RDFDataset(), bnodePrefix);</span>
+<span class="fc" id="L95">    }</span>
+
+    @Override
+    public void add(T t) {
+        // add triples to default graph by default
+<span class="fc" id="L100">        BlankNodeOrIRI graphName = null;</span>
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">        if (t instanceof org.apache.commons.rdf.api.Quad) {</span>
+<span class="fc" id="L102">            org.apache.commons.rdf.api.Quad q = (org.apache.commons.rdf.api.Quad) t;</span>
+<span class="fc" id="L103">            graphName = q.getGraphName().orElse(null);</span>
+        }
+        // FIXME: JSON-LD's rdfDataSet.addQuad method does not support
+        // generalized RDF, so we have to do a naive cast here
+<span class="fc" id="L107">        add(graphName, (BlankNodeOrIRI) t.getSubject(), (IRI) t.getPredicate(), t.getObject());</span>
+<span class="fc" id="L108">    }</span>
+
+    void add(BlankNodeOrIRI graphName, BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="fc" id="L111">        String g = factory.asJsonLdString(graphName);</span>
+<span class="fc" id="L112">        String s = factory.asJsonLdString(subject);</span>
+<span class="fc" id="L113">        String p = factory.asJsonLdString(predicate);</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">        if (object instanceof BlankNodeOrIRI) {</span>
+<span class="fc" id="L115">            String o = factory.asJsonLdString((BlankNodeOrIRI) object);</span>
+<span class="fc" id="L116">            rdfDataSet.addQuad(s, p, o, g);</span>
+<span class="pc bpc" id="L117" title="1 of 2 branches missed.">        } else if (object instanceof Literal) {</span>
+<span class="fc" id="L118">            Literal literal = (Literal) object;</span>
+<span class="fc" id="L119">            String language = literal.getLanguageTag().orElse(null);</span>
+<span class="fc" id="L120">            String datatype = literal.getDatatype().getIRIString();</span>
+<span class="fc" id="L121">            rdfDataSet.addQuad(s, p, literal.getLexicalForm(), datatype, language, g);</span>
+        }
+<span class="fc" id="L123">    }</span>
+
+    public void close() {
+        // Drop the memory reference, but don't clear it
+<span class="nc" id="L127">        rdfDataSet = null;</span>
+<span class="nc" id="L128">    }</span>
+
+    @Override
+    public void clear() {
+<span class="fc" id="L132">        filteredGraphs(null).forEach(s -&gt; s.clear());</span>
+        // In theory we could use
+        // rdfDataSet.clear();
+        // but then we would need to also do
+        // rdfDataSet.put(&quot;@default&quot;, new ArrayList());
+        // .. both of which seems to be touching too much on JsonLd-Java's
+        // internal structure
+<span class="fc" id="L139">    }</span>
+
+    @Override
+    public boolean contains(T tripleOrQuad) {
+<span class="fc" id="L143">        return stream().anyMatch(Predicate.isEqual(tripleOrQuad));</span>
+    }
+
+    public RDFDataset getRdfDataSet() {
+<span class="fc" id="L147">        return rdfDataSet;</span>
+    }
+
+    @Override
+    public Stream&lt;? extends T&gt; stream() {
+<span class="fc" id="L152">        return rdfDataSet.graphNames().parallelStream().map(rdfDataSet::getQuads)</span>
+<span class="fc" id="L153">                .flatMap(List&lt;RDFDataset.Quad&gt;::parallelStream).map(this::asTripleOrQuad);</span>
+    }
+
+    /**
+     * Convert JsonLd Quad to a Commons RDF {@link Triple} or
+     * {@link org.apache.commons.rdf.api.Quad}
+     * 
+     * 
+     * @see JsonLdRDF#asTriple(Quad)
+     * @see JsonLdRDF#asQuad(Quad)
+     * @param jsonldQuad
+     *            jsonld quad to convert
+     * @return converted {@link TripleLike}
+     */
+    abstract T asTripleOrQuad(RDFDataset.Quad jsonldQuad);
+
+    // This will be made public in JsonLdDataset
+    // and is used by the other methods.
+    boolean contains(Optional&lt;BlankNodeOrIRI&gt; graphName, BlankNodeOrIRI s, IRI p, RDFTerm o) {
+<span class="fc" id="L172">        return filteredGraphs(graphName).flatMap(List::stream).anyMatch(quadFilter(s, p, o));</span>
+    }
+
+    Stream&lt;List&lt;RDFDataset.Quad&gt;&gt; filteredGraphs(Optional&lt;BlankNodeOrIRI&gt; graphName) {
+<span class="fc" id="L176">        return rdfDataSet.graphNames().parallelStream()</span>
+                // if graphName == null (wildcard), select all graphs,
+                // otherwise check its jsonld string
+                // (including @default for default graph)
+<span class="fc bfc" id="L180" title="All 4 branches covered.">                .filter(g -&gt; graphName == null || g.equals(graphName.map(factory::asJsonLdString).orElse(&quot;@default&quot;)))</span>
+                // remove the quads which match our filter (which could have
+                // nulls as wildcards)
+<span class="fc" id="L183">                .map(rdfDataSet::getQuads);</span>
+    }
+
+    String graphNameAsJsonLdString(T tripleOrQuad) {
+<span class="nc bnc" id="L187" title="All 2 branches missed.">        if (tripleOrQuad instanceof org.apache.commons.rdf.api.Quad) {</span>
+<span class="nc" id="L188">            org.apache.commons.rdf.api.Quad quad = (org.apache.commons.rdf.api.Quad) tripleOrQuad;</span>
+<span class="nc" id="L189">            return quad.getGraphName().map(factory::asJsonLdString).orElse(&quot;@default&quot;);</span>
+        }
+<span class="nc" id="L191">        return &quot;@default&quot;;</span>
+    }
+
+    Predicate&lt;RDFDataset.Quad&gt; quadFilter(BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+<span class="fc" id="L195">        Optional&lt;Node&gt; subjectNode = Optional.ofNullable(subject).map(factory::asJsonLdNode);</span>
+<span class="fc" id="L196">        Optional&lt;Node&gt; predicateNode = Optional.ofNullable(predicate).map(factory::asJsonLdNode);</span>
+<span class="fc" id="L197">        Optional&lt;Node&gt; objectNode = Optional.ofNullable(object).map(factory::asJsonLdNode);</span>
+
+<span class="fc" id="L199">        return q -&gt; {</span>
+<span class="fc bfc" id="L200" title="All 4 branches covered.">            if (subjectNode.isPresent() &amp;&amp; subjectNode.get().compareTo(q.getSubject()) != 0) {</span>
+<span class="fc" id="L201">                return false;</span>
+            }
+<span class="fc bfc" id="L203" title="All 4 branches covered.">            if (predicateNode.isPresent() &amp;&amp; predicateNode.get().compareTo(q.getPredicate()) != 0) {</span>
+<span class="fc" id="L204">                return false;</span>
+            }
+<span class="fc bfc" id="L206" title="All 4 branches covered.">            if (objectNode.isPresent() &amp;&amp; objectNode.get().compareTo(q.getObject()) != 0) {</span>
+<span class="fc" id="L207">                return false;</span>
+            }
+<span class="fc" id="L209">            return true;</span>
+        };
+    }
+
+    // NOTE: This is made public in JsonLdDataset and is used by the other
+    // remove methods.
+    void remove(Optional&lt;BlankNodeOrIRI&gt; graphName, BlankNodeOrIRI subject, IRI predicate, RDFTerm object) {
+        // remove the quads which match our filter (which could have nulls as
+        // wildcards)
+<span class="fc" id="L218">        filteredGraphs(graphName).forEach(t -&gt; t.removeIf(quadFilter(subject, predicate, object)));</span>
+<span class="fc" id="L219">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
