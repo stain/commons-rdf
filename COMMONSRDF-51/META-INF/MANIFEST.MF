@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Implementation-Title: Commons RDF API
+Implementation-Version: 0.4.0-SNAPSHOT
+Built-By: stain
+Specification-Vendor: The Apache Software Foundation
+Specification-Title: Commons RDF API
+Implementation-Vendor-Id: org.apache.commons
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_111
+Specification-Version: 0.4.0-SNAPSHOT
+Implementation-Vendor: The Apache Software Foundation
+
