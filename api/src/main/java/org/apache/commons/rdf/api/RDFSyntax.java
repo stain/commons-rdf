@@ -99,11 +99,12 @@ public interface RDFSyntax {
     public static RDFSyntax TRIG = W3CRDFSyntax.TRIG;
     
     /**
-     * A short name of the RDF Syntax e.g. <code>JSONLD</code>.
+     * A short name of the RDF Syntax.
      * <p>
      * The name is specific to Commons RDF and carries no particular meaning. 
      * 
-     * @return Short name for RDF syntax
+     * @return Short name for RDF syntax, e.g. <code>JSONLD</code>.
+     * @see #byName(String)
      */
     public String name();
 
@@ -113,23 +114,28 @@ public interface RDFSyntax {
      * This is generally the title of the corresponding standard, 
      * e.g. <em>RDF 1.1 Turtle</em>.
      * 
-     * @return Title of RDF Syntax
+     * @return Title of RDF Syntax, e.g. <code>RDF 1.1 Turtle</code>.
      */
     public String title();    
     
     /**
-     * The <a href="https://tools.ietf.org/html/rfc2046">IANA media type</a> for
-     * the RDF syntax.
+     * The IANA media type for the RDF syntax.
      * <p>
      * The media type can be used as part of <code>Content-Type</code> and
      * <code>Accept</code> for <em>content negotiation</em> in the
      * <a href="https://tools.ietf.org/html/rfc7231#section-3.1.1.1">HTTP
      * protocol</a>.
+     * 
+     * @return IANA media type, e.g. <code>text/turtle</code>
+     *  
+     * @see #mediaTypes()
+     * @see #byMediaType(String)
+     * @see <a href="https://tools.ietf.org/html/rfc2046">IANA media type</a>
      */
     public String mediaType();
 
     /**
-     * Set of <a href="https://tools.ietf.org/html/rfc2046">IANA media types/a> that
+     * Set of IANA media types that
      * covers this RDF syntax, including any non-official media types. 
      * <p>
      * The media type can be used as part of <code>Content-Type</code> and
@@ -139,6 +145,10 @@ public interface RDFSyntax {
      * <p>
      * The returned Set MUST include the value {@link #mediaType()}; this is the
      * behaviour of the default implementation.
+     * 
+     * @return Set of IANA media types
+     * @see #mediaType()
+     * @see <a href="https://tools.ietf.org/html/rfc2046">IANA media types</a>
      */
     default public Set<String> mediaTypes() {
         return Collections.singleton(mediaType());
@@ -147,8 +157,10 @@ public interface RDFSyntax {
     /**
      * The <a href="https://tools.ietf.org/html/rfc2046">IANA-registered</a>
      * file extension.
-     * <p>
-     * The file extension includes the leading period, e.g. <code>.jsonld</code>
+     * 
+     * @return File extension including the leading period, e.g. <code>.jsonld</code>
+     * @see #fileExtensions()
+     * @see #byFileExtension(String)
      */
     public String fileExtension();
 
@@ -159,6 +171,10 @@ public interface RDFSyntax {
      * <p>
      * The returned Set MUST include the value from {@link #fileExtension()}; this is
      * the behaviour of the default implementation.
+     * 
+     * @return Set of file extensions
+     * @see #fileExtension()
+     * @see #byFileExtension(String)
      */
     default public Set<String> fileExtensions() {
         return Collections.singleton(fileExtension());
@@ -168,6 +184,8 @@ public interface RDFSyntax {
      * Indicate if this RDF syntax supports
      * <a href="https://www.w3.org/TR/rdf11-concepts/#section-dataset">RDF
      * Datasets</a>.
+     * 
+     * @return <code>true</code> if this syntax supports datasets, otherwise <code>false</code>.
      */
     public boolean supportsDataset();
 
@@ -189,10 +207,9 @@ public interface RDFSyntax {
      * {@link #mediaType()}s are equal when compared as lower case strings
      * according to {@link String#toLowerCase(Locale)} with the locale
      * {@link Locale#ROOT}.
-     * 
-     * @param obj
-     * @return
-     */
+     * <p>
+     * {@inheritDoc}
+s     */
     @Override
     boolean equals(Object obj);
     
@@ -250,6 +267,8 @@ public interface RDFSyntax {
      *         a matching {@link RDFSyntax#mediaType()}, otherwise
      *         {@link Optional#empty()} indicating that no matching syntax was
      *         found.
+     * @see #mediaTypes()
+     *         
      */
     public static Optional<RDFSyntax> byMediaType(final String mediaType) {
         final String type = mediaType.toLowerCase(Locale.ROOT).split("\\s*;", 2)[0];
@@ -272,6 +291,7 @@ public interface RDFSyntax {
      *         a matching {@link RDFSyntax#fileExtension()}, otherwise
      *         {@link Optional#empty()} indicating that no matching file
      *         extension was found.
+     * @see #fileExtensions()
      */
     public static Optional<RDFSyntax> byFileExtension(final String fileExtension) {
         final String ext = fileExtension.toLowerCase(Locale.ROOT);        
@@ -289,6 +309,7 @@ public interface RDFSyntax {
      * @return If {@link Optional#isPresent()}, the {@link RDFSyntax} which has
      *         a matching {@link RDFSyntax#name()}, otherwise
      *         {@link Optional#empty()} indicating that no matching name was found.
+     * @see #name()
      */    
     public static Optional<RDFSyntax> byName(final String name) {
         return w3cSyntaxes().stream().filter(t -> t.name().equals(name)).findAny();
