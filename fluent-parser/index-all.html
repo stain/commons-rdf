@@ -160,22 +160,10 @@
  subject position of an RDF-1.1 <a href="org/apache/commons/rdf/api/Triple.html" title="interface in org.apache.commons.rdf.api"><code>Triple</code></a> as well as the graph name
  position of a <a href="org/apache/commons/rdf/api/Quad.html" title="interface in org.apache.commons.rdf.api"><code>Quad</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/fluentparser/Async.html#build--">build()</a></span> - Method in interface org.apache.commons.rdf.api.fluentparser.<a href="org/apache/commons/rdf/api/fluentparser/Async.html" title="interface in org.apache.commons.rdf.api.fluentparser">Async</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/fluentparser/Buildable.html#build--">build()</a></span> - Method in interface org.apache.commons.rdf.api.fluentparser.<a href="org/apache/commons/rdf/api/fluentparser/Buildable.html" title="interface in org.apache.commons.rdf.api.fluentparser">Buildable</a></dt>
 <dd>
-<div class="block">Return an immutable builder at the current state.</div>
+<div class="block">Build the (potentially partial) parser config.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/fluentparser/NeedSourceBased.html#build--">build()</a></span> - Method in interface org.apache.commons.rdf.api.fluentparser.<a href="org/apache/commons/rdf/api/fluentparser/NeedSourceBased.html" title="interface in org.apache.commons.rdf.api.fluentparser">NeedSourceBased</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/fluentparser/NeedSourceOrBase.html#build--">build()</a></span> - Method in interface org.apache.commons.rdf.api.fluentparser.<a href="org/apache/commons/rdf/api/fluentparser/NeedSourceOrBase.html" title="interface in org.apache.commons.rdf.api.fluentparser">NeedSourceOrBase</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/fluentparser/NeedTargetOrRDF.html#build--">build()</a></span> - Method in interface org.apache.commons.rdf.api.fluentparser.<a href="org/apache/commons/rdf/api/fluentparser/NeedTargetOrRDF.html" title="interface in org.apache.commons.rdf.api.fluentparser">NeedTargetOrRDF</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/fluentparser/OptionalTarget.html#build--">build()</a></span> - Method in interface org.apache.commons.rdf.api.fluentparser.<a href="org/apache/commons/rdf/api/fluentparser/OptionalTarget.html" title="interface in org.apache.commons.rdf.api.fluentparser">OptionalTarget</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/fluentparser/Sync.html#build--">build()</a></span> - Method in interface org.apache.commons.rdf.api.fluentparser.<a href="org/apache/commons/rdf/api/fluentparser/Sync.html" title="interface in org.apache.commons.rdf.api.fluentparser">Sync</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/fluentwriter/Async.html#build--">build()</a></span> - Method in interface org.apache.commons.rdf.api.fluentwriter.<a href="org/apache/commons/rdf/api/fluentwriter/Async.html" title="interface in org.apache.commons.rdf.api.fluentwriter">Async</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/fluentwriter/Buildable.html#build--">build()</a></span> - Method in interface org.apache.commons.rdf.api.fluentwriter.<a href="org/apache/commons/rdf/api/fluentwriter/Buildable.html" title="interface in org.apache.commons.rdf.api.fluentwriter">Buildable</a></dt>
@@ -193,8 +181,6 @@
 <dt><a href="org/apache/commons/rdf/api/fluentparser/Buildable.html" title="interface in org.apache.commons.rdf.api.fluentparser"><span class="typeNameLink">Buildable</span></a> - Interface in <a href="org/apache/commons/rdf/api/fluentparser/package-summary.html">org.apache.commons.rdf.api.fluentparser</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/apache/commons/rdf/api/fluentwriter/Buildable.html" title="interface in org.apache.commons.rdf.api.fluentwriter"><span class="typeNameLink">Buildable</span></a> - Interface in <a href="org/apache/commons/rdf/api/fluentwriter/package-summary.html">org.apache.commons.rdf.api.fluentwriter</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/io/ParserConfigBuilder.html#buildConfig--">buildConfig()</a></span> - Method in class org.apache.commons.rdf.api.io.<a href="org/apache/commons/rdf/api/io/ParserConfigBuilder.html" title="class in org.apache.commons.rdf.api.io">ParserConfigBuilder</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/RDFSyntax.html#byFileExtension-java.lang.String-">byFileExtension(String)</a></span> - Static method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/RDFSyntax.html" title="interface in org.apache.commons.rdf.api">RDFSyntax</a></dt>
 <dd>
@@ -569,7 +555,25 @@
 </a>
 <h2 class="title">I</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/fluentparser/Async.html#immutable--">immutable()</a></span> - Method in interface org.apache.commons.rdf.api.fluentparser.<a href="org/apache/commons/rdf/api/fluentparser/Async.html" title="interface in org.apache.commons.rdf.api.fluentparser">Async</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/fluentparser/Buildable.html#immutable--">immutable()</a></span> - Method in interface org.apache.commons.rdf.api.fluentparser.<a href="org/apache/commons/rdf/api/fluentparser/Buildable.html" title="interface in org.apache.commons.rdf.api.fluentparser">Buildable</a></dt>
+<dd>
+<div class="block">Return an immutable builder at the current state.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/fluentparser/NeedSourceBased.html#immutable--">immutable()</a></span> - Method in interface org.apache.commons.rdf.api.fluentparser.<a href="org/apache/commons/rdf/api/fluentparser/NeedSourceBased.html" title="interface in org.apache.commons.rdf.api.fluentparser">NeedSourceBased</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/fluentparser/NeedSourceOrBase.html#immutable--">immutable()</a></span> - Method in interface org.apache.commons.rdf.api.fluentparser.<a href="org/apache/commons/rdf/api/fluentparser/NeedSourceOrBase.html" title="interface in org.apache.commons.rdf.api.fluentparser">NeedSourceOrBase</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/fluentparser/NeedTargetOrRDF.html#immutable--">immutable()</a></span> - Method in interface org.apache.commons.rdf.api.fluentparser.<a href="org/apache/commons/rdf/api/fluentparser/NeedTargetOrRDF.html" title="interface in org.apache.commons.rdf.api.fluentparser">NeedTargetOrRDF</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/fluentparser/OptionalTarget.html#immutable--">immutable()</a></span> - Method in interface org.apache.commons.rdf.api.fluentparser.<a href="org/apache/commons/rdf/api/fluentparser/OptionalTarget.html" title="interface in org.apache.commons.rdf.api.fluentparser">OptionalTarget</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/fluentparser/Sync.html#immutable--">immutable()</a></span> - Method in interface org.apache.commons.rdf.api.fluentparser.<a href="org/apache/commons/rdf/api/fluentparser/Sync.html" title="interface in org.apache.commons.rdf.api.fluentparser">Sync</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/io/ParserConfig.html#immutable--">immutable()</a></span> - Static method in interface org.apache.commons.rdf.api.io.<a href="org/apache/commons/rdf/api/io/ParserConfig.html" title="interface in org.apache.commons.rdf.api.io">ParserConfig</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/io/ParserConfigBuilder.html#immutable--">immutable()</a></span> - Method in class org.apache.commons.rdf.api.io.<a href="org/apache/commons/rdf/api/io/ParserConfigBuilder.html" title="class in org.apache.commons.rdf.api.io">ParserConfigBuilder</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/io/WriterConfig.html#immutable--">immutable()</a></span> - Static method in interface org.apache.commons.rdf.api.io.<a href="org/apache/commons/rdf/api/io/WriterConfig.html" title="interface in org.apache.commons.rdf.api.io">WriterConfig</a></dt>
 <dd>&nbsp;</dd>
@@ -644,11 +648,12 @@
 <dl>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/RDFSyntax.html#mediaType--">mediaType()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/RDFSyntax.html" title="interface in org.apache.commons.rdf.api">RDFSyntax</a></dt>
 <dd>
-<div class="block">The IANA media type for the RDF syntax.</div>
+<div class="block">The <a href="https://tools.ietf.org/html/rfc2046">IANA media type</a> for
+ the RDF syntax.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/RDFSyntax.html#mediaTypes--">mediaTypes()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/RDFSyntax.html" title="interface in org.apache.commons.rdf.api">RDFSyntax</a></dt>
 <dd>
-<div class="block">Set of IANA media types that
+<div class="block">Set of <a href="https://tools.ietf.org/html/rfc2046">IANA media types</a> that
  covers this RDF syntax, including any non-official media types.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/io/ParserConfig.html#mutable--">mutable()</a></span> - Static method in interface org.apache.commons.rdf.api.io.<a href="org/apache/commons/rdf/api/io/ParserConfig.html" title="interface in org.apache.commons.rdf.api.io">ParserConfig</a></dt>
@@ -663,7 +668,7 @@
 <dl>
 <dt><span class="memberNameLink"><a href="org/apache/commons/rdf/api/RDFSyntax.html#name--">name()</a></span> - Method in interface org.apache.commons.rdf.api.<a href="org/apache/commons/rdf/api/RDFSyntax.html" title="interface in org.apache.commons.rdf.api">RDFSyntax</a></dt>
 <dd>
-<div class="block">A short name of the RDF Syntax.</div>
+<div class="block">A short name of the RDF Syntax e.g.</div>
 </dd>
 <dt><a href="org/apache/commons/rdf/api/fluentwriter/NeedSource.html" title="interface in org.apache.commons.rdf.api.fluentwriter"><span class="typeNameLink">NeedSource</span></a> - Interface in <a href="org/apache/commons/rdf/api/fluentwriter/package-summary.html">org.apache.commons.rdf.api.fluentwriter</a></dt>
 <dd>&nbsp;</dd>

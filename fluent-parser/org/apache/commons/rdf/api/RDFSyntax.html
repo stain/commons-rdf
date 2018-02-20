@@ -243,20 +243,21 @@ var activeTableTab = "activeTableTab";
 <tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/RDFSyntax.html#mediaType--">mediaType</a></span>()</code>
-<div class="block">The IANA media type for the RDF syntax.</div>
+<div class="block">The <a href="https://tools.ietf.org/html/rfc2046">IANA media type</a> for
+ the RDF syntax.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>default <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/RDFSyntax.html#mediaTypes--">mediaTypes</a></span>()</code>
-<div class="block">Set of IANA media types that
+<div class="block">Set of <a href="https://tools.ietf.org/html/rfc2046">IANA media types</a> that
  covers this RDF syntax, including any non-official media types.</div>
 </td>
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/apache/commons/rdf/api/RDFSyntax.html#name--">name</a></span>()</code>
-<div class="block">A short name of the RDF Syntax.</div>
+<div class="block">A short name of the RDF Syntax e.g.</div>
 </td>
 </tr>
 <tr id="i11" class="rowColor">
@@ -416,14 +417,12 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>name</h4>
 <pre><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name()</pre>
-<div class="block">A short name of the RDF Syntax.
+<div class="block">A short name of the RDF Syntax e.g. <code>JSONLD</code>.
  <p>
  The name is specific to Commons RDF and carries no particular meaning.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>Short name for RDF syntax, e.g. <code>JSONLD</code>.</dd>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../../org/apache/commons/rdf/api/RDFSyntax.html#byName-java.lang.String-"><code>byName(String)</code></a></dd>
+<dd>Short name for RDF syntax</dd>
 </dl>
 </li>
 </ul>
@@ -440,7 +439,7 @@ var activeTableTab = "activeTableTab";
  e.g. <em>RDF 1.1 Turtle</em>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>Title of RDF Syntax, e.g. <code>RDF 1.1 Turtle</code>.</dd>
+<dd>Title of RDF Syntax</dd>
 </dl>
 </li>
 </ul>
@@ -451,7 +450,8 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>mediaType</h4>
 <pre><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mediaType()</pre>
-<div class="block">The IANA media type for the RDF syntax.
+<div class="block">The <a href="https://tools.ietf.org/html/rfc2046">IANA media type</a> for
+ the RDF syntax.
  <p>
  The media type can be used as part of <code>Content-Type</code> and
  <code>Accept</code> for <em>content negotiation</em> in the
@@ -459,11 +459,7 @@ var activeTableTab = "activeTableTab";
  protocol</a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>IANA media type, e.g. <code>text/turtle</code></dd>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../../org/apache/commons/rdf/api/RDFSyntax.html#mediaTypes--"><code>mediaTypes()</code></a>, 
-<a href="../../../../../org/apache/commons/rdf/api/RDFSyntax.html#byMediaType-java.lang.String-"><code>byMediaType(String)</code></a>, 
-<a href="https://tools.ietf.org/html/rfc2046">IANA media type</a></dd>
+<dd>The registered media type of the RDF Syntax</dd>
 </dl>
 </li>
 </ul>
@@ -474,8 +470,8 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>mediaTypes</h4>
 <pre>default&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;mediaTypes()</pre>
-<div class="block">Set of IANA media types that
- covers this RDF syntax, including any non-official media types. 
+<div class="block">Set of <a href="https://tools.ietf.org/html/rfc2046">IANA media types</a> that
+ covers this RDF syntax, including any non-official media types.
  <p>
  The media type can be used as part of <code>Content-Type</code> and
  <code>Accept</code> for <em>content negotiation</em> in the
@@ -486,10 +482,7 @@ var activeTableTab = "activeTableTab";
  behaviour of the default implementation.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>Set of IANA media types</dd>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../../org/apache/commons/rdf/api/RDFSyntax.html#mediaType--"><code>mediaType()</code></a>, 
-<a href="https://tools.ietf.org/html/rfc2046">IANA media types</a></dd>
+<dd>The media types corresponding to the RDF Syntax</dd>
 </dl>
 </li>
 </ul>
@@ -501,13 +494,12 @@ var activeTableTab = "activeTableTab";
 <h4>fileExtension</h4>
 <pre><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;fileExtension()</pre>
 <div class="block">The <a href="https://tools.ietf.org/html/rfc2046">IANA-registered</a>
- file extension.</div>
+ file extension.
+ <p>
+ The file extension includes the leading period, e.g. <code>.jsonld</code></div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>File extension including the leading period, e.g. <code>.jsonld</code></dd>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../../org/apache/commons/rdf/api/RDFSyntax.html#fileExtensions--"><code>fileExtensions()</code></a>, 
-<a href="../../../../../org/apache/commons/rdf/api/RDFSyntax.html#byFileExtension-java.lang.String-"><code>byFileExtension(String)</code></a></dd>
+<dd>The registered file extension of the RDF Syntax</dd>
 </dl>
 </li>
 </ul>
@@ -526,10 +518,7 @@ var activeTableTab = "activeTableTab";
  the behaviour of the default implementation.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>Set of file extensions</dd>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../../org/apache/commons/rdf/api/RDFSyntax.html#fileExtension--"><code>fileExtension()</code></a>, 
-<a href="../../../../../org/apache/commons/rdf/api/RDFSyntax.html#byFileExtension-java.lang.String-"><code>byFileExtension(String)</code></a></dd>
+<dd>The file extensions corresponding to the RDF Syntax</dd>
 </dl>
 </li>
 </ul>
@@ -545,7 +534,7 @@ var activeTableTab = "activeTableTab";
  Datasets</a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if this syntax supports datasets, otherwise <code>false</code>.</dd>
+<dd>true if this RDF Syntax supports datasets; false otherwise</dd>
 </dl>
 </li>
 </ul>
@@ -579,13 +568,14 @@ var activeTableTab = "activeTableTab";
  Two <a href="../../../../../org/apache/commons/rdf/api/RDFSyntax.html" title="interface in org.apache.commons.rdf.api"><code>RDFSyntax</code></a>es are considered equal if their
  <a href="../../../../../org/apache/commons/rdf/api/RDFSyntax.html#mediaType--"><code>mediaType()</code></a>s are equal when compared as lower case strings
  according to <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true#toLowerCase-java.util.Locale-" title="class or interface in java.lang"><code>String.toLowerCase(Locale)</code></a> with the locale
- <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html?is-external=true#ROOT" title="class or interface in java.util"><code>Locale.ROOT</code></a>.
- <p>
- 
-s</div>
+ <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html?is-external=true#ROOT" title="class or interface in java.util"><code>Locale.ROOT</code></a>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>obj</code> - the object with which to compare</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if this object is the same as the obj argument; false otherwise</dd>
 </dl>
 </li>
 </ul>
@@ -661,8 +651,6 @@ s</div>
          a matching <a href="../../../../../org/apache/commons/rdf/api/RDFSyntax.html#mediaType--"><code>mediaType()</code></a>, otherwise
          <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true#empty--" title="class or interface in java.util"><code>Optional.empty()</code></a> indicating that no matching syntax was
          found.</dd>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../../org/apache/commons/rdf/api/RDFSyntax.html#mediaTypes--"><code>mediaTypes()</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -688,8 +676,6 @@ s</div>
          a matching <a href="../../../../../org/apache/commons/rdf/api/RDFSyntax.html#fileExtension--"><code>fileExtension()</code></a>, otherwise
          <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true#empty--" title="class or interface in java.util"><code>Optional.empty()</code></a> indicating that no matching file
          extension was found.</dd>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../../org/apache/commons/rdf/api/RDFSyntax.html#fileExtensions--"><code>fileExtensions()</code></a></dd>
 </dl>
 </li>
 </ul>

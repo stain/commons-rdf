@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6};
+var methods = {"i0":6,"i1":6,"i2":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -129,12 +129,18 @@ var activeTableTab = "activeTableTab";
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Buildable.html" title="interface in org.apache.commons.rdf.api.fluentparser">Buildable</a></code></td>
+<td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfig.ImmutableParserConfig.html" title="interface in org.apache.commons.rdf.api.io">ParserConfig.ImmutableParserConfig</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Buildable.html#build--">build</a></span>()</code>
-<div class="block">Return an immutable builder at the current state.</div>
+<div class="block">Build the (potentially partial) parser config.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Buildable.html" title="interface in org.apache.commons.rdf.api.fluentparser">Buildable</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Buildable.html#immutable--">immutable</a></span>()</code>
+<div class="block">Return an immutable builder at the current state.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>&lt;V&gt;&nbsp;<a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Buildable.html" title="interface in org.apache.commons.rdf.api.fluentparser">Buildable</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Buildable.html#option-org.apache.commons.rdf.api.io.Option-V-">option</a></span>(<a href="../../../../../../org/apache/commons/rdf/api/io/Option.html" title="interface in org.apache.commons.rdf.api.io">Option</a>&lt;V&gt;&nbsp;option,
       V&nbsp;value)</code>
@@ -156,18 +162,39 @@ var activeTableTab = "activeTableTab";
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="immutable--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>immutable</h4>
+<pre><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Buildable.html" title="interface in org.apache.commons.rdf.api.fluentparser">Buildable</a>&nbsp;immutable()</pre>
+<div class="block">Return an immutable builder at the current state. The returned builder
+ can be re-used multiple times in a thread-safe way.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>An immutable builder</dd>
+</dl>
+</li>
+</ul>
 <a name="build--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>build</h4>
-<pre><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Buildable.html" title="interface in org.apache.commons.rdf.api.fluentparser">Buildable</a>&nbsp;build()</pre>
-<div class="block">Return an immutable builder at the current state. The returned builder
- can be re-used multiple times in a thread-safe way.</div>
+<pre><a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfig.ImmutableParserConfig.html" title="interface in org.apache.commons.rdf.api.io">ParserConfig.ImmutableParserConfig</a>&nbsp;build()</pre>
+<div class="block">Build the (potentially partial) parser config.
+ <p>
+ The parser configuration can be further modified, e.g.
+ <a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfig.html#withOption-org.apache.commons.rdf.api.io.Option-V-"><code>ParserConfig.withOption(Option, Object)</code></a> or used with a <a href="../../../../../../org/apache/commons/rdf/api/io/Parser.html" title="interface in org.apache.commons.rdf.api.io"><code>Parser</code></a>
+ as retrieved from <a href="../../../../../../org/apache/commons/rdf/api/RDF.html#parser-org.apache.commons.rdf.api.RDFSyntax-"><code>RDF.parser(org.apache.commons.rdf.api.RDFSyntax)</code></a>.
+ <p>
+ The returned <a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfig.html" title="interface in org.apache.commons.rdf.api.io"><code>ParserConfig</code></a> is immutable and is not affected by any
+ further modifications to this builder.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>An immutable builder</dd>
+<dd>An Immutable <a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfig.html" title="interface in org.apache.commons.rdf.api.io"><code>ParserConfig</code></a> as configured by the current builder.</dd>
 </dl>
 </li>
 </ul>

@@ -164,14 +164,16 @@ implements <a href="../../../../../../org/apache/commons/rdf/api/io/ParserBuilde
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfigBuilder.html#base-java.lang.String-">base</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;iriStr)</code>&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfigBuilder.html" title="class in org.apache.commons.rdf.api.io">ParserConfigBuilder</a></code></td>
+<td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfig.ImmutableParserConfig.html" title="interface in org.apache.commons.rdf.api.io">ParserConfig.ImmutableParserConfig</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfigBuilder.html#build--">build</a></span>()</code>
-<div class="block">Return an immutable builder at the current state.</div>
+<div class="block">Build the (potentially partial) parser config.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfig.html" title="interface in org.apache.commons.rdf.api.io">ParserConfig</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfigBuilder.html#buildConfig--">buildConfig</a></span>()</code>&nbsp;</td>
+<td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfigBuilder.html" title="class in org.apache.commons.rdf.api.io">ParserConfigBuilder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfigBuilder.html#immutable--">immutable</a></span>()</code>
+<div class="block">Return an immutable builder at the current state.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfigBuilder.html" title="class in org.apache.commons.rdf.api.io">ParserConfigBuilder</a></code></td>
@@ -267,13 +269,28 @@ implements <a href="../../../../../../org/apache/commons/rdf/api/io/ParserBuilde
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="buildConfig--">
+<a name="build--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>buildConfig</h4>
-<pre>public&nbsp;<a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfig.html" title="interface in org.apache.commons.rdf.api.io">ParserConfig</a>&nbsp;buildConfig()</pre>
+<h4>build</h4>
+<pre>public&nbsp;<a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfig.ImmutableParserConfig.html" title="interface in org.apache.commons.rdf.api.io">ParserConfig.ImmutableParserConfig</a>&nbsp;build()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Buildable.html#build--">Buildable</a></code></span></div>
+<div class="block">Build the (potentially partial) parser config.
+ <p>
+ The parser configuration can be further modified, e.g.
+ <a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfig.html#withOption-org.apache.commons.rdf.api.io.Option-V-"><code>ParserConfig.withOption(Option, Object)</code></a> or used with a <a href="../../../../../../org/apache/commons/rdf/api/io/Parser.html" title="interface in org.apache.commons.rdf.api.io"><code>Parser</code></a>
+ as retrieved from <a href="../../../../../../org/apache/commons/rdf/api/RDF.html#parser-org.apache.commons.rdf.api.RDFSyntax-"><code>RDF.parser(org.apache.commons.rdf.api.RDFSyntax)</code></a>.
+ <p>
+ The returned <a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfig.html" title="interface in org.apache.commons.rdf.api.io"><code>ParserConfig</code></a> is immutable and is not affected by any
+ further modifications to this builder.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Buildable.html#build--">build</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Buildable.html" title="interface in org.apache.commons.rdf.api.fluentparser">Buildable</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>An Immutable <a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfig.html" title="interface in org.apache.commons.rdf.api.io"><code>ParserConfig</code></a> as configured by the current builder.</dd>
+</dl>
 </li>
 </ul>
 <a name="target-org.apache.commons.rdf.api.Dataset-">
@@ -458,31 +475,31 @@ implements <a href="../../../../../../org/apache/commons/rdf/api/io/ParserBuilde
 </dl>
 </li>
 </ul>
-<a name="build--">
+<a name="immutable--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>build</h4>
-<pre>public&nbsp;<a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfigBuilder.html" title="class in org.apache.commons.rdf.api.io">ParserConfigBuilder</a>&nbsp;build()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Buildable.html#build--">Buildable</a></code></span></div>
+<h4>immutable</h4>
+<pre>public&nbsp;<a href="../../../../../../org/apache/commons/rdf/api/io/ParserConfigBuilder.html" title="class in org.apache.commons.rdf.api.io">ParserConfigBuilder</a>&nbsp;immutable()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Buildable.html#immutable--">Buildable</a></code></span></div>
 <div class="block">Return an immutable builder at the current state. The returned builder
  can be re-used multiple times in a thread-safe way.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Async.html#build--">build</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Async.html" title="interface in org.apache.commons.rdf.api.fluentparser">Async</a></code></dd>
+<dd><code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Async.html#immutable--">immutable</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Async.html" title="interface in org.apache.commons.rdf.api.fluentparser">Async</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Buildable.html#build--">build</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Buildable.html" title="interface in org.apache.commons.rdf.api.fluentparser">Buildable</a></code></dd>
+<dd><code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Buildable.html#immutable--">immutable</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Buildable.html" title="interface in org.apache.commons.rdf.api.fluentparser">Buildable</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/NeedSourceBased.html#build--">build</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/NeedSourceBased.html" title="interface in org.apache.commons.rdf.api.fluentparser">NeedSourceBased</a></code></dd>
+<dd><code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/NeedSourceBased.html#immutable--">immutable</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/NeedSourceBased.html" title="interface in org.apache.commons.rdf.api.fluentparser">NeedSourceBased</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/NeedSourceOrBase.html#build--">build</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/NeedSourceOrBase.html" title="interface in org.apache.commons.rdf.api.fluentparser">NeedSourceOrBase</a></code></dd>
+<dd><code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/NeedSourceOrBase.html#immutable--">immutable</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/NeedSourceOrBase.html" title="interface in org.apache.commons.rdf.api.fluentparser">NeedSourceOrBase</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/NeedTargetOrRDF.html#build--">build</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/NeedTargetOrRDF.html" title="interface in org.apache.commons.rdf.api.fluentparser">NeedTargetOrRDF</a></code></dd>
+<dd><code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/NeedTargetOrRDF.html#immutable--">immutable</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/NeedTargetOrRDF.html" title="interface in org.apache.commons.rdf.api.fluentparser">NeedTargetOrRDF</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/OptionalTarget.html#build--">build</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/OptionalTarget.html" title="interface in org.apache.commons.rdf.api.fluentparser">OptionalTarget</a></code></dd>
+<dd><code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/OptionalTarget.html#immutable--">immutable</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/OptionalTarget.html" title="interface in org.apache.commons.rdf.api.fluentparser">OptionalTarget</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Sync.html#build--">build</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Sync.html" title="interface in org.apache.commons.rdf.api.fluentparser">Sync</a></code></dd>
+<dd><code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Sync.html#immutable--">immutable</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/apache/commons/rdf/api/fluentparser/Sync.html" title="interface in org.apache.commons.rdf.api.fluentparser">Sync</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>An immutable builder</dd>
 </dl>
